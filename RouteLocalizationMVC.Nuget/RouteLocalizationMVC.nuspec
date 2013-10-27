@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>RouteLocalizationMVC</id>
+        <version>1.0.0</version>
+        <authors>Christopher Dresel</authors>
+        <projectUrl>https://github.com/Dresel/RouteLocalizationMVC</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An MVC package that simplifies route localization.</description>
+        <language />
+    </metadata>
+    <files>
+        <file src="input\lib\net40\RouteLocalizationMVC.dll" target="lib\net40\SimpleErrorMVC.dll" />
+    </files>
+</package>
