@@ -10,6 +10,6 @@
         <language />
     </metadata>
     <files>
-        <file src="input\lib\net40\RouteLocalizationMVC.dll" target="lib\net40\SimpleErrorMVC.dll" />
+        <file src="input\lib\net40\RouteLocalizationMVC.dll" target="lib\net40\RouteLocalizationMVC.dll" />
     </files>
 </package>
