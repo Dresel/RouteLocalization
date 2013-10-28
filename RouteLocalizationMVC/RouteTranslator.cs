@@ -78,6 +78,9 @@
 				if (Configuration.ApplyDefaultCultureToRootRoute)
 				{
 					routeTranslationRoute.Culture = Configuration.DefaultCulture;
+
+					if(Configuration.AddCultureAsRoutePrefix)
+						routeTranslationRoute.Url = string.Format("{0}/{1}", routeTranslationRoute.Culture, routeTranslationRoute.Url);
 				}
 
 				RouteCollection.Insert(routeIndex, routeTranslationRoute);
@@ -90,9 +93,13 @@
 			TranslationRoute translationRoute = routeTranslationRoute.ToTranslationRoute();
 			translationRoute.TranslationRouteRoot = routeTranslationRoute;
 
+			translationRoute.Culture = culture;
+
 			// Apply Route and Area Prefix
 			url = string.IsNullOrEmpty(RoutePrefix) ? url : string.Format("{0}/{1}", RoutePrefix, url);
 			url = string.IsNullOrEmpty(AreaPrefix) ? url : string.Format("{0}/{1}", AreaPrefix, url);
+			url = !Configuration.AddCultureAsRoutePrefix ? url : string.Format("{0}/{1}", translationRoute.Culture, url);
+
 
 			translationRoute.Url = url;
 
@@ -123,8 +130,6 @@
 					}
 				}
 			}
-
-			translationRoute.Culture = culture;
 
 			routeTranslationRoute.TranslatedRoutes.Add(culture, translationRoute);
 

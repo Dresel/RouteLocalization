@@ -7,7 +7,9 @@
 		static Configuration()
 		{
 			DefaultCulture = "en";
+
 			ApplyDefaultCultureToRootRoute = true;
+			AddCultureAsRoutePrefix = true;
 
 			AcceptedCultures = new HashSet<string>() { "en" };
 
@@ -18,6 +20,8 @@
 		}
 
 		public static HashSet<string> AcceptedCultures { get; set; }
+
+		public static bool AddCultureAsRoutePrefix { get; set; }
 
 		public static bool ApplyDefaultCultureToRootRoute { get; set; }
 

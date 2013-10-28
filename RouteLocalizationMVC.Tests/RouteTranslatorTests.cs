@@ -13,6 +13,27 @@
 	public class RouteTranslatorTests
 	{
 		[TestMethod]
+		public void AddTranslation_ConfigurationAddCultureAsRoutePrefixIsTrue_AddsPrefixToTranslatedRoutes()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+
+			Configuration.AddCultureAsRoutePrefix = true;
+
+			RouteCollection routeCollection = new RouteCollection();
+			routeCollection.MapRoute("Welcome", "Welcome", new { controller = "Home", action = "Index" }, null);
+
+			// Act
+			routeCollection.AddTranslation("Willkommen", "de", "Home", "Index");
+
+			// Assert
+			Assert.IsTrue(routeCollection.Count == 2);
+
+			Assert.IsTrue(((TranslationRoute)routeCollection[0]).Url == "en/Welcome");
+			Assert.IsTrue(((TranslationRoute)routeCollection[1]).Url == "de/Willkommen");
+		}
+
+		[TestMethod]
 		public void AddTranslation_ConfigurationValidateCultureIsFalse_IgnoresNotAcceptedCulture()
 		{
 			// Arrange
@@ -200,6 +221,27 @@
 		}
 
 		[TestMethod]
+		public void AddTranslation_PrefixesExists_AddsPrefixesInCorrectOrderToTranslatedRoutes()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+
+			Configuration.AddCultureAsRoutePrefix = true;
+
+			RouteCollection routeCollection = new RouteCollection();
+			routeCollection.MapRoute("Welcome", "Welcome", new { controller = "Home", action = "Index" }, null);
+
+			// Act
+			routeCollection.SetAreaPrefix("Area").SetRoutePrefix("Route").AddTranslation("Willkommen", "de", "Home", "Index");
+
+			// Assert
+			Assert.IsTrue(routeCollection.Count == 2);
+
+			Assert.IsTrue(((TranslationRoute)routeCollection[0]).Url == "en/Welcome");
+			Assert.IsTrue(((TranslationRoute)routeCollection[1]).Url == "de/Area/Route/Willkommen");
+		}
+
+		[TestMethod]
 		public void AddTranslation_ThreeRoutesExist_AppliesDefaultCultureToRootRoute()
 		{
 			// Arrange
@@ -363,6 +405,10 @@
 		{
 			// Since configuration is static, reinitialize before each test with default configuration
 			Configuration.DefaultCulture = "en";
+
+			Configuration.ApplyDefaultCultureToRootRoute = true;
+			Configuration.AddCultureAsRoutePrefix = false;
+
 			Configuration.AcceptedCultures = new HashSet<string>() { "en" };
 
 			Configuration.ValidateURL = true;
