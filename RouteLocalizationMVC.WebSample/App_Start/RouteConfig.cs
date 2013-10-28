@@ -1,6 +1,7 @@
 ﻿namespace RouteLocalizationMVC.WebSample
 {
-	using System.Web;
+	using System.Globalization;
+	using System.Linq;
 	using System.Web.Mvc;
 	using System.Web.Routing;
 	using RouteLocalizationMVC.Extensions;
@@ -27,6 +28,47 @@
 
 			// Add accepted cultures
 			Configuration.AcceptedCultures.Add("de");
+
+			// Apply en / de / ... to every route
+			Configuration.ApplyDefaultCultureToRootRoute = true;
+
+			// Set LocalizationHttpModule to initialize ThreadCulture from Browser UserLanguages
+			// Other options would be to load this from Cookie or Domain TLC (.com, .de, ...)
+			LocalizationHttpModule.GetCultureFromHttpContextDelegate = httpContext =>
+			{
+				// Set default culture as fallback
+				string cultureName = Configuration.DefaultCulture;
+
+				if (httpContext.Request.UserLanguages != null)
+				{
+					// Get language from HTTP Header
+					foreach (string userLanguage in httpContext.Request.UserLanguages.Select(x => x.Split(';').First()))
+					{
+						try
+						{
+							CultureInfo userCultureInfo = new CultureInfo(userLanguage);
+
+							// We don't can / want to support all languages
+							if (!Configuration.AcceptedCultures.Contains(userCultureInfo.Name.ToLower()))
+							{
+								continue;
+							}
+
+							// Culture found that is supported
+							cultureName = userCultureInfo.Name.ToLower();
+							break;
+						}
+						catch
+						{
+							// Ignore invalid cultures
+							continue;
+						}
+					}
+				}
+
+				// Return accepted culture
+				return new CultureInfo(cultureName);
+			};
 
 			// Add translations
 			// You can translate every specific route that contains default Controller and Action (which MapMvcAttributeRoutes does)

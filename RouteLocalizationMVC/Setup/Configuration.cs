@@ -9,7 +9,7 @@
 			DefaultCulture = "en";
 
 			ApplyDefaultCultureToRootRoute = true;
-			AddCultureAsRoutePrefix = true;
+			AddCultureAsRoutePrefix = false;
 
 			AcceptedCultures = new HashSet<string>() { "en" };
 

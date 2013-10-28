@@ -2,14 +2,24 @@
 {
 	using System;
 	using System.Globalization;
-	using System.Linq;
 	using System.Threading;
 	using System.Web;
-	using RouteLocalizationMVC.Setup;
 
 	public class LocalizationHttpModule : IHttpModule
 	{
 		public static EventHandler<CultureSelectedEventArgs> CultureSelected = (sender, e) => { };
+
+		public static Func<HttpContext, CultureInfo> GetCultureFromHttpContextDelegate = context => null;
+
+		static LocalizationHttpModule()
+		{
+			SetCurrentCulture = true;
+			SetCurrentUICulture = true;
+		}
+
+		public static bool SetCurrentCulture { get; set; }
+
+		public static bool SetCurrentUICulture { get; set; }
 
 		public void Dispose()
 		{
@@ -20,52 +30,33 @@
 			context.BeginRequest += BeginRequest;
 		}
 
-		protected void SetCultureFromHttpHeader(HttpContext httpContext)
+		protected void SetCultureFromHttpContext(HttpContext httpContext)
 		{
-			// Set default culture as fallback
-			string cultureName = Configuration.DefaultCulture;
+			CultureInfo cultureInfo = GetCultureFromHttpContextDelegate(httpContext);
 
-			if (httpContext.Request.UserLanguages != null)
+			if (cultureInfo == null)
 			{
-				// Get language from HTTP Header
-				foreach (string userLanguage in httpContext.Request.UserLanguages.Select(x => x.Split(';').First()))
-				{
-					try
-					{
-						CultureInfo userCultureInfo = new CultureInfo(userLanguage);
-
-						// We don't can / want to support all languages
-						if (!Configuration.AcceptedCultures.Contains(userCultureInfo.Name.ToLower()))
-						{
-							continue;
-						}
-
-						// Culture found that is supported
-						cultureName = userCultureInfo.Name.ToLower();
-						break;
-					}
-					catch
-					{
-						// Ignore invalid cultures
-						continue;
-					}
-				}
+				return;
 			}
 
-			// Set accepted culture
-			CultureInfo cultureInfo = new CultureInfo(cultureName);
+			if (SetCurrentCulture)
+			{
+				Thread.CurrentThread.CurrentCulture = cultureInfo;
+			}
 
-			Thread.CurrentThread.CurrentCulture = cultureInfo;
-			Thread.CurrentThread.CurrentUICulture = cultureInfo;
+			if (SetCurrentUICulture)
+			{
+				Thread.CurrentThread.CurrentUICulture = cultureInfo;
+			}
 
-			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureName });
+			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureInfo.Name.ToLower() });
 		}
 
 		protected void BeginRequest(object sender, EventArgs e)
 		{
 			HttpContext httpContext = ((HttpApplication)sender).Context;
 
-			SetCultureFromHttpHeader(httpContext);
+			SetCultureFromHttpContext(httpContext);
 		}
 	}
 }
