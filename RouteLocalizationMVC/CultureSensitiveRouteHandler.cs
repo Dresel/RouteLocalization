@@ -13,7 +13,14 @@
 		public CultureSensitiveRouteHandler(IRouteHandler routeHandler)
 		{
 			RouteHandler = routeHandler;
+
+			SetCurrentCulture = true;
+			SetCurrentUICulture = true;
 		}
+
+		public static bool SetCurrentCulture { get; set; }
+
+		public static bool SetCurrentUICulture { get; set; }
 
 		protected IRouteHandler RouteHandler { get; set; }
 
@@ -33,8 +40,15 @@
 			// Set culture
 			CultureInfo cultureInfo = new CultureInfo(cultureName);
 
-			Thread.CurrentThread.CurrentCulture = cultureInfo;
-			Thread.CurrentThread.CurrentUICulture = cultureInfo;
+			if (SetCurrentCulture)
+			{
+				Thread.CurrentThread.CurrentCulture = cultureInfo;
+			}
+
+			if (SetCurrentUICulture)
+			{
+				Thread.CurrentThread.CurrentUICulture = cultureInfo;
+			}
 
 			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureName });
 

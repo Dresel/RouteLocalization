@@ -17,19 +17,17 @@
 			// Map routes via attributes
 			routes.MapMvcAttributeRoutes();
 
-			// At the beginning of a request, LocalizationHttpModule checks browser user languages,
-			// and sets the thread culture to this language if it is in AcceptedCultures.
-			// If its not, thread culture is set to Configuration.DefaultCulture.
+			// At the beginning of a request, the GetCultureFromHttpContextDelegate of LocalizationHttpModule is called to initialise thread culture.
 
 			// If a culture specific TranslationRoute is requested, the thread culture gets overridden by CultureSensitiveRouteHandler.
 
-			// The current culture is used for TranslationRoute.GetVirtualPath to force culture specific route generation.
-			// This is useful when UrlHelper.Route, RedirectToRoute or similiar functions are called
+			// Every translated route is replaced by a TranslationRoute. The overridden GetVirtualPath uses the current culture for route generation.
+			// This ensures that for example german routes are used when the thread culture is german.
 
 			// Add accepted cultures
 			Configuration.AcceptedCultures.Add("de");
 
-			// Apply en / de / ... to every route
+			// Applies the default culture to original route if its translated
 			Configuration.ApplyDefaultCultureToRootRoute = true;
 
 			// Uncomment if you want the culture (en, de, ...) added to each translated route as route prefix
