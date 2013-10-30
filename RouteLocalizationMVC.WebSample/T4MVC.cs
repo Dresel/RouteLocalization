@@ -27,6 +27,7 @@ public static class MVC
     public static RouteLocalizationMVC.WebSample.Controllers.HomeController Home = new RouteLocalizationMVC.WebSample.Controllers.T4MVC_HomeController();
     public static RouteLocalizationMVC.WebSample.Controllers.HomeWithRouteAreaAttributeController HomeWithRouteAreaAttribute = new RouteLocalizationMVC.WebSample.Controllers.T4MVC_HomeWithRouteAreaAttributeController();
     public static RouteLocalizationMVC.WebSample.Controllers.HomeWithRoutePrefixAttributeController HomeWithRoutePrefixAttribute = new RouteLocalizationMVC.WebSample.Controllers.T4MVC_HomeWithRoutePrefixAttributeController();
+    public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
 namespace T4MVC

@@ -68,6 +68,7 @@ namespace RouteLocalizationMVC.WebSample.Controllers
         {
             public readonly string Book = "Book";
             public readonly string Index = "Index";
+            public readonly string Start = "Start";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -75,6 +76,7 @@ namespace RouteLocalizationMVC.WebSample.Controllers
         {
             public const string Book = "Book";
             public const string Index = "Index";
+            public const string Start = "Start";
         }
 
 
@@ -127,6 +129,15 @@ namespace RouteLocalizationMVC.WebSample.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        partial void StartOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        public override System.Web.Mvc.ActionResult Start()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Start);
+            StartOverride(callInfo);
             return callInfo;
         }
 
