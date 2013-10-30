@@ -32,6 +32,9 @@
 			// Apply en / de / ... to every route
 			Configuration.ApplyDefaultCultureToRootRoute = true;
 
+			// Uncomment if you want the culture (en, de, ...) added to each translated route as route prefix
+			// Configuration.AddCultureAsRoutePrefix = true;
+
 			// Set LocalizationHttpModule to initialize ThreadCulture from Browser UserLanguages
 			// Other options would be to load this from Cookie or Domain TLC (.com, .de, ...)
 			LocalizationHttpModule.GetCultureFromHttpContextDelegate = httpContext =>
