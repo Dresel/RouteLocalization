@@ -359,6 +359,7 @@
 		{
 			// Arrange
 			string controllerName = "Home";
+			string controllerNamespace = "Namespace";
 			string actionName = "Index";
 			string areaPrefix = "AreaPrefix";
 			string routePrefix = "RoutePrefix";
@@ -366,11 +367,12 @@
 
 			// Act
 			RouteTranslator routeTranslator =
-				new RouteTranslator().ForController(controllerName).ForAction(actionName).SetAreaPrefix(areaPrefix).SetRoutePrefix(
-					routePrefix).ForCulture(culture);
+				new RouteTranslator().ForController(controllerName, controllerNamespace).ForAction(actionName).SetAreaPrefix(
+					areaPrefix).SetRoutePrefix(routePrefix).ForCulture(culture);
 
 			// Assert
 			Assert.IsTrue(routeTranslator.Controller == controllerName);
+			Assert.IsTrue(routeTranslator.ControllerNamespace == controllerNamespace);
 			Assert.IsTrue(routeTranslator.Action == actionName);
 			Assert.IsTrue(routeTranslator.AreaPrefix == areaPrefix);
 			Assert.IsTrue(routeTranslator.RoutePrefix == routePrefix);
@@ -382,6 +384,7 @@
 		{
 			// Arrange
 			string controllerName = "MissingAttribute";
+			string controllerNamespace = "RouteLocalizationMVC.Tests.Core";
 			string actionName = "Index";
 			string areaPrefix = "AreaPrefix";
 			string routePrefix = "RoutePrefix";
@@ -394,6 +397,7 @@
 
 			// Assert
 			Assert.IsTrue(routeTranslator.Controller == controllerName);
+			Assert.IsTrue(routeTranslator.ControllerNamespace == controllerNamespace);
 			Assert.IsTrue(routeTranslator.Action == actionName);
 			Assert.IsTrue(routeTranslator.AreaPrefix == areaPrefix);
 			Assert.IsTrue(routeTranslator.RoutePrefix == routePrefix);

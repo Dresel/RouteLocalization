@@ -24,6 +24,8 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static class MVC
 {
+    static readonly AreaClass s_Area = new AreaClass();
+    public static AreaClass Area { get { return s_Area; } }
     public static RouteLocalizationMVC.WebSample.Controllers.HomeController Home = new RouteLocalizationMVC.WebSample.Controllers.T4MVC_HomeController();
     public static RouteLocalizationMVC.WebSample.Controllers.HomeWithRouteAreaAttributeController HomeWithRouteAreaAttribute = new RouteLocalizationMVC.WebSample.Controllers.T4MVC_HomeWithRouteAreaAttributeController();
     public static RouteLocalizationMVC.WebSample.Controllers.HomeWithRoutePrefixAttributeController HomeWithRoutePrefixAttribute = new RouteLocalizationMVC.WebSample.Controllers.T4MVC_HomeWithRoutePrefixAttributeController();
@@ -32,6 +34,12 @@ public static class MVC
 
 namespace T4MVC
 {
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class AreaClass
+    {
+        public readonly string Name = "Area";
+        public RouteLocalizationMVC.WebSample.Areas.Area.Controllers.HomeController Home = new RouteLocalizationMVC.WebSample.Areas.Area.Controllers.T4MVC_HomeController();
+    }
 }
 
 namespace T4MVC

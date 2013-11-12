@@ -83,6 +83,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Areas\Area\Views\web.config" />
+    <Content Include="Areas\Area\Views\Home\Book.cshtml" />
+    <Content Include="Areas\Area\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Area\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Area\Views\Shared\_Layout.cshtml" />
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -93,6 +98,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Area.HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Area\Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeWithRoutePrefixAttributeController.cs" />
     <Compile Include="Controllers\HomeWithRouteAreaAttributeController.cs" />
@@ -138,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Area\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -4,10 +4,32 @@
 	using System.Web.Routing;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using RouteLocalizationMVC.Extensions;
+	using RouteLocalizationMVC.Tests.Core.DifferentNamespace;
 
 	[TestClass]
 	public class RouteCollectionExtensionsTests
 	{
+		[TestMethod]
+		public void GetFirstUntranslatedRoute_NoRouteExistsForNamespace_ReturnsNull()
+		{
+			// Arrange
+			RouteCollection routeCollection = new RouteCollection
+			{
+				new Route("Home", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
+					new RouteValueDictionary(), new RouteValueDictionary() { { "Namespaces", new[] { "Namespace1" } } },
+					new MvcRouteHandler()),
+				new Route("Home", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
+					new RouteValueDictionary(), new RouteValueDictionary() { { "Namespaces", new[] { "Namespace2" } } },
+					new MvcRouteHandler())
+			};
+
+			// Act
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace3");
+
+			// Assert
+			Assert.IsNull(route);
+		}
+
 		[TestMethod]
 		public void GetFirstUntranslatedRoute_NoRouteExists_ReturnsNull()
 		{
@@ -15,7 +37,7 @@
 			RouteCollection routeCollection = new RouteCollection();
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
 
 			// Assert
 			Assert.IsNull(route);
@@ -36,7 +58,7 @@
 			RouteCollection routeCollection = new RouteCollection() { route1 };
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
 
 			// Assert
 			Assert.IsNull(route);
@@ -65,7 +87,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
 
 			// Assert
 			Assert.AreSame(routeCollection[2], route);
@@ -91,7 +113,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
 
 			// Assert
 			Assert.AreSame(routeCollection[1], route);
@@ -110,7 +132,71 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
+
+			// Assert
+			Assert.AreSame(routeCollection[0], route);
+		}
+
+		[TestMethod]
+		public void GetFirstUntranslatedRoute_TwoRoutesWithNamespacesExists_ReturnsCorrectRoute()
+		{
+			// Arrange
+			RouteCollection routeCollection = new RouteCollection
+			{
+				new Route("Home", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
+					new RouteValueDictionary(), new RouteValueDictionary() { { "Namespaces", new[] { "Namespace1" } } },
+					new MvcRouteHandler()),
+				new Route("Home", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
+					new RouteValueDictionary(), new RouteValueDictionary() { { "Namespaces", new[] { "Namespace2" } } },
+					new MvcRouteHandler())
+			};
+
+			// Act
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace2");
+
+			// Assert
+			Assert.AreSame(routeCollection[1], route);
+		}
+
+		[TestMethod]
+		public void GetFirstUntranslatedRoute_TwoRoutesWithTargetActionMethodExists_ReturnsCorrectRoute()
+		{
+			// Arrange
+			RouteCollection routeCollection = new RouteCollection
+			{
+				new Route("Home", new RouteValueDictionary() { { "controller", "MissingAttribute" }, { "action", "Index" } },
+					new RouteValueDictionary(),
+					new RouteValueDictionary() { { "TargetActionMethod", typeof(MissingAttributeController).GetMethod("Index") } },
+					new MvcRouteHandler()),
+				new Route("Home", new RouteValueDictionary() { { "controller", "MissingAttribute" }, { "action", "Index" } },
+					new RouteValueDictionary(),
+					new RouteValueDictionary() { { "TargetActionMethod", typeof(Core.MissingAttributeController).GetMethod("Index") } },
+					new MvcRouteHandler())
+			};
+
+			// Act
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "MissingAttribute", "Index",
+				"RouteLocalizationMVC.Tests.Core");
+
+			// Assert
+			Assert.AreSame(routeCollection[1], route);
+		}
+
+		[TestMethod]
+		public void GetFirstUntranslatedRoute_TwoRoutesWithoutNamespacesExists_ReturnsFirst()
+		{
+			// Arrange
+			RouteCollection routeCollection = new RouteCollection
+			{
+				new Route("Home", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
+					new RouteValueDictionary(), new RouteValueDictionary(), new MvcRouteHandler()),
+				new Route("Home", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
+					new RouteValueDictionary(), new RouteValueDictionary(), new MvcRouteHandler())
+			};
+
+			// Act
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace1");
 
 			// Assert
 			Assert.AreSame(routeCollection[0], route);
@@ -129,7 +215,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
 
 			// Assert
 			Assert.AreSame(routeCollection[0], route);

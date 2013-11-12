@@ -14,6 +14,8 @@
 
 		public string Controller { get; set; }
 
+		public string ControllerNamespace { get; set; }
+
 		public string Culture { get; set; }
 
 		public RouteCollection RouteCollection { get; set; }
@@ -37,6 +39,12 @@
 
 		public RouteTranslator AddTranslation(string url, string culture, string controller, string action)
 		{
+			return AddTranslation(url, culture, controller, action, ControllerNamespace);
+		}
+
+		public RouteTranslator AddTranslation(string url, string culture, string controller, string action,
+			string controllerNamespace)
+		{
 			if (string.IsNullOrEmpty(controller))
 			{
 				throw new ArgumentNullException("controller");
@@ -47,7 +55,7 @@
 				throw new ArgumentNullException("action");
 			}
 
-			Route route = RouteCollection.GetFirstUntranslatedRoute(culture, controller, action);
+			Route route = RouteCollection.GetFirstUntranslatedRoute(culture, controller, action, controllerNamespace);
 
 			if (route == null)
 			{
@@ -79,8 +87,10 @@
 				{
 					routeTranslationRoute.Culture = Configuration.DefaultCulture;
 
-					if(Configuration.AddCultureAsRoutePrefix)
+					if (Configuration.AddCultureAsRoutePrefix)
+					{
 						routeTranslationRoute.Url = string.Format("{0}/{1}", routeTranslationRoute.Culture, routeTranslationRoute.Url);
+					}
 				}
 
 				RouteCollection.Insert(routeIndex, routeTranslationRoute);
@@ -99,7 +109,6 @@
 			url = string.IsNullOrEmpty(RoutePrefix) ? url : string.Format("{0}/{1}", RoutePrefix, url);
 			url = string.IsNullOrEmpty(AreaPrefix) ? url : string.Format("{0}/{1}", AreaPrefix, url);
 			url = !Configuration.AddCultureAsRoutePrefix ? url : string.Format("{0}/{1}", translationRoute.Culture, url);
-
 
 			translationRoute.Url = url;
 
@@ -146,6 +155,7 @@
 			return this;
 		}
 
+		[Obsolete("This method is obsolete. Call ForController(controller, controllerNamespace) instead.")]
 		public RouteTranslator ForController(string controller)
 		{
 			Controller = controller;
@@ -153,9 +163,18 @@
 			return this;
 		}
 
+		public RouteTranslator ForController(string controller, string controllerNamespace)
+		{
+			Controller = controller;
+			ControllerNamespace = controllerNamespace;
+
+			return this;
+		}
+
 		public RouteTranslator<T> ForController<T>()
 		{
 			Controller = Regex.Replace(typeof(T).Name, "Controller$", "");
+			ControllerNamespace = typeof(T).Namespace;
 
 			return ToGeneric<T>();
 		}
@@ -188,6 +207,7 @@
 				Action = Action,
 				AreaPrefix = AreaPrefix,
 				Controller = Controller,
+				ControllerNamespace = ControllerNamespace,
 				Culture = Culture,
 				RouteCollection = RouteCollection,
 				RoutePrefix = RoutePrefix

@@ -85,6 +85,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Core\DifferentNamespace\MissingAttributeController.cs" />
     <Compile Include="Core\ExpectedExceptionWithMessageAttribute.cs" />
     <Compile Include="Core\MissingAttributeController.cs" />
     <Compile Include="RouteCollectionExtensionsTests.cs" />
