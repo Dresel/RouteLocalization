@@ -19,13 +19,13 @@
 			Configuration = configuration;
 		}
 
-		public Configuration Configuration { get; set; }
-
 		public string Action { get; set; }
 
 		public ICollection<Type> ActionArguments { get; set; }
 
 		public string AreaPrefix { get; set; }
+
+		public Configuration Configuration { get; set; }
 
 		public string Controller { get; set; }
 
@@ -38,11 +38,6 @@
 		public RouteCollection RouteCollection { get; set; }
 
 		public string RoutePrefix { get; set; }
-
-		public RouteTranslator Translate(Action<RouteTranslator> routeTranslatorAction)
-		{
-			routeTranslatorAction.Invoke(this);
-		}
 
 		public RouteTranslator AddTranslation(string url)
 		{
@@ -60,7 +55,7 @@
 		{
 			if (string.IsNullOrEmpty(NamedRoute))
 			{
-				AddTranslation(url, culture, Controller, Action, ControllerNamespace, ActionArguments);
+				return AddTranslation(url, culture, Controller, Action, ControllerNamespace, ActionArguments);
 			}
 			else
 			{
@@ -71,11 +66,6 @@
 		public RouteTranslator AddTranslation(string url, string culture, string action)
 		{
 			return AddTranslation(url, culture, Controller, action, ControllerNamespace, ActionArguments);
-		}
-
-		public RouteTranslator AddTranslation(string url, string culture, string controller, string action)
-		{
-			return AddTranslation(url, culture, controller, action, ControllerNamespace, ActionArguments);
 		}
 
 		public RouteTranslator AddTranslation(string url, string culture, string controller, string action,
@@ -206,14 +196,6 @@
 		{
 			Action = action;
 			ActionArguments = actionArguments;
-
-			return this;
-		}
-
-		[Obsolete("This method is obsolete. Call ForController(controller, controllerNamespace) instead.")]
-		public RouteTranslator ForController(string controller)
-		{
-			Controller = controller;
 
 			return this;
 		}

@@ -1,34 +1,49 @@
 ﻿namespace RouteLocalizationMVC
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Linq.Expressions;
 	using System.Web.Routing;
-	using RouteLocalizationMVC.Setup;
 
 	public class RouteTranslator<T> : RouteTranslator
 	{
 		public new RouteTranslator<T> AddTranslation(string url)
 		{
-			return AddTranslation(url, Culture, Controller, Action);
+			if (string.IsNullOrEmpty(NamedRoute))
+			{
+				return AddTranslation(url, Culture, Controller, Action, ControllerNamespace, ActionArguments);
+			}
+			else
+			{
+				return AddTranslationForNamedRoute(url, Culture, NamedRoute);
+			}
 		}
 
 		public new RouteTranslator<T> AddTranslation(string url, string culture)
 		{
-			return AddTranslation(url, culture, Controller, Action);
+			if (string.IsNullOrEmpty(NamedRoute))
+			{
+				return AddTranslation(url, culture, Controller, Action, ControllerNamespace, ActionArguments);
+			}
+			else
+			{
+				return AddTranslationForNamedRoute(url, Culture, NamedRoute);
+			}
 		}
 
 		public new RouteTranslator<T> AddTranslation(string url, string culture, string action)
 		{
-			return AddTranslation(url, culture, Controller, action);
+			return AddTranslation(url, culture, Controller, action, ControllerNamespace, ActionArguments);
 		}
 
-		public new RouteTranslator<T> AddTranslation(string url, string culture, string controller, string action)
+		public new RouteTranslator<T> AddTranslation(string url, string culture, string controller, string action,
+			string controllerNamespace, ICollection<Type> actionArguments)
 		{
 			ValidateRoutePrefix();
 			ValidateRouteArea();
 
-			base.AddTranslation(url, culture, controller, action);
+			base.AddTranslation(url, culture, controller, action, controllerNamespace, actionArguments);
 
 			return this;
 		}
@@ -39,6 +54,16 @@
 			ValidateRouteArea();
 
 			base.AddTranslation(url, culture, route);
+
+			return this;
+		}
+
+		public new RouteTranslator<T> AddTranslationForNamedRoute(string url, string culture, string namedRoute)
+		{
+			ValidateRoutePrefix();
+			ValidateRouteArea();
+
+			base.AddTranslationForNamedRoute(url, culture, namedRoute);
 
 			return this;
 		}
@@ -57,8 +82,7 @@
 				throw new ArgumentException("Expression must be a MethodCallExpression", "expression");
 			}
 
-			Action = methodCall.Method.Name;
-			ActionArguments = actionArguments;
+			ForAction(methodCall.Method.Name, actionArguments);
 
 			return this;
 		}

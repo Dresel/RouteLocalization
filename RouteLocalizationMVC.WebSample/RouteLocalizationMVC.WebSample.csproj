@@ -97,7 +97,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AreaRoutes.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\DefaultRoutes.cs" />
     <Compile Include="Area.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

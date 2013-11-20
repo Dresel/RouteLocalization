@@ -26,7 +26,7 @@
 			routeCollection.MapRoute("Welcome", "Welcome", new { controller = "Home", action = "Index" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Willkommen", "de", "Home", "Index");
+			routeCollection.Localization(Configuration).AddTranslation("Willkommen", "de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(routeCollection.Count == 2);
@@ -45,7 +45,7 @@
 			routeCollection.MapRoute("Home", "Home", new { controller = "Home", action = "Index" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Start", "de", "Home", "Index");
+			routeCollection.Localization(Configuration).AddTranslation("Start", "de", "Home", "Index", string.Empty, null);
 		}
 
 		[TestMethod]
@@ -92,7 +92,7 @@
 			routeCollection.MapRoute("Book", "Book/{chapter}/{page}", new { controller = "Home", action = "Book" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/", "de", "Home", "Book");
+			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/", "de", "Home", "Book", string.Empty, null);
 		}
 
 		[TestMethod]
@@ -107,7 +107,7 @@
 			routeCollection.MapRoute("Book", "Book/{chapter}/{page}", new { controller = "Home", action = "Book" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Buch/{page}/{chapter}", "de", "Home", "Book");
+			routeCollection.Localization(Configuration).AddTranslation("Buch/{page}/{chapter}", "de", "Home", "Book", string.Empty, null);
 		}
 
 		[TestMethod]
@@ -123,7 +123,7 @@
 			routeCollection.MapRoute("Book", "Book/{chapter}/{page}", new { controller = "Home", action = "Book" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/", "de", "Home", "Book");
+			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/", "de", "Home", "Book", string.Empty, null);
 		}
 
 		[TestMethod]
@@ -139,7 +139,7 @@
 			routeCollection.MapRoute("Book", "Book/{chapter}/{page}", new { controller = "Home", action = "Book" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Buch/{page}/{chapter}", "de", "Home", "Book");
+			routeCollection.Localization(Configuration).AddTranslation("Buch/{page}/{chapter}", "de", "Home", "Book", string.Empty, null);
 		}
 
 		[TestMethod]
@@ -185,7 +185,7 @@
 			RouteCollection routeCollection = new RouteCollection();
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Start", "de", "Home", "Index");
+			routeCollection.Localization(Configuration).AddTranslation("Start", "de", "Home", "Index", string.Empty, null);
 		}
 
 		[TestMethod]
@@ -197,7 +197,7 @@
 			routeCollection.MapRoute("Home", "Home", new { controller = "Home", action = "Index" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Start", "de", "Home", "Index");
+			routeCollection.Localization(Configuration).AddTranslation("Start", "de", "Home", "Index", string.Empty, null);
 		}
 
 		[TestMethod]
@@ -208,7 +208,7 @@
 			RouteCollection routeCollection = new RouteCollection();
 
 			// Act
-			routeCollection.Localization(Configuration).ForController("Home").ForAction(null).AddTranslation("Start", "de");
+			routeCollection.Localization(Configuration).ForController("Home", string.Empty).ForAction(null).AddTranslation("Start", "de");
 		}
 
 		[TestMethod]
@@ -219,7 +219,7 @@
 			RouteCollection routeCollection = new RouteCollection();
 
 			// Act
-			routeCollection.Localization(Configuration).ForController(null).ForAction("Index").AddTranslation("Start", "de");
+			routeCollection.Localization(Configuration).ForController(null, string.Empty).ForAction("Index").AddTranslation("Start", "de");
 		}
 
 		[TestMethod]
@@ -234,7 +234,7 @@
 			routeCollection.MapRoute("Welcome", "Welcome", new { controller = "Home", action = "Index" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).SetAreaPrefix("Area").SetRoutePrefix("Route").AddTranslation("Willkommen", "de", "Home", "Index");
+			routeCollection.Localization(Configuration).SetAreaPrefix("Area").SetRoutePrefix("Route").AddTranslation("Willkommen", "de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(routeCollection.Count == 2);
@@ -255,7 +255,7 @@
 			routeCollection.MapRoute("Product", "Product/{category}/{id}", new { controller = "Home", action = "Product" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/{page}", "de", "Home", "Book");
+			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/{page}", "de", "Home", "Book", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(((TranslationRoute)routeCollection[1]).Culture == Configuration.DefaultCulture);
@@ -273,7 +273,7 @@
 			routeCollection.MapRoute("Product", "Product/{category}/{id}", new { controller = "Home", action = "Product" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/{page}", "de", "Home", "Book");
+			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/{page}", "de", "Home", "Book", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(((TranslationRoute)routeCollection[2]).Culture == "de");
@@ -295,7 +295,7 @@
 			RouteBase route3 = routeCollection[2];
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/{page}", "de", "Home", "Book");
+			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/{page}", "de", "Home", "Book", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(routeCollection.Count == 4);
@@ -320,7 +320,7 @@
 			routeCollection.MapRoute("Product", "Product/{category}/{id}", new { controller = "Home", action = "Product" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/{page}", "de", "Home", "Book");
+			routeCollection.Localization(Configuration).AddTranslation("Buch/{chapter}/{page}", "de", "Home", "Book", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(
@@ -338,12 +338,12 @@
 			routeCollection.MapRoute("Home2", "Home2", new { controller = "Home", action = "Index" }, null);
 
 			// Act
-			routeCollection.Localization(Configuration).AddTranslation("Start1", "de", "Home", "Index");
+			routeCollection.Localization(Configuration).AddTranslation("Start1", "de", "Home", "Index", string.Empty, null);
 
 			TranslationRoute translationRouteRootFirst = (TranslationRoute)routeCollection[0];
 			TranslationRoute translationRouteFirst = (TranslationRoute)routeCollection[1];
 
-			routeCollection.Localization(Configuration).AddTranslation("Start2", "de", "Home", "Index");
+			routeCollection.Localization(Configuration).AddTranslation("Start2", "de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(routeCollection.Count == 4);

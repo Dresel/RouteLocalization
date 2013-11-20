@@ -1,12 +1,12 @@
 ﻿namespace RouteLocalizationMVC.WebSample
 {
+	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
 	using System.Web.Mvc;
 	using System.Web.Routing;
 	using RouteLocalizationMVC.Extensions;
-	using RouteLocalizationMVC.Setup;
-	using RouteLocalizationMVC.WebSample.Controllers;
+	using RouteLocalizationMVC.WebSample.App_Start;
 
 	public class RouteConfig
 	{
@@ -24,23 +24,16 @@
 			// Every translated route is replaced by a TranslationRoute. The overridden GetVirtualPath uses the current culture for route generation.
 			// This ensures that for example german routes are used when the thread culture is german.
 
-			Configuration configuration = new Configuration();
-
-			// Add accepted cultures
-			configuration.AcceptedCultures.Add("de");
-
-			// Applies the default culture to original route if its translated
-			configuration.ApplyDefaultCultureToRootRoute = true;
-
-			// Uncomment if you want the culture (en, de, ...) added to each translated route as route prefix
-			// Configuration.AddCultureAsRoutePrefix = true;
+			// Define values here so they can used for the LocalizationHttpModule too
+			string defaultCulture = "en";
+			HashSet<string> acceptedCultures = new HashSet<string>() { "en", "de" };
 
 			// Set LocalizationHttpModule to initialize ThreadCulture from Browser UserLanguages
 			// Other options would be to load this from Cookie or Domain TLC (.com, .de, ...)
 			LocalizationHttpModule.GetCultureFromHttpContextDelegate = httpContext =>
 			{
 				// Set default culture as fallback
-				string cultureName = configuration.DefaultCulture;
+				string cultureName = defaultCulture;
 
 				if (httpContext.Request.UserLanguages != null)
 				{
@@ -52,7 +45,7 @@
 							CultureInfo userCultureInfo = new CultureInfo(userLanguage);
 
 							// We don't can / want to support all languages
-							if (!configuration.AcceptedCultures.Contains(userCultureInfo.Name.ToLower()))
+							if (!acceptedCultures.Contains(userCultureInfo.Name.ToLower()))
 							{
 								continue;
 							}
@@ -75,33 +68,54 @@
 
 			// Add translations
 			// You can translate every specific route that contains default Controller and Action (which MapMvcAttributeRoutes does)
-			routes
-				.Localization(configuration)
-				.Translate(translator =>
-				{
-					translator.ForCulture("de")
-						.ForController<HomeController>()
-						.ForAction(x => x.Index())
-							.AddTranslation("Willkommen")
-						.ForAction(x => x.Book())
-							.AddTranslation("Buch/{chapter}/{page}");
+			routes.Localization(configuration =>
+			{
+				configuration.DefaultCulture = defaultCulture;
+				configuration.AcceptedCultures = acceptedCultures;
 
-					translator.ForCulture("de")
-						.ForController<HomeWithRoutePrefixAttributeController>()
-						.SetRoutePrefix("RoutePrefixDE")
-							.ForAction(x => x.Index())
-								.AddTranslation("Willkommen")
-							.ForAction(x => x.Book())
-								.AddTranslation("Buch/{chapter}/{page}");
+				configuration.ApplyDefaultCultureToRootRoute = true;
 
-					translator.ForCulture("de")
-						.SetAreaPrefix("AreaPrefixDE")
-						.ForController<HomeWithRouteAreaAttributeController>()
-							.ForAction(x => x.Index())
-								.AddTranslation("Willkommen")
-							.ForAction(x => x.Book())
-								.AddTranslation("Buch/{chapter}/{page}");
-				});
+				// Uncomment if you want the culture (en, de, ...) added to each translated route as route prefix
+				configuration.AddCultureAsRoutePrefix = true;
+			}).Translate(localization =>
+			{
+				// Use extension methods if you want to separate route configuration
+				localization.AddDefaultRoutesTranslation();
+				localization.AddAreaRoutesTranslation();
+
+				// DefaultRoutes.cs
+				//localization.ForCulture("de")
+				//	.ForController<HomeController>()
+				//	.ForAction(x => x.Index())
+				//		.AddTranslation("Willkommen")
+				//	.ForAction(x => x.Book())
+				//		.AddTranslation("Buch/{chapter}/{page}");
+
+				//localization.ForCulture("de")
+				//	.ForController<HomeWithRoutePrefixAttributeController>()
+				//	.SetRoutePrefix("RoutePrefixDE")
+				//		.ForAction(x => x.Index())
+				//			.AddTranslation("Willkommen")
+				//		.ForAction(x => x.Book())
+				//			.AddTranslation("Buch/{chapter}/{page}");
+
+				//localization.ForCulture("de")
+				//	.SetAreaPrefix("AreaPrefixDE")
+				//	.ForController<HomeWithRouteAreaAttributeController>()
+				//		.ForAction(x => x.Index())
+				//			.AddTranslation("Willkommen")
+				//		.ForAction(x => x.Book())
+				//			.AddTranslation("Buch/{chapter}/{page}");
+
+				// AreaRoutes.cs
+				//localization.ForCulture("de")
+				//	.SetAreaPrefix("Area")
+				//	.ForController<Areas.Area.Controllers.HomeController>()
+				//	.ForAction(x => x.Index())
+				//		.AddTranslation("Willkommen")
+				//	.ForAction(x => x.Book())
+				//		.AddTranslation("Buch/{chapter}/{page}");
+			});
 		}
 	}
 }

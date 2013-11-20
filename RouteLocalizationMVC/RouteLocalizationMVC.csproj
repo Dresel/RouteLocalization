@@ -74,6 +74,7 @@
     <Compile Include="CultureSensitiveRouteHandler.cs" />
     <Compile Include="Extensions\ExpressionExtension.cs" />
     <Compile Include="Extensions\VirtualPathDataExtensions.cs" />
+    <Compile Include="Localization.cs" />
     <Compile Include="LocalizationHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\RouteCollectionExtensions.cs" />
