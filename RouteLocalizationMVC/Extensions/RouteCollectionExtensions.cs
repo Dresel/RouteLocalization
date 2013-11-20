@@ -1,4 +1,6 @@
-﻿namespace RouteLocalizationMVC.Extensions
+﻿using RouteLocalizationMVC.Setup;
+
+namespace RouteLocalizationMVC.Extensions
 {
 	using System;
 	using System.Linq;
@@ -7,49 +9,22 @@
 
 	public static class RouteCollectionExtensions
 	{
-		public static RouteTranslator AddTranslation(this RouteCollection collection, string url, string culture, Route route)
+		public static RouteTranslator Localization(this RouteCollection collection)
 		{
-			RouteTranslator translator = new RouteTranslator() { RouteCollection = collection };
-
-			return translator.AddTranslation(url, culture, route);
+			return new RouteTranslator() {RouteCollection = collection};
 		}
 
-		public static RouteTranslator AddTranslation(this RouteCollection collection, string url, string culture,
-			string controller, string action)
+		public static RouteTranslator Localization(this RouteCollection collection, Action<Configuration> configurationAction)
 		{
-			RouteTranslator translator = new RouteTranslator() { RouteCollection = collection };
+			Configuration configuration = new Configuration();
+			configurationAction.Invoke(configuration);
 
-			return translator.AddTranslation(url, culture, controller, action);
+			return new RouteTranslator(configuration) { RouteCollection = collection };
 		}
 
-		[Obsolete("This method is obsolete. Call ForController(controller, controllerNamespace) instead.")]
-		public static RouteTranslator ForController(this RouteCollection collection, string controller)
+		public static RouteTranslator Localization(this RouteCollection collection, Configuration configuration)
 		{
-			RouteTranslator routeTranslator = new RouteTranslator() { RouteCollection = collection };
-
-			return routeTranslator.ForController(controller);
-		}
-
-		public static RouteTranslator ForController(this RouteCollection collection, string controller,
-			string controllerNamespace)
-		{
-			RouteTranslator routeTranslator = new RouteTranslator() { RouteCollection = collection };
-
-			return routeTranslator.ForController(controller, controllerNamespace);
-		}
-
-		public static RouteTranslator<T> ForController<T>(this RouteCollection collection)
-		{
-			RouteTranslator routeTranslator = new RouteTranslator() { RouteCollection = collection };
-
-			return routeTranslator.ForController<T>();
-		}
-
-		public static RouteTranslator ForCulture(this RouteCollection collection, string culture)
-		{
-			RouteTranslator translator = new RouteTranslator() { RouteCollection = collection };
-
-			return translator.ForCulture(culture);
+			return new RouteTranslator(configuration) { RouteCollection = collection };
 		}
 
 		public static Route GetFirstUntranslatedRoute(this RouteCollection routeCollection, string culture, string controller,
@@ -62,19 +37,19 @@
 							x.HasNoTranslationForCulture(culture));
 		}
 
-		public static RouteTranslator SetAreaPrefix(this RouteCollection collection, string areaPrefix)
-		{
-			RouteTranslator routeTranslator = new RouteTranslator() { RouteCollection = collection };
+		//public static RouteTranslator SetAreaPrefix(this RouteCollection collection, string areaPrefix)
+		//{
+		//	RouteTranslator routeTranslator = new RouteTranslator() { RouteCollection = collection };
 
-			return routeTranslator.SetAreaPrefix(areaPrefix);
-		}
+		//	return routeTranslator.SetAreaPrefix(areaPrefix);
+		//}
 
-		public static RouteTranslator SetRoutePrefix(this RouteCollection collection, string routePrefix)
-		{
-			RouteTranslator routeTranslator = new RouteTranslator() { RouteCollection = collection };
+		//public static RouteTranslator SetRoutePrefix(this RouteCollection collection, string routePrefix)
+		//{
+		//	RouteTranslator routeTranslator = new RouteTranslator() { RouteCollection = collection };
 
-			return routeTranslator.SetRoutePrefix(routePrefix);
-		}
+		//	return routeTranslator.SetRoutePrefix(routePrefix);
+		//}
 
 		private static bool HasNoTranslationForCulture(this Route route, string culture)
 		{
