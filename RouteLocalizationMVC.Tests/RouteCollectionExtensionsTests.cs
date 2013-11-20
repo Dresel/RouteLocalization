@@ -1,5 +1,6 @@
 ﻿namespace RouteLocalizationMVC.Tests
 {
+	using System;
 	using System.Web.Mvc;
 	using System.Web.Routing;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -24,7 +25,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace3");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace3", null);
 
 			// Assert
 			Assert.IsNull(route);
@@ -37,7 +38,7 @@
 			RouteCollection routeCollection = new RouteCollection();
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.IsNull(route);
@@ -58,7 +59,7 @@
 			RouteCollection routeCollection = new RouteCollection() { route1 };
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.IsNull(route);
@@ -87,7 +88,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.AreSame(routeCollection[2], route);
@@ -113,7 +114,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.AreSame(routeCollection[1], route);
@@ -132,7 +133,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.AreSame(routeCollection[0], route);
@@ -153,7 +154,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace2");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace2", null);
 
 			// Assert
 			Assert.AreSame(routeCollection[1], route);
@@ -177,7 +178,7 @@
 
 			// Act
 			Route route = routeCollection.GetFirstUntranslatedRoute("de", "MissingAttribute", "Index",
-				"RouteLocalizationMVC.Tests.Core");
+				"RouteLocalizationMVC.Tests.Core", null);
 
 			// Assert
 			Assert.AreSame(routeCollection[1], route);
@@ -196,7 +197,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace1");
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace1", null);
 
 			// Assert
 			Assert.AreSame(routeCollection[0], route);
@@ -215,7 +216,7 @@
 			};
 
 			// Act
-			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty);
+			Route route = routeCollection.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.AreSame(routeCollection[0], route);

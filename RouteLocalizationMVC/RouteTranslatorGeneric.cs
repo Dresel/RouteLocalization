@@ -45,6 +45,11 @@
 
 		public RouteTranslator<T> ForAction(Expression<Func<T, object>> expression)
 		{
+			return ForAction(expression, null);
+		}
+
+		public RouteTranslator<T> ForAction(Expression<Func<T, object>> expression, Type[] actionArguments)
+		{
 			MethodCallExpression methodCall = expression.Body as MethodCallExpression;
 
 			if (methodCall == null)
@@ -53,6 +58,7 @@
 			}
 
 			Action = methodCall.Method.Name;
+			ActionArguments = actionArguments;
 
 			return this;
 		}

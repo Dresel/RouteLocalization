@@ -1,6 +1,7 @@
 ﻿namespace RouteLocalizationMVC.Extensions
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Reflection;
 	using System.Web.Routing;
@@ -53,13 +54,42 @@
 		}
 
 		public static Route GetFirstUntranslatedRoute(this RouteCollection routeCollection, string culture, string controller,
-			string action, string controllerNamespace)
+			string action, string controllerNamespace, ICollection<Type> actionArguments)
 		{
-			return
-				routeCollection.OfType<Route>().FirstOrDefault(
+			List<Route> results =
+				routeCollection.OfType<Route>().Where(
 					x =>
 						x.MatchesControllerAndAction(controller, action) && x.MatchesNamespace(controllerNamespace) &&
-							x.HasNoTranslationForCulture(culture));
+							x.HasNoTranslationForCulture(culture)).ToList();
+
+			// Check if we can narrow down the selection with argument specification
+			Route argumentRoute = results.FirstOrDefault(x => x.MatchesActionArguments(actionArguments));
+
+			// If argumentRoute is null and actionArguments are mandatory
+			if (argumentRoute == null && actionArguments != null)
+			{
+				return null;
+			}
+
+			// Return argumentRoute or first route without argument specification
+			return argumentRoute ?? results.FirstOrDefault();
+		}
+
+		public static Route GetUntranslatedNamedRoute(this RouteCollection routeCollection, string culture, string namedRoute)
+		{
+			Route route = routeCollection[namedRoute] as Route;
+
+			if (route == null)
+			{
+				return null;
+			}
+
+			if (!route.HasNoTranslationForCulture(culture))
+			{
+				return null;
+			}
+
+			return route;
 		}
 
 		public static RouteTranslator SetAreaPrefix(this RouteCollection collection, string areaPrefix)
@@ -86,6 +116,36 @@
 			}
 
 			return translationRoute.IsRoot && !translationRoute.TranslatedRoutes.ContainsKey(culture);
+		}
+
+		private static bool MatchesActionArguments(this Route route, ICollection<Type> actionArguments)
+		{
+			if (actionArguments == null)
+			{
+				return true;
+			}
+
+			MethodInfo methodInfo = (route.DataTokens["TargetActionMethod"] as MethodInfo);
+
+			if (methodInfo != null)
+			{
+				ParameterInfo[] parameterInfos = methodInfo.GetParameters();
+
+				if (parameterInfos.Count() != actionArguments.Count)
+				{
+					return false;
+				}
+
+				for (int i = 0; i < actionArguments.Count; i++)
+				{
+					if (actionArguments.ElementAt(i) != parameterInfos[i].ParameterType)
+					{
+						return false;
+					}
+				}
+			}
+
+			return true;
 		}
 
 		private static bool MatchesControllerAndAction(this Route route, string controller, string action)

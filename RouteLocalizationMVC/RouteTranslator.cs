@@ -1,6 +1,7 @@
 ﻿namespace RouteLocalizationMVC
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Text.RegularExpressions;
 	using System.Web.Routing;
 	using RouteLocalizationMVC.Extensions;
@@ -10,6 +11,8 @@
 	{
 		public string Action { get; set; }
 
+		public ICollection<Type> ActionArguments { get; set; }
+
 		public string AreaPrefix { get; set; }
 
 		public string Controller { get; set; }
@@ -18,32 +21,48 @@
 
 		public string Culture { get; set; }
 
+		public string NamedRoute { get; set; }
+
 		public RouteCollection RouteCollection { get; set; }
 
 		public string RoutePrefix { get; set; }
 
 		public RouteTranslator AddTranslation(string url)
 		{
-			return AddTranslation(url, Culture, Controller, Action);
+			if (string.IsNullOrEmpty(NamedRoute))
+			{
+				return AddTranslation(url, Culture, Controller, Action, ControllerNamespace, ActionArguments);
+			}
+			else
+			{
+				return AddTranslationForNamedRoute(url, Culture, NamedRoute);
+			}
 		}
 
 		public RouteTranslator AddTranslation(string url, string culture)
 		{
-			return AddTranslation(url, culture, Controller, Action);
+			if (string.IsNullOrEmpty(NamedRoute))
+			{
+				AddTranslation(url, culture, Controller, Action, ControllerNamespace, ActionArguments);
+			}
+			else
+			{
+				return AddTranslationForNamedRoute(url, Culture, NamedRoute);
+			}
 		}
 
 		public RouteTranslator AddTranslation(string url, string culture, string action)
 		{
-			return AddTranslation(url, culture, Controller, action);
+			return AddTranslation(url, culture, Controller, action, ControllerNamespace, ActionArguments);
 		}
 
 		public RouteTranslator AddTranslation(string url, string culture, string controller, string action)
 		{
-			return AddTranslation(url, culture, controller, action, ControllerNamespace);
+			return AddTranslation(url, culture, controller, action, ControllerNamespace, ActionArguments);
 		}
 
 		public RouteTranslator AddTranslation(string url, string culture, string controller, string action,
-			string controllerNamespace)
+			string controllerNamespace, ICollection<Type> actionArguments)
 		{
 			if (string.IsNullOrEmpty(controller))
 			{
@@ -55,7 +74,8 @@
 				throw new ArgumentNullException("action");
 			}
 
-			Route route = RouteCollection.GetFirstUntranslatedRoute(culture, controller, action, controllerNamespace);
+			Route route = RouteCollection.GetFirstUntranslatedRoute(culture, controller, action, controllerNamespace,
+				actionArguments);
 
 			if (route == null)
 			{
@@ -148,9 +168,27 @@
 			return this;
 		}
 
+		public RouteTranslator AddTranslationForNamedRoute(string url, string culture, string namedRoute)
+		{
+			Route route = RouteCollection.GetUntranslatedNamedRoute(culture, namedRoute);
+
+			if (route == null)
+			{
+				throw new InvalidOperationException(string.Format("No Route found for name'{0}'.", namedRoute));
+			}
+
+			return AddTranslation(url, culture, route);
+		}
+
 		public RouteTranslator ForAction(string action)
 		{
+			return ForAction(action, null);
+		}
+
+		public RouteTranslator ForAction(string action, Type[] actionArguments)
+		{
 			Action = action;
+			ActionArguments = actionArguments;
 
 			return this;
 		}
@@ -186,6 +224,13 @@
 			return this;
 		}
 
+		public RouteTranslator ForNamedRoute(string namedRoute)
+		{
+			NamedRoute = namedRoute;
+
+			return this;
+		}
+
 		public RouteTranslator SetAreaPrefix(string areaPrefix)
 		{
 			AreaPrefix = areaPrefix;
@@ -202,13 +247,15 @@
 
 		protected RouteTranslator<T> ToGeneric<T>()
 		{
-			return new RouteTranslator<T>()
+			return new RouteTranslator<T>
 			{
 				Action = Action,
+				ActionArguments = ActionArguments,
 				AreaPrefix = AreaPrefix,
 				Controller = Controller,
 				ControllerNamespace = ControllerNamespace,
 				Culture = Culture,
+				NamedRoute = NamedRoute,
 				RouteCollection = RouteCollection,
 				RoutePrefix = RoutePrefix
 			};
