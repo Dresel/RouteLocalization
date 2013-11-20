@@ -24,11 +24,13 @@
 			// Every translated route is replaced by a TranslationRoute. The overridden GetVirtualPath uses the current culture for route generation.
 			// This ensures that for example german routes are used when the thread culture is german.
 
+			Configuration configuration = new Configuration();
+
 			// Add accepted cultures
-			Configuration.AcceptedCultures.Add("de");
+			configuration.AcceptedCultures.Add("de");
 
 			// Applies the default culture to original route if its translated
-			Configuration.ApplyDefaultCultureToRootRoute = true;
+			configuration.ApplyDefaultCultureToRootRoute = true;
 
 			// Uncomment if you want the culture (en, de, ...) added to each translated route as route prefix
 			// Configuration.AddCultureAsRoutePrefix = true;
@@ -38,7 +40,7 @@
 			LocalizationHttpModule.GetCultureFromHttpContextDelegate = httpContext =>
 			{
 				// Set default culture as fallback
-				string cultureName = Configuration.DefaultCulture;
+				string cultureName = configuration.DefaultCulture;
 
 				if (httpContext.Request.UserLanguages != null)
 				{
@@ -50,7 +52,7 @@
 							CultureInfo userCultureInfo = new CultureInfo(userLanguage);
 
 							// We don't can / want to support all languages
-							if (!Configuration.AcceptedCultures.Contains(userCultureInfo.Name.ToLower()))
+							if (!configuration.AcceptedCultures.Contains(userCultureInfo.Name.ToLower()))
 							{
 								continue;
 							}
@@ -74,30 +76,32 @@
 			// Add translations
 			// You can translate every specific route that contains default Controller and Action (which MapMvcAttributeRoutes does)
 			routes
-				.ForCulture("de")
-				.ForController<HomeController>()
-					.ForAction(x => x.Index())
-						.AddTranslation("Willkommen")
-					.ForAction(x => x.Book())
-						.AddTranslation("Buch/{chapter}/{page}");
+				.Localization(configuration)
+				.Translate(translator =>
+				{
+					translator.ForCulture("de")
+						.ForController<HomeController>()
+						.ForAction(x => x.Index())
+							.AddTranslation("Willkommen")
+						.ForAction(x => x.Book())
+							.AddTranslation("Buch/{chapter}/{page}");
 
-			routes
-				.ForCulture("de")
-				.ForController<HomeWithRoutePrefixAttributeController>()
-				.SetRoutePrefix("RoutePrefixDE")
-					.ForAction(x => x.Index())
-						.AddTranslation("Willkommen")
-					.ForAction(x => x.Book())
-						.AddTranslation("Buch/{chapter}/{page}");
+					translator.ForCulture("de")
+						.ForController<HomeWithRoutePrefixAttributeController>()
+						.SetRoutePrefix("RoutePrefixDE")
+							.ForAction(x => x.Index())
+								.AddTranslation("Willkommen")
+							.ForAction(x => x.Book())
+								.AddTranslation("Buch/{chapter}/{page}");
 
-			routes
-				.ForCulture("de")
-				.SetAreaPrefix("AreaPrefixDE")
-				.ForController<HomeWithRouteAreaAttributeController>()
-					.ForAction(x => x.Index())
-						.AddTranslation("Willkommen")
-					.ForAction(x => x.Book())
-						.AddTranslation("Buch/{chapter}/{page}");
+					translator.ForCulture("de")
+						.SetAreaPrefix("AreaPrefixDE")
+						.ForController<HomeWithRouteAreaAttributeController>()
+							.ForAction(x => x.Index())
+								.AddTranslation("Willkommen")
+							.ForAction(x => x.Book())
+								.AddTranslation("Buch/{chapter}/{page}");
+				});
 		}
 	}
 }

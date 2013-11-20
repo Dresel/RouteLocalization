@@ -2,9 +2,9 @@
 {
 	using System.Collections.Generic;
 
-	public static class Configuration
+	public class Configuration
 	{
-		static Configuration()
+		public Configuration()
 		{
 			DefaultCulture = "en";
 
@@ -19,20 +19,20 @@
 			ValidateCulture = true;
 		}
 
-		public static HashSet<string> AcceptedCultures { get; set; }
+		public HashSet<string> AcceptedCultures { get; set; }
 
-		public static bool AddCultureAsRoutePrefix { get; set; }
+		public bool AddCultureAsRoutePrefix { get; set; }
 
-		public static bool ApplyDefaultCultureToRootRoute { get; set; }
+		public bool ApplyDefaultCultureToRootRoute { get; set; }
 
-		public static string DefaultCulture { get; set; }
+		public string DefaultCulture { get; set; }
 
-		public static bool ValidateCulture { get; set; }
+		public bool ValidateCulture { get; set; }
 
-		public static bool ValidateRouteArea { get; set; }
+		public bool ValidateRouteArea { get; set; }
 
-		public static bool ValidateRoutePrefix { get; set; }
+		public bool ValidateRoutePrefix { get; set; }
 
-		public static bool ValidateURL { get; set; }
+		public bool ValidateURL { get; set; }
 	}
 }

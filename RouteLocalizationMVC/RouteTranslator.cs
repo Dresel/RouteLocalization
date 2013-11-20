@@ -9,6 +9,18 @@
 
 	public class RouteTranslator
 	{
+		public RouteTranslator()
+		{
+			Configuration = new Configuration();
+		}
+
+		public RouteTranslator(Configuration configuration)
+		{
+			Configuration = configuration;
+		}
+
+		public Configuration Configuration { get; set; }
+
 		public string Action { get; set; }
 
 		public ICollection<Type> ActionArguments { get; set; }
@@ -26,6 +38,11 @@
 		public RouteCollection RouteCollection { get; set; }
 
 		public string RoutePrefix { get; set; }
+
+		public RouteTranslator Translate(Action<RouteTranslator> routeTranslatorAction)
+		{
+			routeTranslatorAction.Invoke(this);
+		}
 
 		public RouteTranslator AddTranslation(string url)
 		{
@@ -252,6 +269,7 @@
 				Action = Action,
 				ActionArguments = ActionArguments,
 				AreaPrefix = AreaPrefix,
+				Configuration = Configuration,
 				Controller = Controller,
 				ControllerNamespace = ControllerNamespace,
 				Culture = Culture,
