@@ -8,7 +8,7 @@
 		{
 			DefaultCulture = "en";
 
-			ApplyDefaultCultureToRootRoute = true;
+			RootTranslationProcessing = RootTranslationProcessing.ApplyDefaultCultureToRoute;
 			AddCultureAsRoutePrefix = false;
 
 			AcceptedCultures = new HashSet<string>() { "en" };
@@ -23,9 +23,9 @@
 
 		public bool AddCultureAsRoutePrefix { get; set; }
 
-		public bool ApplyDefaultCultureToRootRoute { get; set; }
-
 		public string DefaultCulture { get; set; }
+
+		public RootTranslationProcessing RootTranslationProcessing { get; set; }
 
 		public bool ValidateCulture { get; set; }
 

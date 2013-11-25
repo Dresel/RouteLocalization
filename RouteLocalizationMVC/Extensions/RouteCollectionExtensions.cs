@@ -1,33 +1,14 @@
-﻿using RouteLocalizationMVC.Setup;
-
-namespace RouteLocalizationMVC.Extensions
+﻿namespace RouteLocalizationMVC.Extensions
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Reflection;
 	using System.Web.Routing;
+	using RouteLocalizationMVC.Setup;
 
 	public static class RouteCollectionExtensions
 	{
-		public static Localization Localization(this RouteCollection collection)
-		{
-			return new Localization() { RouteCollection = collection };
-		}
-
-		public static Localization Localization(this RouteCollection collection, Action<Configuration> configurationAction)
-		{
-			Configuration configuration = new Configuration();
-			configurationAction.Invoke(configuration);
-
-			return new Localization(configuration) { RouteCollection = collection };
-		}
-
-		public static Localization Localization(this RouteCollection collection, Configuration configuration)
-		{
-			return new Localization(configuration) { RouteCollection = collection };
-		}
-
 		public static Route GetFirstUntranslatedRoute(this RouteCollection routeCollection, string culture, string controller,
 			string action, string controllerNamespace, ICollection<Type> actionArguments)
 		{
@@ -65,6 +46,32 @@ namespace RouteLocalizationMVC.Extensions
 			}
 
 			return route;
+		}
+
+		public static Localization Localization(this RouteCollection routeCollection)
+		{
+			return new Localization() { RouteCollection = routeCollection };
+		}
+
+		public static Localization Localization(this RouteCollection routeCollection,
+			Action<Configuration> configurationAction)
+		{
+			Configuration configuration = new Configuration();
+			configurationAction.Invoke(configuration);
+
+			return new Localization(configuration) { RouteCollection = routeCollection };
+		}
+
+		public static Localization Localization(this RouteCollection routeCollection, Configuration configuration)
+		{
+			return new Localization(configuration) { RouteCollection = routeCollection };
+		}
+
+		public static Dictionary<string, RouteBase> NamedMap(this RouteCollection routeCollection)
+		{
+			FieldInfo fieldInfo = routeCollection.GetType().GetField("_namedMap", BindingFlags.NonPublic | BindingFlags.Instance);
+
+			return (Dictionary<string, RouteBase>)fieldInfo.GetValue(routeCollection);
 		}
 
 		private static bool HasNoTranslationForCulture(this Route route, string culture)

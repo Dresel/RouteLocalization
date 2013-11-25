@@ -2,6 +2,8 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
+	using System.Reflection;
 	using System.Text.RegularExpressions;
 	using System.Web.Routing;
 	using RouteLocalizationMVC.Extensions;
@@ -100,73 +102,76 @@
 				throw new InvalidOperationException(string.Format("AcceptedCultures does not contain culture '{0}'.", culture));
 			}
 
-			TranslationRoute routeTranslationRoute;
+			// Store index so we can replace on the same position
 			int routeIndex = RouteCollection.IndexOf(route);
 
+			TranslationRoute routeTranslationRoute;
+
+			// Prepare RootRoute
 			if (!(route is TranslationRoute))
 			{
-				// Remove and create TranslationRoute
-				RouteCollection.RemoveAt(routeIndex);
+				// Check if the route we want to replace is a named route
+				string routeName = RouteCollection.NamedMap()
+					.Where(x => x.Value == route).Select(x => x.Key).SingleOrDefault();
+
+				// Remove route
+				RouteCollection.Remove(route);
 
 				routeTranslationRoute = route.ToTranslationRoute();
 
-				if (Configuration.ApplyDefaultCultureToRootRoute)
+				switch (Configuration.RootTranslationProcessing)
 				{
-					routeTranslationRoute.Culture = Configuration.DefaultCulture;
+					case RootTranslationProcessing.ApplyDefaultCultureToRoute:
 
-					if (Configuration.AddCultureAsRoutePrefix)
-					{
-						routeTranslationRoute.Url = string.Format("{0}/{1}", routeTranslationRoute.Culture, routeTranslationRoute.Url);
-					}
+						// Set original route as translated route with DefaultCulture
+						routeTranslationRoute.Culture = Configuration.DefaultCulture;
+
+						if (Configuration.AddCultureAsRoutePrefix)
+						{
+							routeTranslationRoute.Url = string.Format("{0}/{1}", routeTranslationRoute.Culture, routeTranslationRoute.Url);
+						}
+
+						break;
+
+					case RootTranslationProcessing.ReplaceRouteByTranslatedRoute:
+
+						// Replace Original Route by translated Route
+						routeTranslationRoute = TranslateRoute(url, culture, routeTranslationRoute);
+						break;
+
+					case RootTranslationProcessing.None:
+
+						// Just replacing with translated route (original route stays as "neutral" route without culture)
+						break;
 				}
 
 				RouteCollection.Insert(routeIndex, routeTranslationRoute);
+
+				// Named route exist, so add dictionary entry
+				if (!string.IsNullOrEmpty(routeName))
+				{
+					RouteCollection.NamedMap().Add(routeName, routeTranslationRoute);
+				}
+
+				if (Configuration.RootTranslationProcessing == RootTranslationProcessing.ReplaceRouteByTranslatedRoute)
+				{
+					// No further processing needed
+					return this;
+				}
 			}
 			else
 			{
+				// We already have a translated route
 				routeTranslationRoute = (TranslationRoute)route;
 			}
 
-			TranslationRoute translationRoute = routeTranslationRoute.ToTranslationRoute();
+			// Create translated route
+			TranslationRoute translationRoute = TranslateRoute(url, culture, routeTranslationRoute);
+
+			// Set TranslationRouteRoot on translated route
 			translationRoute.TranslationRouteRoot = routeTranslationRoute;
 
-			translationRoute.Culture = culture;
-
-			// Apply Route and Area Prefix
-			url = string.IsNullOrEmpty(RoutePrefix) ? url : string.Format("{0}/{1}", RoutePrefix, url);
-			url = string.IsNullOrEmpty(AreaPrefix) ? url : string.Format("{0}/{1}", AreaPrefix, url);
-			url = !Configuration.AddCultureAsRoutePrefix ? url : string.Format("{0}/{1}", translationRoute.Culture, url);
-
-			translationRoute.Url = url;
-
-			// Validate and check if translation has identical placeholders
-			if (Configuration.ValidateURL)
-			{
-				MatchCollection originalMatches = Regex.Matches(routeTranslationRoute.Url, "{.*?}");
-				MatchCollection translationMatches = Regex.Matches(translationRoute.Url, "{.*?}");
-
-				if (originalMatches.Count != translationMatches.Count)
-				{
-					throw new InvalidOperationException(
-						string.Format(
-							"Translation Route '{0}' contains different number of {{ }} placeholders than original Route '{1}'." +
-								"Set Configuration.ValidateURL to false, if you want to skip validation.", translationRoute.Url,
-							routeTranslationRoute.Url));
-				}
-
-				for (int i = 0; i < originalMatches.Count; i++)
-				{
-					if (originalMatches[i].Value != translationMatches[i].Value)
-					{
-						throw new InvalidOperationException(
-							string.Format(
-								"Translation Route '{0}' contains different {{ }} placeholders than original Route '{1}'." +
-									"Set Configuration.ValidateURL to false, if you want to skip validation.", translationRoute.Url,
-								routeTranslationRoute.Url));
-					}
-				}
-			}
-
+			// Add translated route to TranslationRouteRoot
 			routeTranslationRoute.TranslatedRoutes.Add(culture, translationRoute);
 
 			// Insert after root
@@ -259,6 +264,49 @@
 				RouteCollection = RouteCollection,
 				RoutePrefix = RoutePrefix
 			};
+		}
+
+		protected TranslationRoute TranslateRoute(string url, string culture, TranslationRoute routeTranslationRoute)
+		{
+			TranslationRoute translationRoute = routeTranslationRoute.ToTranslationRoute();
+			translationRoute.Culture = culture;
+
+			// Apply Route and Area Prefix
+			url = string.IsNullOrEmpty(RoutePrefix) ? url : string.Format("{0}/{1}", RoutePrefix, url);
+			url = string.IsNullOrEmpty(AreaPrefix) ? url : string.Format("{0}/{1}", AreaPrefix, url);
+			url = !Configuration.AddCultureAsRoutePrefix ? url : string.Format("{0}/{1}", translationRoute.Culture, url);
+
+			translationRoute.Url = url;
+
+			// Validate and check if translation has identical placeholders
+			if (Configuration.ValidateURL)
+			{
+				MatchCollection originalMatches = Regex.Matches(routeTranslationRoute.Url, "{.*?}");
+				MatchCollection translationMatches = Regex.Matches(translationRoute.Url, "{.*?}");
+
+				if (originalMatches.Count != translationMatches.Count)
+				{
+					throw new InvalidOperationException(
+						string.Format(
+							"Translation Route '{0}' contains different number of {{ }} placeholders than original Route '{1}'." +
+								"Set Configuration.ValidateURL to false, if you want to skip validation.", translationRoute.Url,
+							routeTranslationRoute.Url));
+				}
+
+				for (int i = 0; i < originalMatches.Count; i++)
+				{
+					if (originalMatches[i].Value != translationMatches[i].Value)
+					{
+						throw new InvalidOperationException(
+							string.Format(
+								"Translation Route '{0}' contains different {{ }} placeholders than original Route '{1}'." +
+									"Set Configuration.ValidateURL to false, if you want to skip validation.", translationRoute.Url,
+								routeTranslationRoute.Url));
+					}
+				}
+			}
+
+			return translationRoute;
 		}
 	}
 }

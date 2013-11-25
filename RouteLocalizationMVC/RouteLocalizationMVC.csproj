@@ -83,6 +83,7 @@
     <Compile Include="RouteTranslatorGeneric.cs" />
     <Compile Include="Setup\Configuration.cs" />
     <Compile Include="Setup\PreApplicationStarter.cs" />
+    <Compile Include="Setup\RootTranslationProcessing.cs" />
     <Compile Include="TranslationRoute.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -58,7 +58,8 @@
 				currentCulture = (string)values["Culture"];
 			}
 
-			if (string.IsNullOrEmpty(Culture) || Culture == currentCulture ||
+			// If this route does contain selected culture or there is no translation for this culture / route
+			if (Culture == currentCulture ||
 				!TranslationRouteRoot.TranslatedRoutes.ContainsKey(currentCulture))
 			{
 				VirtualPathData virtualPathData = base.GetVirtualPath(requestContext, values).RemoveCulture();
@@ -73,6 +74,7 @@
 				return virtualPathData;
 			}
 
+			// Get translated route from child routes
 			VirtualPathData virtualPathDataTranslation =
 				TranslationRouteRoot.TranslatedRoutes[currentCulture].GetVirtualPath(requestContext, values).RemoveCulture();
 

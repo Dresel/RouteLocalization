@@ -6,6 +6,7 @@
 	using System.Web.Mvc;
 	using System.Web.Routing;
 	using RouteLocalizationMVC.Extensions;
+	using RouteLocalizationMVC.Setup;
 	using RouteLocalizationMVC.WebSample.App_Start;
 
 	public class RouteConfig
@@ -73,7 +74,11 @@
 				configuration.DefaultCulture = defaultCulture;
 				configuration.AcceptedCultures = acceptedCultures;
 
-				configuration.ApplyDefaultCultureToRootRoute = true;
+				// Use existing attribute routes as translated route with default culture (english)
+				// Other options would be
+				// * Replace the existing attribute routes with the translated route
+				// * Do not process attribute route and let it be a "neutral" route
+				configuration.RootTranslationProcessing = RootTranslationProcessing.ReplaceRouteByTranslatedRoute;
 
 				// Uncomment if you want the culture (en, de, ...) added to each translated route as route prefix
 				configuration.AddCultureAsRoutePrefix = true;
