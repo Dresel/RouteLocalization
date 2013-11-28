@@ -83,7 +83,7 @@
 				return true;
 			}
 
-			return translationRoute.IsRoot && !translationRoute.TranslatedRoutes.ContainsKey(culture);
+			return translationRoute.IsRoot && translationRoute.Culture != culture && !translationRoute.TranslatedRoutes.ContainsKey(culture);
 		}
 
 		private static bool MatchesActionArguments(this Route route, ICollection<Type> actionArguments)
