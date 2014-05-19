@@ -1,10 +1,15 @@
 # Nuget package
 
-There is a nuget package avaliable here http://nuget.org/packages/RouteLocalizationMVC.
+There is an alpha nuget package available here:
+
+  * ASP.NET MVC: [RouteLocalization.Mvc](http://nuget.org/packages/RouteLocalization.Mvc)
+  * ASP.NET Web API: [RouteLocalization.WebApi](http://nuget.org/packages/RouteLocalization.WebApi)
 
 ## Introduction
 
-RouteLocalizationMVC is an MVC package that allows localization of your routes with fluent interfaces:
+**RouteLocalization was rewritten for ASP.NET 5.2. The old versions (< 2.0) are not working for newer versions of ASP.NET (>= 5.1). This is because of the internal changes of attribute routing. Since 5.2 you can use attribute routing in combination with a *DirectRouteProvider*, which makes it possible to hook to the attribute routing process. This makes it possible to make RouteLocalization working again. There is also now an implementation for Web API available.**
+
+RouteLocalization is a package that allows localization of your attribute routes with fluent interfaces:
 
     routes
         .ForCulture("de")
@@ -14,113 +19,170 @@ RouteLocalizationMVC is an MVC package that allows localization of your routes w
         .ForAction(x => x.Book())
             .AddTranslation("Buch/{chapter}/{page}");
 
-It has similar functionality as the localization features of AttributeRouting but with MVC 5 it can be used as lightweight addition to the existing MapMvcAttributeRoutes functionality.
+It has similar functionality as the localization features of AttributeRouting but with MVC 5.2 it can be used as lightweight addition to the existing *MapMvcAttributeRoutes* / *MapHttpAttributeRoutes* functionality.
 
-RouteLocalizationMVC has the following behaviour:
+RouteLocalization has the following features:
 
-  * Preinitialisation of the current thread culture with the LocalizationHttpModule
-  * If a culture specific route is requested, the thread culture gets overridden by CultureSensitiveRouteHandler
-  * Every translated route is replaced by a TranslationRoute. The overridden GetVirtualPath uses the current culture for route generation. This ensures that for example german routes are used when the thread culture is german.
+  * The *LocalizationDirectRouteProvider* replaces attribute routes (which are plain *Route* / *HttpRoute* instances) by *LocalizationCollectionRoute* instances
+  * Every translation is added to the corresponding *LocalizationCollectionRoute*
+  * *LocalizationCollectionRoute* is thread culture sensitive. When a path is requested (*GetVirtualPath*) - e.g. when generating an url - it uses the translated route when available. This ensures that for example german routes are used when the thread culture is german.
 
-### Example: Use LocalizationHttpModule to initialize ThreadCulture
+Optional features:
 
-You can set the GetCultureFromHttpContextDelegate of the LocalizationHttpModule to initialize the thread culture as needed (cookie, domain tlc, etc.):
+  * You can use the existing *CultureSensitiveHttpModule* (ASP.NET MVC) / *CultureSensitiveMessageHandler* (ASP.NET Web API) if you want to preinitialize the current thread culture. There is an existing implementation (*DetectCultureFromBrowserUserLanguages*) which sets the thread culture depending on the browser language settings. You can also set your own implementation, to e.g. get the culture from a cookie.
+  * You can also use the *CultureSensitiveActionFilterAttribute* (recommended). If a culture specific (translated) route is requested, the thread culture is set to the route culture.
 
-    // Set LocalizationHttpModule to initialize ThreadCulture from Browser UserLanguages
-    LocalizationHttpModule.GetCultureFromHttpContextDelegate = httpContext =>
+## Configuration
+
+### Required
+
+See also the [MVC](RouteLocalization.Mvc.Sample/App_Start/RouteConfig.cs) and [Web API](RouteLocalization.Http.Sample/App_Start/WebApiConfig.cs) configuration of the sample project.
+
+To make localization of routes possible, you have to use the *LocalizationDirectRouteProvider*.
+
+ASP.NET MVC:
+
+    // For less code preparation use the static provider stored in Localization class
+    routes.MapMvcAttributeRoutes(Localization.LocalizationDirectRouteProvider);
+
+ASP.NET Web API:
+
+    // For less code preparation use the static provider stored in Localization class
+    config.MapHttpAttributeRoutes(Localization.LocalizationDirectRouteProvider);
+
+There are various options which can be configured via the *Configuration* class. Since *MapHttpAttributeRoutes* isn't executed immediately you have to also call *ContinueAfterPreviousInitialization*.
+
+ASP.NET MVC:
+
+    Localization localization = routes.Localization(configuration =>
     {
-        // Set default culture as fallback
-        string cultureName = Configuration.DefaultCulture;
-        
-        if (httpContext.Request.UserLanguages != null)
-        {
-            // Get language from HTTP Header
-            foreach (string userLanguage in httpContext.Request.UserLanguages.Select(x => x.Split(';').First()))
-            {
-                try
-                {
-                    CultureInfo userCultureInfo = new CultureInfo(userLanguage);
-                    
-                    // We don't can / want to support all languages
-                    if (!Configuration.AcceptedCultures.Contains(userCultureInfo.Name.ToLower()))
-                    {
-                    	continue;
-                    }
-                
-                    // Culture found that is supported
-                    cultureName = userCultureInfo.Name.ToLower();
-                    break;
-                }
-                catch
-                {
-                    // Ignore invalid cultures
-                    continue;
-                }
-            }
-        }
-        
-        // Return accepted culture
-        return new CultureInfo(cultureName);
-    };
+        configuration.DefaultCulture = "en";
+        configuration.AcceptedCultures = new HashSet<string>() { "en", "de" };
 
-### Example: Apply culture to every translated route
+        ... other settings
+    }
 
-HomeController.cs
+ASP.NET Web API:
 
-    public class HomeController : Controller
+    config.ContinueAfterPreviousInitialization(httpConfiguration =>
     {
-        [Route("Welcome")]
-        public ActionResult Index()
+        Localization localization = routes.Localization(configuration =>
         {
-            return View();
+            configuration.DefaultCulture = "en";
+            configuration.AcceptedCultures = new HashSet<string>() { "en", "de" };
+
+            ... other settings
         }
     }
 
-RouteConfig.cs
+You can now use the *Localization* object. If you don't set *AttributeRouteProcessing* to *None* you have to first call *TranslateInitialAttributeRoutes*. Afterwards you can define your translations.
 
-    // Apply culture to every translated route
-    Configuration.AddCultureAsRoutePrefix = true;
+ASP.NET MVC & Web API:
 
-    routes
-        .ForCulture("de")
-        .ForController<HomeController>()
-        .ForAction(x => x.Index())
+    localization.TranslateInitialAttributeRoutes();
+
+    localization.Translate(localization =>
+    {
+        localization.ForCulture("de")
+            .ForController<HomeController>()
+            .ForAction(x => x.Index())
             .AddTranslation("Willkommen");
 
-    // This results into one english generated route "~/en/Welcome" and one german generated route "~/de/Willkommen"
+         ... additional translations
+    });
 
-### Example: Force route generation for a specific language
+### Optional
 
-If you want to generate a translated route for a specific language, you can add culture to RouteDictionary:
+You can optionally configure and setup the *CultureSensitiveHttpModule* / *CultureSensitiveMessageHandler* - you can also define your own *GetCultureFromHttpContextDelegate* / *GetCultureFromHttpRequestMessageDelegate* delegate.
 
-    @Url.RouteUrl(new RouteValueDictionary(ViewContext.RouteData.Values) { { "Culture", "en" } })
+ASP.NET MVC:
 
-This would print the current route for english translation. This could be handy if you want to implement a "change culture" link.
+    CultureSensitiveHttpModule.GetCultureFromHttpContextDelegate =
+        Localization.DetectCultureFromBrowserUserLanguages(acceptedCultures, defaultCulture);
 
-### Configuration and Extension Hooks
+ASP.NET Web API:
 
-The Configuration Class has a lot of static parameters that can be modified, most of them are for validation:
+    config.MessageHandlers.Add(new CultureSensitiveMessageHandler()
+    {
+        GetCultureFromHttpRequestMessageDelegate =
+            Localization.DetectCultureFromBrowserUserLanguages(acceptedCultures, defaultCulture)
+    });
 
-    public static HashSet<string> AcceptedCultures { get; set; }
-    
-    public static bool AddCultureAsRoutePrefix { get; set; }
-    
-    public static bool ApplyDefaultCultureToRootRoute { get; set; }
-    
-    public static string DefaultCulture { get; set; }
-    
-    public static bool ValidateCulture { get; set; }
-    
-    public static bool ValidateRouteArea { get; set; }
-    
-    public static bool ValidateRoutePrefix { get; set; }
-    
-    public static bool ValidateURL { get; set; }
+You can (and should) also setup the *CultureSensitiveActionFilterAttribute*:
 
-For the culture configuration, you can hook to the CultureSelected EventHandler, if you want to store the informationen for selected cultures (e.g. store culture in a ProfileStoarge that will be used for database queries):
+ASP.NET MVC:
 
-    LocalizationHttpModule.CultureSelected += ...
+    ICollection<LocalizationCollectionRoute> localizationCollectionRoutes =
+        Localization.LocalizationDirectRouteProvider.LocalizationCollectionRoutes.Select(
+            x => (LocalizationCollectionRoute)x.Route).ToList();
 
-    CultureSensitiveRouteHandler.CultureSelected += ...
+    config.Filters.Add(new CultureSensitiveActionFilterAttribute(localizationCollectionRoutes));
 
-More Information can be found in the WebSample.
+ASP.NET Web API:
+
+    ICollection<LocalizationCollectionRoute> localizationCollectionRoutes =
+        Localization.LocalizationDirectRouteProvider.LocalizationCollectionRoutes.Select(
+            x => (LocalizationCollectionRoute)x.Route).ToList();
+
+    config.Filters.Add(new CultureSensitiveActionFilterAttribute(localizationCollectionRoutes));
+
+## Miscellaneous
+
+### Generate link for a specific culture
+
+If you want to generate a translated route for a specific language, you can add the culture to the route values:
+
+ASP.NET MVC:
+
+    // Use action / controller names ...
+    Url.Action("Index", new { culture = "de" });
+
+    // ... or named routes
+    Url.RouteUrl("Index", new { culture = "de" });
+
+ASP.NET Web API:
+
+    // Use named routes
+    Url.Link("Index", new { culture = "de" })
+
+### Configuration class
+
+The *Configuration* class has a lot of parameters which can be modified, most of them are for validation purpose:
+
+    // Set the default culture (used by various functions); set to "en" by default
+    public string DefaultCulture
+
+    // Set and define valid cultures (used by various functions); set to { "en" } by default
+    HashSet<string> AcceptedCultures
+
+    // Should the culture ("en", "de", ...) added as route prefix (e.g. "/en/Welcome");
+    // set false by default
+    bool AddCultureAsRoutePrefix 
+
+    // Normally only the first route found is translated, if you want similiar routes,
+    for example one GET Action and one POST Action with identical URL,
+    translated at once, you can set this to true; set to false by default
+    bool AddTranslationToSimiliarUrls
+
+    // Defines how attribute routes should be processed
+    // * None: There will be no routes except the ones you explicitly define in Translate()
+    // * AddAsNeutralRoute: Every attribute route will be added as neutral route
+    // * AddAsDefaultCultureRoute: Every attribute route will be added as localized route for defined default culture
+    // * AddAsNeutralAndDefaultCultureRoute: Every attribute route will be added as neutral route and
+    //   as localized route for defined default culture
+    // * AddAsNeutralRouteAndReplaceByFirstTranslation: Every attribute route will be added as neutral route first, but when
+    //   you add a translation for a route, the neutral route will be removed
+    AttributeRouteProcessing AttributeRouteProcessing
+
+    // Set to Localization.LocalizationDirectRouteProvider.LocalizationCollectionRoutes by default
+    List<RouteEntry> LocalizationCollectionRoutes 
+
+    // Other validation settings, set to true by default
+
+    bool ValidateCulture 
+
+    bool ValidateRouteArea
+
+    bool ValidateRoutePrefix
+
+    bool ValidateUrl
