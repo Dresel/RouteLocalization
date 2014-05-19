@@ -1,0 +1,39 @@
+﻿@using System.Threading
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<title>RouteLocalization.MVC.Sample</title>
+	</head>
+	<body>
+		<div>
+			@RenderBody()
+		</div>
+		<div>
+			<p>Current Culture: @Thread.CurrentThread.CurrentCulture.Name</p>
+			<p>Current localized Route: @Url.RouteUrl(ViewContext.RouteData.Values)</p>
+			@{
+				RouteValueDictionary routeValueDictionaryEN = new RouteValueDictionary(ViewContext.RouteData.Values) { { "Culture", "en" } };
+				<p>Current Route (en): @Url.RouteUrl(routeValueDictionaryEN)</p>
+			}
+			@{
+				RouteValueDictionary routeValueDictionaryDE = new RouteValueDictionary(ViewContext.RouteData.Values) { { "Culture", "de" } };
+				<p>Current Route (de): @Url.RouteUrl(routeValueDictionaryDE)</p>
+			}
+			@*<p>Named Route (Book):</p>
+			@{
+				<p>Named Route (en): @Url.RouteUrl("Book", new { chapter = 1, page = 4, Culture = "en" })</p>
+			}
+			@{
+				<p>Named Route (de): @Url.RouteUrl("Book", new { chapter = 1, page = 4, Culture = "de" })</p>
+			}
+			<p>T4 Route (Book):</p>
+			@{
+				<p>Named Route (en): @Url.Action(MVC.Home.Book(1, 4).AddRouteValues(new { culture = "en" }))</p>
+			}
+			@{
+				<p>Named Route (de): @Url.Action(MVC.Home.Book(1, 4).AddRouteValues(new { culture = "de" }))</p>
+			}*@
+		</div>
+	</body>
+</html>
