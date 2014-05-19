@@ -160,8 +160,8 @@ The *Configuration* class has a lot of parameters which can be modified, most of
     bool AddCultureAsRoutePrefix 
 
     // Normally only the first route found is translated, if you want similiar routes,
-    for example one GET Action and one POST Action with identical URL,
-    translated at once, you can set this to true; set to false by default
+    // for example one GET Action and one POST Action with identical URL,
+    // translated at once, you can set this to true; set to false by default
     bool AddTranslationToSimiliarUrls
 
     // Defines how attribute routes should be processed
