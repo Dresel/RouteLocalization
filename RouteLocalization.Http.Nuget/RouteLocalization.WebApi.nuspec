@@ -12,7 +12,7 @@
 		<dependencies>
 			<dependency id="Microsoft.AspNet.WebApi" version="5.2.0-rc-140516" />
 		</dependencies>
-		<tags>Web API, Route, Localization</tags>
+		<tags>WebAPI, Route, Localization</tags>
 	</metadata>
 	<files>
 		<file src="input\lib\net40\RouteLocalization.Http.dll" target="lib\net40\RouteLocalization.Http.dll" />
