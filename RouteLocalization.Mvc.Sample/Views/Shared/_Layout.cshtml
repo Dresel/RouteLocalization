@@ -20,7 +20,7 @@
 				RouteValueDictionary routeValueDictionaryDE = new RouteValueDictionary(ViewContext.RouteData.Values) { { "Culture", "de" } };
 				<p>Current Route (de): @Url.RouteUrl(routeValueDictionaryDE)</p>
 			}
-			@*<p>Named Route (Book):</p>
+			<p>Named Route (Book):</p>
 			@{
 				<p>Named Route (en): @Url.RouteUrl("Book", new { chapter = 1, page = 4, Culture = "en" })</p>
 			}
@@ -33,7 +33,7 @@
 			}
 			@{
 				<p>Named Route (de): @Url.Action(MVC.Home.Book(1, 4).AddRouteValues(new { culture = "de" }))</p>
-			}*@
+			}
 		</div>
 	</body>
 </html>

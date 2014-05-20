@@ -11,8 +11,8 @@
 			return View();
 		}
 
-		[Route("Welcome/{id:int}")]
-		public virtual ActionResult Index(int id)
+		[Route("Welcome")]
+		public virtual ActionResult Index()
 		{
 			return View();
 		}
@@ -21,7 +21,7 @@
 		public virtual ActionResult Start()
 		{
 			// Redirect to localized Index
-			return RedirectToAction(MVC.Home.Index(0).AddRouteValues(new { culture = Thread.CurrentThread.CurrentCulture.Name }));
+			return RedirectToAction(MVC.Home.Index().AddRouteValues(new { culture = Thread.CurrentThread.CurrentCulture.Name }));
 		}
 	}
 }
