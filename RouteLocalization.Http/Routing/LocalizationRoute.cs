@@ -1,13 +1,13 @@
 ﻿namespace RouteLocalization.Http.Routing
 {
+	using System.Net.Http;
 	using System.Web.Http.Routing;
 
 	public class LocalizationRoute : HttpRoute
 	{
-		public LocalizationRoute(IHttpRoute route, string culture)
-			: base(
-				route.RouteTemplate, new HttpRouteValueDictionary(route.Defaults), new HttpRouteValueDictionary(route.Constraints),
-				new HttpRouteValueDictionary(route.DataTokens), route.Handler)
+		public LocalizationRoute(string routeTemplate, HttpRouteValueDictionary defaults, HttpRouteValueDictionary constraints,
+			HttpRouteValueDictionary dataTokens, HttpMessageHandler handler, string culture)
+			: base(routeTemplate, defaults, constraints, dataTokens, handler)
 		{
 			Culture = culture;
 		}

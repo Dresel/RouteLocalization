@@ -4,6 +4,7 @@
 	using System.Globalization;
 	using System.Threading;
 	using System.Web.Http.Routing;
+	using System.Web.Http.Routing.Fakes;
 	using Microsoft.QualityTools.Testing.Fakes;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using RouteLocalization.Http.Routing;
@@ -31,40 +32,38 @@
 					(IDictionary<string, LocalizationRoute>)privateObject.GetProperty("LocalizedRoutesContainer");
 
 				ShimLocalizationRoute localizationRouteNeutral =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), string.Empty));
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, string.Empty));
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteNeutral.Instance, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
 
 				ShimLocalizationRoute localizationRouteEnglish =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "en"));
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, "en"));
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteEnglish.Instance, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
 
 				ShimLocalizationRoute localizationRouteGerman =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Willkommen", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "de"));
+					new ShimLocalizationRoute(new LocalizationRoute("Willkommen",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, "de"));
 
 				routes["de"] = localizationRouteGerman;
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteGerman.Instance, "Willkommen");
 
 				// Act
-				IHttpVirtualPathData virtualPathData = localizationCollectionRoute.GetVirtualPath(null, new HttpRouteValueDictionary());
+				IHttpVirtualPathData virtualPathData = localizationCollectionRoute.GetVirtualPath(null,
+					new HttpRouteValueDictionary());
 
 				// Assert
 				Assert.AreEqual(virtualPathData.Route, localizationRouteNeutral.Instance);
@@ -90,36 +89,33 @@
 					(IDictionary<string, LocalizationRoute>)privateObject.GetProperty("LocalizedRoutesContainer");
 
 				ShimLocalizationRoute localizationRouteNeutral =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), string.Empty));
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, string.Empty));
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteNeutral.Instance, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
 
 				ShimLocalizationRoute localizationRouteEnglish =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "en"));
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, "en"));
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteEnglish.Instance, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
 
 				ShimLocalizationRoute localizationRouteGerman =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Willkommen", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "de"));
+					new ShimLocalizationRoute(new LocalizationRoute("Willkommen",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, "de"));
 
 				routes["de"] = localizationRouteGerman;
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteGerman.Instance, "Willkommen");
 
 				// Act
@@ -150,36 +146,33 @@
 					(IDictionary<string, LocalizationRoute>)privateObject.GetProperty("LocalizedRoutesContainer");
 
 				ShimLocalizationRoute localizationRouteNeutral =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), string.Empty));
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, string.Empty));
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteNeutral.Instance, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
 
 				ShimLocalizationRoute localizationRouteEnglish =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "en"));
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, "en"));
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteEnglish.Instance, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
 
 				ShimLocalizationRoute localizationRouteGerman =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Willkommen", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "de"));
+					new ShimLocalizationRoute(new LocalizationRoute("Willkommen",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, "de"));
 
 				routes["de"] = localizationRouteGerman;
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteGerman.Instance, "Willkommen");
 
 				// Act
@@ -210,40 +203,38 @@
 					(IDictionary<string, LocalizationRoute>)privateObject.GetProperty("LocalizedRoutesContainer");
 
 				ShimLocalizationRoute localizationRouteNeutral =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), string.Empty));
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, string.Empty));
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteNeutral.Instance, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
 
 				ShimLocalizationRoute localizationRouteEnglish =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "en"));
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, "en"));
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteEnglish.Instance, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
 
 				ShimLocalizationRoute localizationRouteGerman =
-					new ShimLocalizationRoute(
-						new LocalizationRoute(
-							new HttpRoute("Willkommen", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
-								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "de"));
+					new ShimLocalizationRoute(new LocalizationRoute("Willkommen",
+						new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new HttpRouteValueDictionary(),
+						new HttpRouteValueDictionary(), null, "de"));
 
 				routes["de"] = localizationRouteGerman;
 
-				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteGerman.Instance, "Willkommen");
 
 				// Act
-				IHttpVirtualPathData virtualPathData = localizationCollectionRoute.GetVirtualPath(null, new HttpRouteValueDictionary());
+				IHttpVirtualPathData virtualPathData = localizationCollectionRoute.GetVirtualPath(null,
+					new HttpRouteValueDictionary());
 
 				// Assert
 				Assert.AreEqual(virtualPathData.Route, localizationRouteEnglish.Instance);

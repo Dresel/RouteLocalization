@@ -4,10 +4,9 @@
 
 	public class LocalizationRoute : Route
 	{
-		public LocalizationRoute(Route route, string culture)
-			: base(
-				route.Url, new RouteValueDictionary(route.Defaults), new RouteValueDictionary(route.Constraints),
-				new RouteValueDictionary(route.DataTokens), route.RouteHandler)
+		public LocalizationRoute(string url, RouteValueDictionary defaults, RouteValueDictionary constraints,
+			RouteValueDictionary dataTokens, IRouteHandler routeHandler, string culture)
+			: base(url, defaults, constraints, dataTokens, routeHandler)
 		{
 			Culture = culture;
 		}

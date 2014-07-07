@@ -22,10 +22,9 @@ namespace RouteLocalization.Mvc.Extensions
 	{
 		public static LocalizationRoute ToLocalizationRoute(this TIRoute route, string url, string culture)
 		{
-			return
-				new LocalizationRoute(
-					new TRoute(url, new TRouteValueDictionary(route.Defaults), new TRouteValueDictionary(route.Constraints),
-						new TRouteValueDictionary(route.DataTokens), route.RouteHandler()), culture);
+			return new LocalizationRoute(url, new TRouteValueDictionary(route.Defaults),
+				new TRouteValueDictionary(route.Constraints), new TRouteValueDictionary(route.DataTokens), route.RouteHandler(),
+				culture);
 		}
 
 #if ASPNETWEBAPI
