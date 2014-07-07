@@ -91,7 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\RouteLocalization.Http.fakes" />
-    <None Include="app.config" />
     <Fakes Include="Fakes\System.Web.Http.fakes" />
     <None Include="packages.config" />
   </ItemGroup>
