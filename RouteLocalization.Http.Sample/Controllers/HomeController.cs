@@ -20,6 +20,13 @@
 			return "Hello World!";
 		}
 
+		[Route("Welcome")]
+		[HttpPost]
+		public string Index(object value)
+		{
+			return "Hello World!";
+		}
+
 		[HttpGet]
 		[Route]
 		public RedirectResult Start()

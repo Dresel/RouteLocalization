@@ -12,7 +12,15 @@
 		}
 
 		[Route("Welcome")]
+		[HttpGet]
 		public virtual ActionResult Index()
+		{
+			return View();
+		}
+
+		[Route("Welcome")]
+		[HttpPost]
+		public virtual ActionResult Index(object value)
 		{
 			return View();
 		}
