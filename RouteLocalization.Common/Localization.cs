@@ -15,7 +15,6 @@ namespace RouteLocalization.Mvc
 	using RouteLocalization.Http.Extensions;
 	using RouteLocalization.Http.Routing;
 	using RouteLocalization.Http.Setup;
-
 #else
 	using System.Web;
 	using System.Web.Mvc.Routing;

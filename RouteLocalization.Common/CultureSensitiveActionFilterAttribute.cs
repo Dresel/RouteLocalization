@@ -7,11 +7,9 @@ namespace RouteLocalization.Mvc
 	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
-	using System.Linq;
 	using System.Threading;
 
 #if ASPNETWEBAPI
-	using System.Web.Http.Controllers;
 	using System.Web.Http.Filters;
 	using RouteLocalization.Http.Routing;
 	using TActionContext = System.Web.Http.Controllers.HttpActionContext;
@@ -50,12 +48,7 @@ namespace RouteLocalization.Mvc
 
 		public override void OnActionExecuting(TActionContext context)
 		{
-			LocalizationRoute route = LocalizationCollectionRoutes.Select(x =>
-#if ASPNETWEBAPI
-				x.GetLocalizationRoute(context.RequestContext.VirtualPathRoot, context.Request)).SingleOrDefault(x => x != null);
-#else
-				x.GetLocalizationRoute(context.HttpContext)).SingleOrDefault(x => x != null);
-#endif
+			LocalizationRoute route = context.RequestContext.RouteData.Route as LocalizationRoute;
 
 			// Route doesn't contain culture information so return
 			if (route == null || string.IsNullOrEmpty(route.Culture))
