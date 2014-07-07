@@ -4,6 +4,7 @@
 	using System.Globalization;
 	using System.Threading;
 	using System.Web.Routing;
+	using System.Web.Routing.Fakes;
 	using Microsoft.QualityTools.Testing.Fakes;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using RouteLocalization.Mvc.Routing;
@@ -36,7 +37,7 @@
 							new Route("Welcome", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new RouteValueDictionary(), new RouteValueDictionary(), null), string.Empty));
 
-				localizationRouteNeutral.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteNeutral)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteNeutral, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
@@ -47,7 +48,7 @@
 							new Route("Welcome", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new RouteValueDictionary(), new RouteValueDictionary(), null), "en"));
 
-				localizationRouteEnglish.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteEnglish)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteEnglish, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
@@ -60,7 +61,7 @@
 
 				routes["de"] = localizationRouteGerman;
 
-				localizationRouteGerman.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteGerman)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteGerman, "Willkommen");
 
 				// Act
@@ -95,7 +96,7 @@
 							new Route("Welcome", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new RouteValueDictionary(), new RouteValueDictionary(), null), string.Empty));
 
-				localizationRouteNeutral.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteNeutral)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteNeutral, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
@@ -106,7 +107,7 @@
 							new Route("Welcome", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new RouteValueDictionary(), new RouteValueDictionary(), null), "en"));
 
-				localizationRouteEnglish.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteEnglish)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteEnglish, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
@@ -119,7 +120,7 @@
 
 				routes["de"] = localizationRouteGerman;
 
-				localizationRouteGerman.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteGerman)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteGerman, "Willkommen");
 
 				// Act
@@ -155,7 +156,7 @@
 							new Route("Welcome", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new RouteValueDictionary(), new RouteValueDictionary(), null), string.Empty));
 
-				localizationRouteNeutral.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteNeutral)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteNeutral, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
@@ -166,7 +167,7 @@
 							new Route("Welcome", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new RouteValueDictionary(), new RouteValueDictionary(), null), "en"));
 
-				localizationRouteEnglish.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteEnglish)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteEnglish, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
@@ -179,7 +180,7 @@
 
 				routes["de"] = localizationRouteGerman;
 
-				localizationRouteGerman.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteGerman)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteGerman, "Willkommen");
 
 				// Act
@@ -215,7 +216,7 @@
 							new Route("Welcome", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new RouteValueDictionary(), new RouteValueDictionary(), null), string.Empty));
 
-				localizationRouteNeutral.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteNeutral)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteNeutral, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
@@ -226,7 +227,7 @@
 							new Route("Welcome", new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new RouteValueDictionary(), new RouteValueDictionary(), null), "en"));
 
-				localizationRouteEnglish.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteEnglish)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteEnglish, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
@@ -239,7 +240,7 @@
 
 				routes["de"] = localizationRouteGerman;
 
-				localizationRouteGerman.GetVirtualPathRequestContextRouteValueDictionary =
+				(new ShimRoute(localizationRouteGerman)).GetVirtualPathRequestContextRouteValueDictionary =
 					(requestContext, values) => new VirtualPathData(localizationRouteGerman, "Willkommen");
 
 				// Act

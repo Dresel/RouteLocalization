@@ -1,32 +1,25 @@
 ﻿namespace RouteLocalization.Mvc.Routing
 {
-	using System.Web;
 	using System.Web.Routing;
 
-	public class LocalizationRoute : RouteBase
+	public class LocalizationRoute : Route
 	{
 		public LocalizationRoute(Route route, string culture)
+			: base(
+				route.Url, new RouteValueDictionary(route.Defaults), new RouteValueDictionary(route.Constraints),
+				new RouteValueDictionary(route.DataTokens), route.RouteHandler)
 		{
-			Route = route;
 			Culture = culture;
-
-			LocalizedUrl = route.Url;
 		}
 
 		public string Culture { get; protected set; }
 
-		public string LocalizedUrl { get; protected set; }
-
-		protected RouteBase Route { get; set; }
-
-		public override RouteData GetRouteData(HttpContextBase httpContext)
+		public string LocalizedUrl
 		{
-			return Route.GetRouteData(httpContext);
-		}
-
-		public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
-		{
-			return Route.GetVirtualPath(requestContext, values);
+			get
+			{
+				return Url;
+			}
 		}
 	}
 }

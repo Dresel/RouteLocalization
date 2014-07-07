@@ -67,16 +67,16 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 2);
 
 			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute1.GetLocalizedRoute("de")).Url() == "Willkommen");
+			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de").Url() == "Willkommen");
 
 			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.GetLocalizedRoute("de")).Url() == "Willkommen");
+			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de").Url() == "Willkommen");
 		}
 
 		[TestMethod]
@@ -109,10 +109,10 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute == null);
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute1.GetLocalizedRoute("de")).Url() == "Willkommen");
+			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de").Url() == "Willkommen");
 
 			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") == null);
 		}
@@ -137,7 +137,7 @@ namespace RouteLocalization.Mvc.Tests
 
 			// Assert
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute.GetLocalizedRoute("de")).Url() == "de/Willkommen");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "de/Willkommen");
 		}
 
 		[TestMethod]
@@ -265,7 +265,7 @@ namespace RouteLocalization.Mvc.Tests
 
 			// Assert
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute.GetLocalizedRoute("de")).Url() == "Willkommen");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "Willkommen");
 		}
 
 		[TestMethod]
@@ -465,8 +465,8 @@ namespace RouteLocalization.Mvc.Tests
 
 			// Assert
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute.GetLocalizedRoute("en")).Url() == "en/Welcome");
-			Assert.IsTrue(GetRoute(localizationCollectionRoute.GetLocalizedRoute("de")).Url() == "de/Area/Route/Willkommen");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("en").Url() == "en/Welcome");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "de/Area/Route/Willkommen");
 		}
 
 		[TestMethod]
@@ -495,10 +495,10 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 2);
 
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute1.GetLocalizedRoute("de")).Url() == "Willkommen1");
+			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de").Url() == "Willkommen1");
 
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.GetLocalizedRoute("de")).Url() == "Willkommen2");
+			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de").Url() == "Willkommen2");
 		}
 
 		[TestMethod]
@@ -600,12 +600,12 @@ namespace RouteLocalization.Mvc.Tests
 
 			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute == null);
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("en") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute1.GetLocalizedRoute("en")).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("en").Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de") == null);
 
 			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute == null);
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.GetLocalizedRoute("en")).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en").Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") == null);
 		}
 
@@ -634,15 +634,15 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 2);
 
 			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute1.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("en") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute1.GetLocalizedRoute("en")).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("en").Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de") == null);
 
 			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en") != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.GetLocalizedRoute("en")).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en").Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") == null);
 		}
 
@@ -671,12 +671,12 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 2);
 
 			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute1.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de") == null);
 
 			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") == null);
 		}
@@ -706,12 +706,12 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 2);
 
 			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute1.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute1.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de") == null);
 
 			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute != null);
-			Assert.IsTrue(GetRoute(localizationCollectionRoute2.NeutralRoute).Url() == "Welcome");
+			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute.Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") == null);
 		}

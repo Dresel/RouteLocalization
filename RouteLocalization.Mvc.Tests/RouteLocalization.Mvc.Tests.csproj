@@ -51,6 +51,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.4.0.0.0.Fakes">
+      <HintPath>FakesAssemblies\System.Web.4.0.0.0.Fakes.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0-rc-140516\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -105,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\RouteLocalization.Mvc.fakes" />
+    <Fakes Include="Fakes\System.Web.fakes" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Label="StyleCopAdditionalAddinPaths">
