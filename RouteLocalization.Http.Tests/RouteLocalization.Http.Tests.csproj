@@ -58,6 +58,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http.5.2.0.0.Fakes">
+      <HintPath>FakesAssemblies\System.Web.Http.5.2.0.0.Fakes.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -89,6 +92,7 @@
   <ItemGroup>
     <Fakes Include="Fakes\RouteLocalization.Http.fakes" />
     <None Include="app.config" />
+    <Fakes Include="Fakes\System.Web.Http.fakes" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Label="StyleCopAdditionalAddinPaths">

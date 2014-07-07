@@ -36,7 +36,7 @@
 							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), string.Empty));
 
-				localizationRouteNeutral.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteNeutral.Instance, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
@@ -47,7 +47,7 @@
 							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "en"));
 
-				localizationRouteEnglish.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteEnglish.Instance, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
@@ -60,7 +60,7 @@
 
 				routes["de"] = localizationRouteGerman;
 
-				localizationRouteGerman.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteGerman.Instance, "Willkommen");
 
 				// Act
@@ -95,7 +95,7 @@
 							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), string.Empty));
 
-				localizationRouteNeutral.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteNeutral.Instance, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
@@ -106,7 +106,7 @@
 							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "en"));
 
-				localizationRouteEnglish.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteEnglish.Instance, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
@@ -119,7 +119,7 @@
 
 				routes["de"] = localizationRouteGerman;
 
-				localizationRouteGerman.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteGerman.Instance, "Willkommen");
 
 				// Act
@@ -155,7 +155,7 @@
 							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), string.Empty));
 
-				localizationRouteNeutral.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteNeutral.Instance, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
@@ -166,7 +166,7 @@
 							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "en"));
 
-				localizationRouteEnglish.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteEnglish.Instance, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
@@ -179,7 +179,7 @@
 
 				routes["de"] = localizationRouteGerman;
 
-				localizationRouteGerman.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteGerman.Instance, "Willkommen");
 
 				// Act
@@ -215,7 +215,7 @@
 							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), string.Empty));
 
-				localizationRouteNeutral.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteNeutral)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteNeutral.Instance, "Welcome");
 
 				routes[string.Empty] = localizationRouteNeutral;
@@ -226,7 +226,7 @@
 							new HttpRoute("Welcome", new HttpRouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } },
 								new HttpRouteValueDictionary(), new HttpRouteValueDictionary(), null), "en"));
 
-				localizationRouteEnglish.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteEnglish)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteEnglish.Instance, "Welcome");
 
 				routes["en"] = localizationRouteEnglish;
@@ -239,7 +239,7 @@
 
 				routes["de"] = localizationRouteGerman;
 
-				localizationRouteGerman.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
+				(new System.Web.Http.Routing.Fakes.ShimHttpRoute(localizationRouteGerman)).GetVirtualPathHttpRequestMessageIDictionaryOfStringObject =
 					(requestContext, values) => new HttpVirtualPathData(localizationRouteGerman.Instance, "Willkommen");
 
 				// Act

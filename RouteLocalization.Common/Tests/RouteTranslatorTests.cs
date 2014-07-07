@@ -783,13 +783,5 @@ namespace RouteLocalization.Mvc.Tests
 #endif
 					}, null));
 		}
-
-		protected TRoute GetRoute(LocalizationRoute localizationRoute)
-		{
-			return
-				(TRoute)
-					typeof(LocalizationRoute).GetProperty("Route", BindingFlags.Instance | BindingFlags.NonPublic)
-						.GetValue(localizationRoute, null);
-		}
 	}
 }
