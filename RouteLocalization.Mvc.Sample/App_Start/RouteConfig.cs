@@ -1,11 +1,9 @@
 ﻿namespace RouteLocalization.Mvc.Sample
 {
 	using System.Collections.Generic;
-	using System.Linq;
 	using System.Web.Mvc;
 	using System.Web.Routing;
 	using RouteLocalization.Mvc.Extensions;
-	using RouteLocalization.Mvc.Routing;
 	using RouteLocalization.Mvc.Setup;
 
 	public class RouteConfig
@@ -23,7 +21,7 @@
 			routes.MapMvcAttributeRoutes(Localization.LocalizationDirectRouteProvider);
 
 			const string defaultCulture = "en";
-			HashSet<string> acceptedCultures = new HashSet<string>() { defaultCulture, "de" };
+			ISet<string> acceptedCultures = new HashSet<string>() { defaultCulture, "de" };
 
 			// Add translations
 			// You can translate every specific route that contains default Controller and Action (which MapMvcAttributeRoutes does)

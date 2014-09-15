@@ -33,7 +33,7 @@ namespace RouteLocalization.Mvc.Setup
 			AddTranslationToSimiliarUrls = false;
 		}
 
-		public HashSet<string> AcceptedCultures { get; set; }
+		public ISet<string> AcceptedCultures { get; set; }
 
 		public bool AddCultureAsRoutePrefix { get; set; }
 

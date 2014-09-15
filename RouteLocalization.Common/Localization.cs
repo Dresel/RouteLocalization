@@ -59,9 +59,9 @@ namespace RouteLocalization.Mvc
 
 #if ASPNETWEBAPI
 		public static Func<HttpRequestMessage, CultureInfo> DetectCultureFromBrowserUserLanguages(
-			HashSet<string> acceptedCultures, string defaultCulture)
+			ISet<string> acceptedCultures, string defaultCulture)
 #else
-		public static Func<HttpContext, CultureInfo> DetectCultureFromBrowserUserLanguages(HashSet<string> acceptedCultures,
+		public static Func<HttpContext, CultureInfo> DetectCultureFromBrowserUserLanguages(ISet<string> acceptedCultures,
 			string defaultCulture)
 #endif
 		{

@@ -1,10 +1,8 @@
 ﻿namespace RouteLocalization.Http.Sample
 {
 	using System.Collections.Generic;
-	using System.Linq;
 	using System.Web.Http;
 	using RouteLocalization.Http.Extensions;
-	using RouteLocalization.Http.Routing;
 	using RouteLocalization.Http.Setup;
 
 	public static class WebApiConfig
@@ -23,7 +21,7 @@
 			config.MapHttpAttributeRoutes(Localization.LocalizationDirectRouteProvider);
 
 			const string defaultCulture = "en";
-			HashSet<string> acceptedCultures = new HashSet<string>() { defaultCulture, "de" };
+			ISet<string> acceptedCultures = new HashSet<string>() { defaultCulture, "de" };
 
 			// Continue with localization configuration after Web API Routes configuration
 			config.ContinueAfterPreviousInitialization(httpConfiguration =>
