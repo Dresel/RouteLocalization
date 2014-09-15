@@ -7,15 +7,15 @@ namespace RouteLocalization.Mvc
 	using System;
 
 #if ASPNETWEBAPI
-	using THttpObject = System.Net.Http.HttpRequestMessage;
+	using TContext = System.Web.Http.Controllers.HttpRequestContext;
 #else
-	using THttpObject = System.Web.HttpContext;
+	using TContext = System.Web.HttpContextBase;
 #endif
 
 	public class CultureSelectedEventArgs : EventArgs
 	{
-		public string SelectedCulture { get; set; }
+		public TContext Context { get; set; }
 
-		public THttpObject HttpObject { get; set; }
+		public string SelectedCulture { get; set; }
 	}
 }

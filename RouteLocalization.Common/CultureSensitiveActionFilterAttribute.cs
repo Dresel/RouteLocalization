@@ -64,7 +64,11 @@ namespace RouteLocalization.Mvc
 				Thread.CurrentThread.CurrentUICulture = cultureInfo;
 			}
 
-			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureName });
+#if ASPNETWEBAPI
+			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureName, Context = context.RequestContext });
+#else
+			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureName, Context = context.HttpContext });
+#endif
 		}
 	}
 }

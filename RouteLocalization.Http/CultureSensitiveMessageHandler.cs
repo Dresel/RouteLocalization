@@ -42,7 +42,7 @@
 				Thread.CurrentThread.CurrentUICulture = cultureInfo;
 			}
 
-			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureInfo.Name, HttpObject = request });
+			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureInfo.Name, Context = request.GetRequestContext() });
 
 			return base.SendAsync(request, cancellationToken);
 		}
