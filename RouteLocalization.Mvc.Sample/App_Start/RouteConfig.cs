@@ -97,14 +97,7 @@
 			// Optional
 			// Add culture sensitive action filter attribute
 			// This sets the Culture and UICulture when a localized route is executed
-
-			// If you did not use Localization.LocalizationDirectRouteProvider for MapMvcAttributeRoutes,
-			// you have to replace this line below
-			ICollection<LocalizationCollectionRoute> localizationCollectionRoutes =
-				Localization.LocalizationDirectRouteProvider.LocalizationCollectionRoutes.Select(
-					x => (LocalizationCollectionRoute)x.Route).ToList();
-
-			GlobalFilters.Filters.Add(new CultureSensitiveActionFilterAttribute(localizationCollectionRoutes));
+			GlobalFilters.Filters.Add(new CultureSensitiveActionFilterAttribute());
 		}
 	}
 }

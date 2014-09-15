@@ -5,7 +5,6 @@ namespace RouteLocalization.Mvc
 #endif
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Threading;
 
@@ -21,26 +20,19 @@ namespace RouteLocalization.Mvc
 
 	public class CultureSensitiveActionFilterAttribute : ActionFilterAttribute
 	{
-		public CultureSensitiveActionFilterAttribute(ICollection<LocalizationCollectionRoute> localizationCollectionRoutes)
+		public CultureSensitiveActionFilterAttribute()
 		{
 			SetCurrentCulture = true;
 			SetCurrentUICulture = true;
-
-			LocalizationCollectionRoutes = localizationCollectionRoutes;
 		}
 
-		public CultureSensitiveActionFilterAttribute(bool setCurrentCulture, bool setCurrentUICulture,
-			ICollection<LocalizationCollectionRoute> localizationCollectionRoutes)
+		public CultureSensitiveActionFilterAttribute(bool setCurrentCulture, bool setCurrentUICulture)
 		{
 			SetCurrentCulture = setCurrentCulture;
 			SetCurrentUICulture = setCurrentUICulture;
-
-			LocalizationCollectionRoutes = localizationCollectionRoutes;
 		}
 
 		public event EventHandler<CultureSelectedEventArgs> CultureSelected = (sender, e) => { };
-
-		public ICollection<LocalizationCollectionRoute> LocalizationCollectionRoutes { get; set; }
 
 		public bool SetCurrentCulture { get; set; }
 
