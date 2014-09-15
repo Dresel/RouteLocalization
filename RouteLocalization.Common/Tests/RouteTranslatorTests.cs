@@ -247,6 +247,29 @@ namespace RouteLocalization.Mvc.Tests
 		}
 
 		[TestMethod]
+		public void AddTranslation_MixedCaseAcceptedCulture_IsCaseInsensitive()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de-AT");
+
+			LocalizationCollectionRoute localizationCollectionRoute =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute)
+			};
+
+			// Act
+			(new Localization(Configuration)).AddTranslation("Serwas", "DE-at", "Home", "Index", string.Empty, null);
+
+			// Assert
+			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de-at").Url() == "Serwas");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("DE-AT").Url() == "Serwas");
+		}
+
+		[TestMethod]
 		public void AddTranslation_DefaultConfig_AddTranslatedRoute()
 		{
 			// Arrange

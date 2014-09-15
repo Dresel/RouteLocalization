@@ -42,7 +42,7 @@
 				Thread.CurrentThread.CurrentUICulture = cultureInfo;
 			}
 
-			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureInfo.Name.ToLower() });
+			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureInfo.Name });
 
 			return base.SendAsync(request, cancellationToken);
 		}

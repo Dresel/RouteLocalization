@@ -14,7 +14,7 @@
 		{
 			HttpRoute = httpRoute;
 
-			LocalizedRoutesContainer = new Dictionary<string, LocalizationRoute>();
+			LocalizedRoutesContainer = new Dictionary<string, LocalizationRoute>(StringComparer.OrdinalIgnoreCase);
 		}
 
 		public IDictionary<string, object> Constraints { get; set; }
@@ -140,7 +140,7 @@
 
 		protected IHttpRoute GetLocalizedOrDefaultRoute(IDictionary<string, object> values)
 		{
-			string currentCulture = Thread.CurrentThread.CurrentUICulture.Name.ToLower();
+			string currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
 
 			// If specific path is requested, override culture and remove RouteValue
 			if (values.ContainsKey("culture"))

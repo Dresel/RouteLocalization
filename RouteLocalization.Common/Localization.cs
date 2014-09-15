@@ -88,13 +88,14 @@ namespace RouteLocalization.Mvc
 							CultureInfo userCultureInfo = new CultureInfo(userLanguage);
 
 							// We don't can / want to support all languages
-							if (!acceptedCultures.Contains(userCultureInfo.Name.ToLower()))
+							if (acceptedCultures.All(acceptedCulture => !string.Equals(acceptedCulture, userCultureInfo.Name,
+								StringComparison.CurrentCultureIgnoreCase)))
 							{
 								continue;
 							}
 
 							// Culture found that is supported
-							cultureName = userCultureInfo.Name.ToLower();
+							cultureName = userCultureInfo.Name;
 							break;
 						}
 						catch

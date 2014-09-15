@@ -15,7 +15,7 @@
 				route.Url, new RouteValueDictionary(route.Defaults), new RouteValueDictionary(route.Constraints),
 				new RouteValueDictionary(route.DataTokens), route.RouteHandler)
 		{
-			LocalizedRoutesContainer = new Dictionary<string, LocalizationRoute>();
+			LocalizedRoutesContainer = new Dictionary<string, LocalizationRoute>(StringComparer.OrdinalIgnoreCase);
 		}
 
 		public ICollection<LocalizationRoute> LocalizedRoutes
@@ -105,7 +105,7 @@
 
 		protected RouteBase GetLocalizedOrDefaultRoute(IDictionary<string, object> values)
 		{
-			string currentCulture = Thread.CurrentThread.CurrentUICulture.Name.ToLower();
+			string currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
 
 			// If specific path is requested, override culture and remove RouteValue
 			if (values.ContainsKey("culture"))

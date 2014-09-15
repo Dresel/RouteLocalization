@@ -146,7 +146,9 @@ namespace RouteLocalization.Mvc
 				throw new ArgumentNullException("route");
 			}
 
-			if (Configuration.ValidateCulture && !Configuration.AcceptedCultures.Contains(culture))
+			if (Configuration.ValidateCulture &&
+				Configuration.AcceptedCultures.All(
+					acceptedCulture => !string.Equals(acceptedCulture, culture, StringComparison.CurrentCultureIgnoreCase)))
 			{
 				throw new InvalidOperationException(string.Format("AcceptedCultures does not contain culture '{0}'.", culture));
 			}
