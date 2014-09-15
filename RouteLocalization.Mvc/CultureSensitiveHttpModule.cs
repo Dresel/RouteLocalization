@@ -58,7 +58,7 @@
 				Thread.CurrentThread.CurrentUICulture = cultureInfo;
 			}
 
-			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureInfo.Name });
+			CultureSelected(this, new CultureSelectedEventArgs() { SelectedCulture = cultureInfo.Name, HttpObject = httpContext });
 		}
 	}
 }
