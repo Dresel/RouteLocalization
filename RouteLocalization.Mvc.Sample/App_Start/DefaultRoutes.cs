@@ -9,9 +9,9 @@
 			localization.ForCulture("de")
 				.ForController<HomeController>()
 				.ForAction(x => x.Index())
-				.AddTranslation("Willkommen");
-				////.ForAction(x => x.Book())
-				////.AddTranslation("Buch/{chapter}/{page}");
+				.AddTranslation("Willkommen")
+				.ForAction(x => x.Book())
+				.AddTranslation("Buch/{chapter}/{page}");
 
 			localization.ForCulture("de")
 				.ForController<HomeWithRoutePrefixAttributeController>()
