@@ -15,8 +15,12 @@
 
 		[HttpGet]
 		[Route("Welcome", Name = "Index")]
-		public string Index()
+		public string Index(string culture)
 		{
+			// Culture is automatically set as default (route.Defaults) for localized routes,
+			// it can also be requested via the route data values
+			string cultureFromRouteData = (string)ControllerContext.RouteData.Values["culture"];
+
 			return "Hello World!";
 		}
 

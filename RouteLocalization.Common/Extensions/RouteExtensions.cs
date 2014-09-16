@@ -4,6 +4,8 @@ namespace RouteLocalization.Http.Extensions
 namespace RouteLocalization.Mvc.Extensions
 #endif
 {
+	using System;
+
 #if ASPNETWEBAPI
 	using System.Net.Http;
 	using RouteLocalization.Http.Routing;
@@ -22,7 +24,11 @@ namespace RouteLocalization.Mvc.Extensions
 	{
 		public static LocalizationRoute ToLocalizationRoute(this TIRoute route, string url, string culture)
 		{
-			return new LocalizationRoute(url, new TRouteValueDictionary(route.Defaults),
+			// Add culture to the route defaults so it can be used as action parameter
+			TRouteValueDictionary defaults = new TRouteValueDictionary(route.Defaults);
+			defaults["culture"] = culture;
+
+			return new LocalizationRoute(url, defaults,
 				new TRouteValueDictionary(route.Constraints), new TRouteValueDictionary(route.DataTokens), route.RouteHandler(),
 				culture);
 		}

@@ -7,6 +7,7 @@ namespace RouteLocalization.Mvc.Tests
 #if ASPNETWEBAPI
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Linq.Expressions;
 	using System.Reflection;
 	using System.Web.Http;
@@ -22,6 +23,7 @@ namespace RouteLocalization.Mvc.Tests
 #else
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Linq.Expressions;
 	using System.Reflection;
 	using System.Web.Mvc;
@@ -267,6 +269,28 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
 			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de-at").Url() == "Serwas");
 			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("DE-AT").Url() == "Serwas");
+		}
+
+		[TestMethod]
+		public void AddTranslation_DefaultConfig_PassesCultureAsDefault()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+
+			LocalizationCollectionRoute localizationCollectionRoute =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute)
+			};
+
+			// Act
+			(new Localization(Configuration)).AddTranslation("Willkommen", "de", "Home", "Index", string.Empty, null);
+
+			// Assert
+			Assert.IsTrue(!Configuration.LocalizationCollectionRoutes.Single().Route.Defaults.ContainsKey("culture"));
+			Assert.IsTrue((string)localizationCollectionRoute.GetLocalizedRoute("de").Defaults["culture"] == "de");
 		}
 
 		[TestMethod]
@@ -598,6 +622,33 @@ namespace RouteLocalization.Mvc.Tests
 		}
 
 		[TestMethod]
+		public void TranslateInitialAttributeRoutes_AddAsDefaultCultureRoute_PassesCultureAsDefault()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+			Configuration.AttributeRouteProcessing = AttributeRouteProcessing.AddAsDefaultCultureRoute;
+
+			LocalizationCollectionRoute localizationCollectionRoute1 =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index());
+			LocalizationCollectionRoute localizationCollectionRoute2 =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index2());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute1),
+				new RouteEntry(string.Empty, localizationCollectionRoute2)
+			};
+
+			// Act
+			(new Localization(Configuration)).TranslateInitialAttributeRoutes();
+
+			// Assert
+			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.All(entry => !entry.Route.Defaults.ContainsKey("culture")));
+			Assert.IsTrue((string)localizationCollectionRoute1.GetLocalizedRoute("en").Defaults["culture"] == "en");
+			Assert.IsTrue((string)localizationCollectionRoute2.GetLocalizedRoute("en").Defaults["culture"] == "en");
+		}
+
+		[TestMethod]
 		public void TranslateInitialAttributeRoutes_AddAsDefaultCultureRoute_ContainsDefaultCultureRoutes()
 		{
 			// Arrange
@@ -667,6 +718,37 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en") != null);
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en").Url() == "Welcome");
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") == null);
+		}
+
+		[TestMethod]
+		public void TranslateInitialAttributeRoutes_AddAsNeutralAndDefaultCultureRoute_PassesCultureAsDefault()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+			Configuration.AttributeRouteProcessing = AttributeRouteProcessing.AddAsNeutralAndDefaultCultureRoute;
+
+			LocalizationCollectionRoute localizationCollectionRoute1 =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index());
+			LocalizationCollectionRoute localizationCollectionRoute2 =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index2());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute1),
+				new RouteEntry(string.Empty, localizationCollectionRoute2)
+			};
+
+			// Act
+			(new Localization(Configuration)).TranslateInitialAttributeRoutes();
+
+			// Assert
+			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 2);
+
+			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.All(entry => !entry.Route.Defaults.ContainsKey("culture")));
+			Assert.IsTrue((string)localizationCollectionRoute1.NeutralRoute.Defaults["culture"] == string.Empty);
+			Assert.IsTrue((string)localizationCollectionRoute2.NeutralRoute.Defaults["culture"] == string.Empty);
+			Assert.IsTrue((string)localizationCollectionRoute1.GetLocalizedRoute("en").Defaults["culture"] == "en");
+			Assert.IsTrue((string)localizationCollectionRoute2.GetLocalizedRoute("en").Defaults["culture"] == "en");
 		}
 
 		[TestMethod]

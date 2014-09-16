@@ -100,7 +100,15 @@
 
 		public IHttpVirtualPathData GetVirtualPath(HttpRequestMessage request, IDictionary<string, object> values)
 		{
-			IHttpRoute localizationRoute = GetLocalizedOrDefaultRoute(values);
+			string currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
+
+			// If specific path is requested, override culture and remove RouteValue
+			if (values.ContainsKey("culture"))
+			{
+				currentCulture = (string)values["culture"];
+			}
+
+			IHttpRoute localizationRoute = GetLocalizedOrDefaultRoute(currentCulture);
 
 			if (localizationRoute == null)
 			{
@@ -108,12 +116,7 @@
 			}
 
 			// Get translated route from child route
-			IHttpVirtualPathData pathData = localizationRoute.GetVirtualPath(request, values);
-
-			if (pathData != null)
-			{
-				pathData = localizationRoute.GetVirtualPath(request, CopyAndRemoveFromValueDictionary(values));
-			}
+			IHttpVirtualPathData pathData = localizationRoute.GetVirtualPath(request, CopyAndRemoveFromValueDictionary(values));
 
 			return pathData;
 		}
@@ -138,16 +141,8 @@
 			return routeValueDictionary;
 		}
 
-		protected IHttpRoute GetLocalizedOrDefaultRoute(IDictionary<string, object> values)
+		protected IHttpRoute GetLocalizedOrDefaultRoute(string currentCulture)
 		{
-			string currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
-
-			// If specific path is requested, override culture and remove RouteValue
-			if (values.ContainsKey("culture"))
-			{
-				currentCulture = (string)values["culture"];
-			}
-
 			LocalizationRoute route;
 
 			LocalizedRoutesContainer.TryGetValue(currentCulture, out route);

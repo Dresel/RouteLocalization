@@ -9,7 +9,7 @@
 		{
 			localization.ForCulture("de")
 				.ForController<HomeController>()
-				.ForAction(x => x.Index())
+				.ForAction(x => x.Index(0))
 				.AddTranslation("Willkommen")
 				.ForAction(x => x.Book(0, 0))
 				.AddTranslation("Buch/{chapter}/{page}");
