@@ -27,6 +27,7 @@ public static partial class MVC
 {
     static readonly AreaClass s_Area = new AreaClass();
     public static AreaClass Area { get { return s_Area; } }
+    public static RouteLocalization.Mvc.Sample.Controllers.ControllerLevelAttributeController ControllerLevelAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_ControllerLevelAttributeController();
     public static RouteLocalization.Mvc.Sample.Controllers.HomeController Home = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeController();
     public static RouteLocalization.Mvc.Sample.Controllers.HomeWithRouteAreaAttributeController HomeWithRouteAreaAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeWithRouteAreaAttributeController();
     public static RouteLocalization.Mvc.Sample.Controllers.HomeWithRoutePrefixAttributeController HomeWithRoutePrefixAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeWithRoutePrefixAttributeController();

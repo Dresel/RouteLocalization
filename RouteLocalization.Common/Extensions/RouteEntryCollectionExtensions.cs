@@ -134,7 +134,7 @@ namespace RouteLocalization.Mvc.Extensions
 			}
 #else
 			// Controller / Action level attributes are distinguished by TargetIsAction
-			if (!((bool)route.DataTokens[RouteDataTokenKeys.TargetIsAction]))
+			if (((bool?)route.DataTokens[RouteDataTokenKeys.TargetIsAction]) != true)
 			{
 				return
 					((TActionDescriptor[])route.DataTokens[RouteDataTokenKeys.Actions]).First().ControllerDescriptor.ControllerName ==

@@ -111,6 +111,10 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Area\Controllers\HomeController.cs" />
+    <Compile Include="ControllerLevelAttributeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ControllerLevelAttributeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeWithRouteAreaAttributeController.cs" />
     <Compile Include="Controllers\HomeWithRoutePrefixAttributeController.cs" />
@@ -159,6 +163,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="Views\ControllerLevelAttribute\Index.cshtml" />
+    <Content Include="Views\ControllerLevelAttribute\Index2.cshtml" />
+    <Content Include="Views\ControllerLevelAttribute\Book.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

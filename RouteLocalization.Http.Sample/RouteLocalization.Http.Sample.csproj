@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="App_Start\DefaultRoutes.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ControllerLevelAttributeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeWithRoutePrefixAttributeController.cs" />
     <Compile Include="Global.asax.cs">

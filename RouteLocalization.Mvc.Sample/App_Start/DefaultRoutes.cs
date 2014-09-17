@@ -1,5 +1,6 @@
 ﻿namespace RouteLocalization.Mvc.Sample
 {
+	using System.Web.UI;
 	using RouteLocalization.Mvc.Sample.Controllers;
 
 	public static class DefaultRoutes
@@ -28,6 +29,12 @@
 				.AddTranslation("Willkommen")
 				.ForAction(x => x.Book())
 				.AddTranslation("Buch/{chapter}/{page}");
+
+			localization.ForCulture("de")
+				.ForController<ControllerLevelAttributeController>()
+				.AddTranslation("ControllerEbeneAttribut/{action}")
+				.ForAction(x => x.Book())
+				.AddTranslation("ControllerEbeneAttribut/Buch/{chapter}/{page}");
 		}
 	}
 }

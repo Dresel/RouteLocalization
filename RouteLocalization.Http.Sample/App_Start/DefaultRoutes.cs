@@ -21,6 +21,12 @@
 				.AddTranslation("Willkommen")
 				.ForAction(x => x.Book(0, 0))
 				.AddTranslation("Buch/{chapter}/{page}");
+
+			localization.ForCulture("de")
+				.ForController<ControllerLevelAttributeController>()
+				.AddTranslation("ControllerEbeneAttribut/{action}")
+				.ForAction(x => x.Book(0, 0))
+				.AddTranslation("ControllerEbeneAttribut/Buch/{chapter}/{page}");
 		}
 	}
 }

@@ -294,6 +294,28 @@ namespace RouteLocalization.Mvc.Tests
 		}
 
 		[TestMethod]
+		public void AddTranslation_DefaultConfig_AddTranslatedControllerLevelRoute()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+
+			LocalizationCollectionRoute localizationCollectionRoute =
+				CreateCollectionRouteForControllerLevelRoute<HomeController>("Controller/{action}", controller => controller.Index());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute)
+			};
+
+			// Act
+			(new Localization(Configuration)).AddTranslation("Kontrolleur/{action}", "de", "Home", null, string.Empty, null);
+
+			// Assert
+			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "Kontrolleur/{action}");
+		}
+
+		[TestMethod]
 		public void AddTranslation_DefaultConfig_AddTranslatedRoute()
 		{
 			// Arrange
@@ -852,6 +874,36 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(localizationCollectionRoute2.NeutralRoute == null);
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("en") == null);
 			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") == null);
+		}
+
+		protected LocalizationCollectionRoute CreateCollectionRouteForControllerLevelRoute<T>(string url,
+			Expression<Func<T, object>> expression)
+		{
+			MethodCallExpression methodCall = expression.Body as MethodCallExpression;
+
+			if (methodCall == null)
+			{
+				throw new ArgumentException("Expression must be a MethodCallExpression", "expression");
+			}
+
+			MethodInfo info = methodCall.Method;
+
+			return
+				new LocalizationCollectionRoute(new TRoute(url, new TRouteValueDictionary(), new TRouteValueDictionary(),
+					new TRouteValueDictionary()
+					{
+#if ASPNETWEBAPI
+						{
+							RouteDataTokenKeys.Controller,
+							new HttpControllerDescriptor(new HttpConfiguration(), typeof(T).Name.Substring(0, typeof(T).Name.Length - 10), typeof(T))
+						}
+#else
+						{
+							RouteDataTokenKeys.Actions,
+							new[] { new ReflectedActionDescriptor(info, info.Name, new ReflectedControllerDescriptor(typeof(T))) }
+						}
+#endif
+					}, null));
 		}
 
 		protected LocalizationCollectionRoute CreateCollectionRouteForControllerAndAction<T>(string url,
