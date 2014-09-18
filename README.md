@@ -17,7 +17,7 @@ RouteLocalization has the following features:
 
 ## Where to start?
 
-Read the [Getting Started](docs/GettingStarted.md) document section.
+Read the [Getting Started](Documentation/GettingStarted.md) document section.
 
 Examine the sample projects:
 
@@ -26,7 +26,7 @@ Examine the sample projects:
 
 ## Documentation
 
-* [Getting Started](docs/GettingStarted.md)
+* [Getting Started](Documentation/GettingStarted.md)
 * Selecting and Translating Routes - TODO
 * The Configuration Class - TODO
 * Link Generation - TODO
