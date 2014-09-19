@@ -21,8 +21,8 @@ Read the [Getting Started](Documentation/GettingStarted.md) document section.
 
 Examine the sample projects:
 
-* [ASP.NET MVC](RouteLocalization.Mvc.Sample/App_Start/RouteConfig.cs)
-* [ASP.NET Web API](RouteLocalization.Http.Sample/App_Start/WebApiConfig.cs)
+* [ASP.NET MVC](Source/RouteLocalization.Mvc.Sample/App_Start/RouteConfig.cs)
+* [ASP.NET Web API](Source/RouteLocalization.Http.Sample/App_Start/WebApiConfig.cs)
 
 ## Documentation
 
