@@ -20,7 +20,7 @@ The parameters are used to find the correct route stored in the route collection
 
 2. Using fluent interfaces
 
-The more elegant solution for selecting routes would be via fluent interfaces. Foreach parameter there is a corresponding *For* function:
+The more elegant solution for selecting routes would be via fluent interfaces. For each parameter there is a corresponding *For* function:
 
     localization.ForCulture("de")
         .ForController<HomeController>()
@@ -77,7 +77,7 @@ you specified url constraints for the translation too - which you shouldn't. Tra
 
 ### Distinguish overloaded actions by parameters
 
-If you have actions with the same name you must specifiy those so RouteLocalizations now which route to translate:
+If you have actions with the same name you must specifiy those so RouteLocalizations knows which route to translate:
 
     [Route("MyActionWithStringParameter/{parameter}")]
     ActionResult MyAction(string parameter)
