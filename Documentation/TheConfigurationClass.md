@@ -1,6 +1,6 @@
 # The Configuration Class
 
-This selections describes the various configuration options for RouteLocalization.
+This section describes the various configuration options for RouteLocalization.
 
 ## AddCultureAsRoutePrefix
 

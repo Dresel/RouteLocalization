@@ -1,6 +1,6 @@
 # Selecting and Translating Routes
 
-This selections describes the various options for selecting and translating routes.
+This section describes the various options for selecting and translating routes.
 
 ## The localization object
 

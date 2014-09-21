@@ -29,5 +29,5 @@ Examine the sample projects:
 * [Getting Started](Documentation/GettingStarted.md)
 * [Selecting and Translating Routes](Documentation/SelectingAndTranslatingRoutes.md)
 * [The Configuration Class](Documentation/TheConfigurationClass.md)
-* Link Generation - TODO
+* [Link Generation](Documentation/LinkGeneration.md)
 * Various Use Cases - TODO
