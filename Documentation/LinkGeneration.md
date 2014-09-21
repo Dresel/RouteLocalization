@@ -1,4 +1,4 @@
-# The Configuration Class
+# Link Generation
 
 This section describes what you have to keep in mind when generating links with RouteLocalization.
 
