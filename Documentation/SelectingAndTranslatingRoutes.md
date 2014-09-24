@@ -66,7 +66,7 @@ And the corresponding translation:
 
 You don't have to translate RouteArea / RoutePrefix if you don't want to. If you leave out *SetAreaPrefix* / *SetRoutePrefix* the prefix from the attribute will be taken for url generation.
 
-Note that Web API only supports the [RoutePrefix] attribute, so their will be no *SetAreaPrefix* function.
+Note that Web API only supports the [RoutePrefix] attribute, so there will be no *SetAreaPrefix* function in RouteLocalization Web API.
 
 ### Adding controller level translations
 
