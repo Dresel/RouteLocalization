@@ -40,6 +40,34 @@ You can also chain multiple translations:
         .ForAction(x => x.Book())
         .AddTranslation("Buch/{chapter}/{page}");
 
+### Translating RoutePrefix and RouteArea
+
+Asp.Net attribute routing allows to use [RouteArea] and [RoutePrefix] attributes for controllers. You can set / translate those via the
+
+    .SetAreaPrefix("AreaPrefix")
+    
+    .SetRoutePrefix("RoutePrefix")
+    
+methods. Taken from the sample project the controller could look something like this:
+
+	[RoutePrefix("HomeWithRoutePrefixAttribute")]
+	public partial class HomeWithRoutePrefixAttributeController : Controller
+	{
+	    ... actions
+	}
+
+And the corresponding translation:
+
+    localization.ForCulture("de")
+        .ForController<HomeWithRoutePrefixAttributeController>()
+        .SetRoutePrefix("RoutePrefixDE")
+        .ForAction(x => x.Index())
+        .AddTranslation("Willkommen")
+
+You don't have to translate RouteArea / RoutePrefix if you don't want to. If you leave out *SetAreaPrefix* / *SetRoutePrefix* the prefix from the attribute will be taken for url generation.
+
+Note that Web API only supports the [RoutePrefix] attribute, so their will be no *SetAreaPrefix* function.
+
 ### Adding controller level translations
 
 Asp.Net [Route] attributes can also be applied on controller level. To translate you only have to specifiy the controller without any action:
