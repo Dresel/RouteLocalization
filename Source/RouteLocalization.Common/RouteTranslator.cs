@@ -10,15 +10,19 @@ namespace RouteLocalization.Mvc
 	using System.Text.RegularExpressions;
 
 #if ASPNETWEBAPI
+	using System.Web.Http;
 	using System.Web.Http.Routing;
 	using RouteLocalization.Http.Extensions;
 	using RouteLocalization.Http.Routing;
 	using RouteLocalization.Http.Setup;
+	using TActionDescriptor = System.Web.Http.Controllers.HttpActionDescriptor;
 #else
+	using System.Web.Mvc;
 	using System.Web.Mvc.Routing;
 	using RouteLocalization.Mvc.Extensions;
 	using RouteLocalization.Mvc.Routing;
 	using RouteLocalization.Mvc.Setup;
+	using TActionDescriptor = System.Web.Mvc.ActionDescriptor;
 #endif
 
 	public class RouteTranslator
@@ -37,7 +41,9 @@ namespace RouteLocalization.Mvc
 
 		public ICollection<Type> ActionArguments { get; set; }
 
+#if !ASPNETWEBAPI
 		public string AreaPrefix { get; set; }
+#endif
 
 		public Configuration Configuration { get; set; }
 
@@ -219,12 +225,14 @@ namespace RouteLocalization.Mvc
 			return this;
 		}
 
+#if !ASPNETWEBAPI
 		public RouteTranslator SetAreaPrefix(string areaPrefix)
 		{
 			AreaPrefix = areaPrefix;
 
 			return this;
 		}
+#endif
 
 		public RouteTranslator SetRoutePrefix(string routePrefix)
 		{
@@ -239,7 +247,11 @@ namespace RouteLocalization.Mvc
 			{
 				Action = Action,
 				ActionArguments = ActionArguments,
+
+#if !ASPNETWEBAPI
 				AreaPrefix = AreaPrefix,
+#endif
+
 				Configuration = Configuration,
 				Controller = Controller,
 				ControllerNamespace = ControllerNamespace,
@@ -249,11 +261,76 @@ namespace RouteLocalization.Mvc
 			};
 		}
 
+#if !ASPNETWEBAPI
+		protected void ValidateRouteArea(LocalizationCollectionRoute localizationCollectionRoute)
+		{
+			TActionDescriptor actionDescriptor =
+				((TActionDescriptor[])localizationCollectionRoute.DataTokens[RouteDataTokenKeys.Actions]).First();
+			Type controllerType = actionDescriptor.ControllerDescriptor.ControllerType;
+
+			RouteAreaAttribute routeAreaAttribute =
+				controllerType.GetCustomAttributes(true).OfType<RouteAreaAttribute>().SingleOrDefault();
+
+			if (routeAreaAttribute == null)
+			{
+				if (!string.IsNullOrEmpty(AreaPrefix) && Configuration.ValidateRouteArea)
+				{
+					throw new InvalidOperationException(
+						string.Format(
+							"AreaPrefix is set but Controller '{0}' does not contain any RouteArea attributes." +
+								"Set Configuration.ValidateRouteArea to false, if you want to skip validation.", controllerType.FullName));
+				}
+			}
+			else if (string.IsNullOrEmpty(AreaPrefix))
+			{
+				// Use untranslated area name / prefix from attribute
+				AreaPrefix = routeAreaAttribute.AreaPrefix ?? routeAreaAttribute.AreaName;
+			}
+		}
+#endif
+
+		protected void ValidateRoutePrefix(LocalizationCollectionRoute localizationCollectionRoute)
+		{
+			TActionDescriptor actionDescriptor =
+				((TActionDescriptor[])localizationCollectionRoute.DataTokens[RouteDataTokenKeys.Actions]).First();
+
+			Type controllerType = actionDescriptor.ControllerDescriptor.ControllerType;
+
+			RoutePrefixAttribute routePrefixAttribute =
+				controllerType.GetCustomAttributes(true).OfType<RoutePrefixAttribute>().SingleOrDefault();
+
+			if (routePrefixAttribute == null)
+			{
+				if (!string.IsNullOrEmpty(RoutePrefix) && Configuration.ValidateRoutePrefix)
+				{
+					throw new InvalidOperationException(
+						string.Format("RoutePrefix is set but Controller '{0}' does not contain any RoutePrefix attributes." +
+								"Set Configuration.ValidateRoutePrefix to false, if you want to skip validation.",
+							controllerType.FullName));
+				}
+			}
+			else if (string.IsNullOrEmpty(RoutePrefix))
+			{
+				// Use untranslated prefix from attribute
+				RoutePrefix = routePrefixAttribute.Prefix;
+			}
+		}
+
 		protected string TransformUrl(string url, string culture, LocalizationCollectionRoute localizationCollectionRoute)
 		{
+#if !ASPNETWEBAPI
+			ValidateRouteArea(localizationCollectionRoute);
+#endif
+
+			ValidateRoutePrefix(localizationCollectionRoute);
+
 			// Apply Route and Area Prefix
 			url = string.IsNullOrEmpty(RoutePrefix) ? url : string.Format("{0}/{1}", RoutePrefix, url);
+
+#if !ASPNETWEBAPI
 			url = string.IsNullOrEmpty(AreaPrefix) ? url : string.Format("{0}/{1}", AreaPrefix, url);
+#endif
+
 			url = !Configuration.AddCultureAsRoutePrefix ? url : string.Format("{0}/{1}", culture, url);
 
 			// Validate and check if translation has identical placeholders

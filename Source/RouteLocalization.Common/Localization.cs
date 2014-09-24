@@ -161,12 +161,14 @@ namespace RouteLocalization.Mvc
 			return translator.ForCulture(culture);
 		}
 
+#if !ASPNETWEBAPI
 		public RouteTranslator SetAreaPrefix(string areaPrefix)
 		{
 			RouteTranslator routeTranslator = new RouteTranslator(Configuration);
 
 			return routeTranslator.SetAreaPrefix(areaPrefix);
 		}
+#endif
 
 		public RouteTranslator SetRoutePrefix(string routePrefix)
 		{

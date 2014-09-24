@@ -80,11 +80,13 @@
     <Compile Include="..\RouteLocalization.Common\Tests\RouteTranslatorTests.cs">
       <Link>RouteTranslatorTests.cs</Link>
     </Compile>
+    <Compile Include="Core\ControllerBase.cs" />
     <Compile Include="Core\DifferentNamespace\HomeController.cs" />
     <Compile Include="Core\DifferentNamespace\MissingAttributeController.cs" />
     <Compile Include="Core\ExpectedExceptionWithMessageAttribute.cs" />
     <Compile Include="Core\HomeController.cs" />
     <Compile Include="Core\MissingAttributeController.cs" />
+    <Compile Include="Core\PrefixController.cs" />
     <Compile Include="LocalizationCollectionRouteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

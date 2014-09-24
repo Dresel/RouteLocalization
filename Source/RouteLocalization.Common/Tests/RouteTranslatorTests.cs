@@ -160,6 +160,7 @@ namespace RouteLocalization.Mvc.Tests
 			(new Localization(Configuration)).AddTranslation("Willkommen", "de", "Home", "Index", string.Empty, null);
 		}
 
+#if !ASPNETWEBAPI
 		[TestMethod]
 		public void AddTranslation_ConfigurationValidateRouteAreaIsFalse_IgnoresMissingRouteAreaAttribute()
 		{
@@ -182,6 +183,7 @@ namespace RouteLocalization.Mvc.Tests
 				.SetAreaPrefix("de")
 				.AddTranslation("Start", "de");
 		}
+#endif
 
 		[TestMethod]
 		public void AddTranslation_ConfigurationValidateRoutePrefixIsFalse_IgnoresMissingRoutePrefixAttribute()
@@ -400,14 +402,11 @@ namespace RouteLocalization.Mvc.Tests
 				.AddTranslation("Start", string.Empty);
 		}
 
+#if !ASPNETWEBAPI
 		[TestMethod]
-		[ExpectedExceptionWithMessage(typeof(InvalidOperationException), "Controller 'RouteLocalization." +
-#if ASPNETWEBAPI
-			"Http" +
-#else
-			"Mvc" +
-#endif
-			".Tests.Core.MissingAttributeController' does not contain any RouteArea attributes.")]
+		[ExpectedExceptionWithMessage(typeof(InvalidOperationException),
+			"AreaPrefix is set but Controller 'RouteLocalization.Mvc.Tests.Core.MissingAttributeController' does not contain any RouteArea attributes." +
+		"Set Configuration.ValidateRouteArea to false, if you want to skip validation.")]
 		public void AddTranslation_MissingRouteAreaAttribute_ThrowsInvalidOperationException()
 		{
 			// Arrange
@@ -427,15 +426,17 @@ namespace RouteLocalization.Mvc.Tests
 				.SetAreaPrefix("de")
 				.AddTranslation("Start", "de");
 		}
+#endif
 
 		[TestMethod]
-		[ExpectedExceptionWithMessage(typeof(InvalidOperationException), "Controller 'RouteLocalization." +
+		[ExpectedExceptionWithMessage(typeof(InvalidOperationException), "RoutePrefix is set but Controller 'RouteLocalization." +
 #if ASPNETWEBAPI
 			"Http" +
 #else
 			"Mvc" +
 #endif
-			".Tests.Core.MissingAttributeController' does not contain any RoutePrefix attributes.")]
+			".Tests.Core.MissingAttributeController' does not contain any RoutePrefix attributes." +
+			"Set Configuration.ValidateRoutePrefix to false, if you want to skip validation.")]
 		public void AddTranslation_MissingRoutePrefixAttribute_ThrowsInvalidOperationException()
 		{
 			// Arrange
@@ -510,6 +511,39 @@ namespace RouteLocalization.Mvc.Tests
 		}
 
 		[TestMethod]
+		public void AddTranslation_PrefixesExistsNoPrefixGiven_UsesPrefixValueFromAttributes()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+
+			Configuration.AttributeRouteProcessing = AttributeRouteProcessing.AddAsDefaultCultureRoute;
+			Configuration.AddCultureAsRoutePrefix = true;
+
+			LocalizationCollectionRoute localizationCollectionRoute =
+				CreateCollectionRouteForControllerAndAction<PrefixController>("Welcome", controller => controller.Index());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute)
+			};
+
+			// Act
+			(new Localization(Configuration)).TranslateInitialAttributeRoutes()
+				.AddTranslation("Willkommen", "de", "Prefix", "Index", string.Empty, null);
+
+			// Assert
+			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
+
+#if ASPNETWEBAPI
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("en").Url() == "en/RoutePrefix/Welcome");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "de/RoutePrefix/Willkommen");
+#else
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("en").Url() == "en/RouteArea/RoutePrefix/Welcome");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "de/RouteArea/RoutePrefix/Willkommen");
+#endif
+		}
+
+		[TestMethod]
 		public void AddTranslation_PrefixesExists_AddsPrefixesInCorrectOrderToTranslatedRoutes()
 		{
 			// Arrange
@@ -519,7 +553,7 @@ namespace RouteLocalization.Mvc.Tests
 			Configuration.AddCultureAsRoutePrefix = true;
 
 			LocalizationCollectionRoute localizationCollectionRoute =
-				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index());
+				CreateCollectionRouteForControllerAndAction<PrefixController>("Welcome", controller => controller.Index());
 
 			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
 			{
@@ -528,14 +562,24 @@ namespace RouteLocalization.Mvc.Tests
 
 			// Act
 			(new Localization(Configuration)).TranslateInitialAttributeRoutes()
+
+#if !ASPNETWEBAPI
 				.SetAreaPrefix("Area")
+#endif
+
 				.SetRoutePrefix("Route")
-				.AddTranslation("Willkommen", "de", "Home", "Index", string.Empty, null);
+				.AddTranslation("Willkommen", "de", "Prefix", "Index", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
-			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("en").Url() == "en/Welcome");
+
+#if ASPNETWEBAPI
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("en").Url() == "en/RoutePrefix/Welcome");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "de/Route/Willkommen");
+#else
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("en").Url() == "en/RouteArea/RoutePrefix/Welcome");
 			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "de/Area/Route/Willkommen");
+#endif
 		}
 
 		[TestMethod]
@@ -577,7 +621,11 @@ namespace RouteLocalization.Mvc.Tests
 			string controllerName = "Home";
 			string controllerNamespace = "Namespace";
 			string actionName = "Index";
+
+#if !ASPNETWEBAPI
 			string areaPrefix = "AreaPrefix";
+#endif
+
 			string routePrefix = "RoutePrefix";
 			string culture = "de";
 
@@ -585,7 +633,11 @@ namespace RouteLocalization.Mvc.Tests
 			RouteTranslator routeTranslator =
 				new RouteTranslator().ForController(controllerName, controllerNamespace)
 					.ForAction(actionName)
+
+#if !ASPNETWEBAPI
 					.SetAreaPrefix(areaPrefix)
+#endif
+
 					.SetRoutePrefix(routePrefix)
 					.ForCulture(culture);
 
@@ -593,7 +645,11 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(routeTranslator.Controller == controllerName);
 			Assert.IsTrue(routeTranslator.ControllerNamespace == controllerNamespace);
 			Assert.IsTrue(routeTranslator.Action == actionName);
+
+#if !ASPNETWEBAPI
 			Assert.IsTrue(routeTranslator.AreaPrefix == areaPrefix);
+#endif
+
 			Assert.IsTrue(routeTranslator.RoutePrefix == routePrefix);
 			Assert.IsTrue(routeTranslator.Culture == culture);
 		}
@@ -605,7 +661,11 @@ namespace RouteLocalization.Mvc.Tests
 			string controllerName = "MissingAttribute";
 			string controllerNamespace = typeof(MissingAttributeController).Namespace;
 			string actionName = "Index";
+
+#if !ASPNETWEBAPI
 			string areaPrefix = "AreaPrefix";
+#endif
+
 			string routePrefix = "RoutePrefix";
 			string culture = "de";
 
@@ -613,7 +673,11 @@ namespace RouteLocalization.Mvc.Tests
 			RouteTranslator<MissingAttributeController> routeTranslator =
 				new RouteTranslator().ForController<MissingAttributeController>()
 					.ForAction(x => x.Index())
+
+#if !ASPNETWEBAPI
 					.SetAreaPrefix(areaPrefix)
+#endif
+
 					.SetRoutePrefix(routePrefix)
 					.ForCulture(culture);
 
@@ -621,7 +685,11 @@ namespace RouteLocalization.Mvc.Tests
 			Assert.IsTrue(routeTranslator.Controller == controllerName);
 			Assert.IsTrue(routeTranslator.ControllerNamespace == controllerNamespace);
 			Assert.IsTrue(routeTranslator.Action == actionName);
+
+#if !ASPNETWEBAPI
 			Assert.IsTrue(routeTranslator.AreaPrefix == areaPrefix);
+#endif
+
 			Assert.IsTrue(routeTranslator.RoutePrefix == routePrefix);
 			Assert.IsTrue(routeTranslator.Culture == culture);
 		}
@@ -636,7 +704,11 @@ namespace RouteLocalization.Mvc.Tests
 				AddCultureAsRoutePrefix = false,
 				AcceptedCultures = new HashSet<string>() { "en" },
 				ValidateUrl = true,
+
+#if !ASPNETWEBAPI
 				ValidateRouteArea = true,
+#endif
+
 				ValidateRoutePrefix = true,
 				ValidateCulture = true,
 				AddTranslationToSimiliarUrls = true
@@ -895,7 +967,17 @@ namespace RouteLocalization.Mvc.Tests
 #if ASPNETWEBAPI
 						{
 							RouteDataTokenKeys.Controller,
-							new HttpControllerDescriptor(new HttpConfiguration(), typeof(T).Name.Substring(0, typeof(T).Name.Length - 10), typeof(T))
+							new HttpControllerDescriptor(new HttpConfiguration(), typeof(T).Name.Substring(0, typeof(T).Name.Length - 10),
+								typeof(T))
+						},
+						{
+							RouteDataTokenKeys.Actions,
+							new[]
+							{
+								new ReflectedHttpActionDescriptor(
+									new HttpControllerDescriptor(new HttpConfiguration(), typeof(T).Name.Substring(0, typeof(T).Name.Length - 10),
+										typeof(T)), info)
+							}
 						}
 #else
 						{
@@ -928,7 +1010,8 @@ namespace RouteLocalization.Mvc.Tests
 							new[]
 							{
 								new ReflectedHttpActionDescriptor(
-									new HttpControllerDescriptor(new HttpConfiguration(), typeof(T).Name.Substring(0, typeof(T).Name.Length - 10), typeof(T)), info)
+									new HttpControllerDescriptor(new HttpConfiguration(), typeof(T).Name.Substring(0, typeof(T).Name.Length - 10),
+										typeof(T)), info)
 							}
 						}
 #else

@@ -26,7 +26,11 @@ namespace RouteLocalization.Mvc.Setup
 			AcceptedCultures = new HashSet<string>() { "en" };
 
 			ValidateUrl = true;
+
+#if !ASPNETWEBAPI
 			ValidateRouteArea = true;
+#endif
+
 			ValidateRoutePrefix = true;
 			ValidateCulture = true;
 
@@ -63,7 +67,9 @@ namespace RouteLocalization.Mvc.Setup
 
 		public bool ValidateCulture { get; set; }
 
+#if !ASPNETWEBAPI
 		public bool ValidateRouteArea { get; set; }
+#endif
 
 		public bool ValidateRoutePrefix { get; set; }
 

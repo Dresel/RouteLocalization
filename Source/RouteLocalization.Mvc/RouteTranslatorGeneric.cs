@@ -49,9 +49,6 @@ namespace RouteLocalization.Mvc
 		public new RouteTranslator<T> AddTranslation(string url, string culture, string controller, string action,
 			string controllerNamespace, ICollection<Type> actionArguments)
 		{
-			ValidateRoutePrefix();
-			ValidateRouteArea();
-
 			base.AddTranslation(url, culture, controller, action, controllerNamespace, actionArguments);
 
 			return this;
@@ -59,9 +56,6 @@ namespace RouteLocalization.Mvc
 
 		public new RouteTranslator<T> AddTranslation(string url, string culture, LocalizationCollectionRoute route)
 		{
-			ValidateRoutePrefix();
-			ValidateRouteArea();
-
 			base.AddTranslation(url, culture, route);
 
 			return this;
@@ -69,9 +63,6 @@ namespace RouteLocalization.Mvc
 
 		public new RouteTranslator<T> AddTranslationForNamedRoute(string url, string culture, string namedRoute)
 		{
-			ValidateRoutePrefix();
-			ValidateRouteArea();
-
 			base.AddTranslationForNamedRoute(url, culture, namedRoute);
 
 			return this;
@@ -115,30 +106,6 @@ namespace RouteLocalization.Mvc
 			base.SetRoutePrefix(routePrefix);
 
 			return this;
-		}
-
-		protected void ValidateRouteArea()
-		{
-			if (Configuration.ValidateRouteArea && !string.IsNullOrEmpty(AreaPrefix))
-			{
-				if (typeof(T).GetCustomAttributes(true).All(x => x.GetType().Name != "RouteAreaAttribute"))
-				{
-					throw new InvalidOperationException(string.Format("Controller '{0}' does not contain any RouteArea attributes.",
-						typeof(T).FullName));
-				}
-			}
-		}
-
-		protected void ValidateRoutePrefix()
-		{
-			if (Configuration.ValidateRoutePrefix && !string.IsNullOrEmpty(RoutePrefix))
-			{
-				if (typeof(T).GetCustomAttributes(true).All(x => x.GetType().Name != "RoutePrefixAttribute"))
-				{
-					throw new InvalidOperationException(string.Format("Controller '{0}' does not contain any RoutePrefix attributes.",
-						typeof(T).FullName));
-				}
-			}
 		}
 	}
 }
