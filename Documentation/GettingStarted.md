@@ -161,4 +161,8 @@ This could for example be used to set the preferred language of the user to one 
 
 The HttpModule / MessageHandler gets called before the *CultureSensitiveActionFilterAttribute* is executed.
 
+## 8. Debugging MVC Projects via Glimpse
+
+You can use [Glimpse.RouteLocalization](https://github.com/Dresel/Glimpse.RouteLocalization) for easier understanding / debugging of RouteLocalization.
+
 [Back to ReadMe](../README.md)
