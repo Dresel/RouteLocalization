@@ -126,6 +126,13 @@ namespace RouteLocalization.Mvc
 			return translator.AddNeutralTranslation(controller, action, controllerNamespace, actionArguments);
 		}
 
+		public RouteTranslator AddNeutralTranslationForNamedRoute(string namedRoute)
+		{
+			RouteTranslator translator = new RouteTranslator(Configuration);
+
+			return translator.AddNeutralTranslationForNamedRoute(namedRoute);
+		}
+
 		public RouteTranslator AddTranslation(string url, string culture, LocalizationCollectionRoute route)
 		{
 			RouteTranslator translator = new RouteTranslator(Configuration);
@@ -167,6 +174,21 @@ namespace RouteLocalization.Mvc
 			RouteTranslator translator = new RouteTranslator(Configuration);
 
 			return translator.ForCulture(culture);
+		}
+
+		public LocalizationCollectionRoute GetNamedRoute(string namedRoute)
+		{
+			RouteTranslator translator = new RouteTranslator(Configuration);
+
+			return translator.GetNamedRoute(namedRoute);
+		}
+
+		public IEnumerable<LocalizationCollectionRoute> GetRoutes(string controller, string action,
+			string controllerNamespace, ICollection<Type> actionArguments)
+		{
+			RouteTranslator translator = new RouteTranslator(Configuration);
+
+			return translator.GetRoutes(controller, action, controllerNamespace, actionArguments);
 		}
 
 #if !ASPNETWEBAPI

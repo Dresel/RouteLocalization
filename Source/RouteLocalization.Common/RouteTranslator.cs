@@ -232,6 +232,11 @@ namespace RouteLocalization.Mvc
 			return route;
 		}
 
+		public IEnumerable<LocalizationCollectionRoute> GetRoutes()
+		{
+			return GetRoutes(Controller, Action, ControllerNamespace, ActionArguments);
+		}
+
 		public IEnumerable<LocalizationCollectionRoute> GetRoutes(string controller, string action,
 			string controllerNamespace, ICollection<Type> actionArguments)
 		{
