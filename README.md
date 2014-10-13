@@ -30,4 +30,3 @@ Examine the sample projects:
 * [Selecting and Translating Routes](Documentation/SelectingAndTranslatingRoutes.md)
 * [The Configuration Class](Documentation/TheConfigurationClass.md)
 * [Link Generation](Documentation/LinkGeneration.md)
-* Various Use Cases - TODO
