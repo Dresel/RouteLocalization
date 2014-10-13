@@ -65,11 +65,40 @@ namespace RouteLocalization.Mvc
 
 		public string RoutePrefix { get; set; }
 
+		public RouteTranslator AddNeutralTranslation()
+		{
+			if (string.IsNullOrEmpty(NamedRoute))
+			{
+				return AddNeutralTranslation(Controller, Action, ControllerNamespace, ActionArguments);
+			}
+			else
+			{
+				return AddNeutralTranslationForNamedRoute(NamedRoute);
+			}
+		}
+
 		public RouteTranslator AddNeutralTranslation(LocalizationCollectionRoute route)
 		{
 			route.AddTranslation(route.Url(), string.Empty);
 
 			return this;
+		}
+
+		public RouteTranslator AddNeutralTranslation(string controller, string action, string controllerNamespace,
+			ICollection<Type> actionArguments)
+		{
+			foreach (LocalizationCollectionRoute route in
+				GetRoutes(controller, action, controllerNamespace, actionArguments))
+			{
+				AddNeutralTranslation(route);
+			}
+
+			return this;
+		}
+
+		public RouteTranslator AddNeutralTranslationForNamedRoute(string namedRoute)
+		{
+			return AddNeutralTranslation(GetNamedRoute(namedRoute));
 		}
 
 		public RouteTranslator AddTranslation(string url)
@@ -104,42 +133,10 @@ namespace RouteLocalization.Mvc
 		public RouteTranslator AddTranslation(string url, string culture, string controller, string action,
 			string controllerNamespace, ICollection<Type> actionArguments)
 		{
-			// At least the controller must be specified
-			if (string.IsNullOrEmpty(controller))
+			foreach (LocalizationCollectionRoute route in
+				GetRoutes(controller, action, controllerNamespace, actionArguments))
 			{
-				throw new ArgumentNullException("controller");
-			}
-
-			ICollection<LocalizationCollectionRoute> localizationCollectionRoutes = RouteEntries.GetRoutes(culture, controller, action, controllerNamespace, actionArguments);
-
-			if (localizationCollectionRoutes.Count == 0)
-			{
-				throw new InvalidOperationException(string.Format("No Route found for given Controller '{0}' and Action '{1}'.",
-					controller, action));
-			}
-
-			if (localizationCollectionRoutes.Count == 1)
-			{
-				AddTranslation(url, culture, localizationCollectionRoutes.First());
-			}
-			else
-			{
-				if (!Configuration.AddTranslationToSimiliarUrls)
-				{
-					throw new InvalidOperationException(string.Format("Multiple Routes found for given Controller '{0}' and Action '{1}'." +
-						" Narrow down your selection or use AddTranslationToSimiliarUrls if you want to translate similiar Routes at once.",
-						controller, action));
-				}
-
-				LocalizationCollectionRoute localizationCollectionRoute = localizationCollectionRoutes.First();
-
-				if (localizationCollectionRoutes.Any(x => x.Url() != localizationCollectionRoute.Url()))
-				{
-					throw new InvalidOperationException(string.Format("Multiple Routes with different Url found for given Controller '{0}' and Action '{1}'." +
-						" Narrow down your selection.", controller, action));
-				}
-
-				localizationCollectionRoutes.ToList().ForEach(x => AddTranslation(url, culture, x));
+				AddTranslation(url, culture, route);
 			}
 
 			return this;
@@ -177,14 +174,7 @@ namespace RouteLocalization.Mvc
 
 		public RouteTranslator AddTranslationForNamedRoute(string url, string culture, string namedRoute)
 		{
-			LocalizationCollectionRoute route = RouteEntries.GetNamedRoute(culture, namedRoute);
-
-			if (route == null)
-			{
-				throw new InvalidOperationException(string.Format("No Route found for name'{0}'.", namedRoute));
-			}
-
-			return AddTranslation(url, culture, route);
+			return AddTranslation(url, culture, GetNamedRoute(namedRoute));
 		}
 
 		public RouteTranslator ForAction(string action)
@@ -230,6 +220,63 @@ namespace RouteLocalization.Mvc
 			return this;
 		}
 
+		public LocalizationCollectionRoute GetNamedRoute(string namedRoute)
+		{
+			LocalizationCollectionRoute route = RouteEntries.GetNamedRoute(namedRoute);
+
+			if (route == null)
+			{
+				throw new InvalidOperationException(string.Format("No Route found for name'{0}'.", namedRoute));
+			}
+
+			return route;
+		}
+
+		public IEnumerable<LocalizationCollectionRoute> GetRoutes(string controller, string action,
+			string controllerNamespace, ICollection<Type> actionArguments)
+		{
+			// At least the controller must be specified
+			if (string.IsNullOrEmpty(controller))
+			{
+				throw new ArgumentNullException("controller");
+			}
+
+			ICollection<LocalizationCollectionRoute> localizationCollectionRoutes = RouteEntries.GetRoutes(controller, action,
+				controllerNamespace, actionArguments);
+
+			if (localizationCollectionRoutes.Count == 0)
+			{
+				throw new InvalidOperationException(string.Format("No Route found for given Controller '{0}' and Action '{1}'.",
+					controller, action));
+			}
+
+			if (localizationCollectionRoutes.Count == 1)
+			{
+				return localizationCollectionRoutes;
+			}
+
+			if (!Configuration.AddTranslationToSimiliarUrls)
+			{
+				throw new InvalidOperationException(
+					string.Format(
+						"Multiple Routes found for given Controller '{0}' and Action '{1}'." +
+							" Narrow down your selection or use AddTranslationToSimiliarUrls if you want to translate similiar Routes at once.",
+						controller, action));
+			}
+
+			LocalizationCollectionRoute localizationCollectionRoute = localizationCollectionRoutes.First();
+
+			if (localizationCollectionRoutes.Any(x => x.Url() != localizationCollectionRoute.Url()))
+			{
+				throw new InvalidOperationException(
+					string.Format(
+						"Multiple Routes with different Url found for given Controller '{0}' and Action '{1}'." +
+							" Narrow down your selection.", controller, action));
+			}
+
+			return localizationCollectionRoutes;
+		}
+
 #if !ASPNETWEBAPI
 		public RouteTranslator SetAreaPrefix(string areaPrefix)
 		{
@@ -264,61 +311,6 @@ namespace RouteLocalization.Mvc
 				NamedRoute = NamedRoute,
 				RoutePrefix = RoutePrefix
 			};
-		}
-
-#if !ASPNETWEBAPI
-		protected void ValidateRouteArea(LocalizationCollectionRoute localizationCollectionRoute)
-		{
-			TActionDescriptor actionDescriptor =
-				((TActionDescriptor[])localizationCollectionRoute.DataTokens[RouteDataTokenKeys.Actions]).First();
-			Type controllerType = actionDescriptor.ControllerDescriptor.ControllerType;
-
-			RouteAreaAttribute routeAreaAttribute =
-				controllerType.GetCustomAttributes(true).OfType<RouteAreaAttribute>().SingleOrDefault();
-
-			if (routeAreaAttribute == null)
-			{
-				if (!string.IsNullOrEmpty(AreaPrefix) && Configuration.ValidateRouteArea)
-				{
-					throw new InvalidOperationException(
-						string.Format(
-							"AreaPrefix is set but Controller '{0}' does not contain any RouteArea attributes." +
-								"Set Configuration.ValidateRouteArea to false, if you want to skip validation.", controllerType.FullName));
-				}
-			}
-			else if (string.IsNullOrEmpty(AreaPrefix))
-			{
-				// Use untranslated area name / prefix from attribute
-				AreaPrefix = routeAreaAttribute.AreaPrefix ?? routeAreaAttribute.AreaName;
-			}
-		}
-#endif
-
-		protected void ValidateRoutePrefix(LocalizationCollectionRoute localizationCollectionRoute)
-		{
-			TActionDescriptor actionDescriptor =
-				((TActionDescriptor[])localizationCollectionRoute.DataTokens[RouteDataTokenKeys.Actions]).First();
-
-			Type controllerType = actionDescriptor.ControllerDescriptor.ControllerType;
-
-			RoutePrefixAttribute routePrefixAttribute =
-				controllerType.GetCustomAttributes(true).OfType<RoutePrefixAttribute>().SingleOrDefault();
-
-			if (routePrefixAttribute == null)
-			{
-				if (!string.IsNullOrEmpty(RoutePrefix) && Configuration.ValidateRoutePrefix)
-				{
-					throw new InvalidOperationException(
-						string.Format("RoutePrefix is set but Controller '{0}' does not contain any RoutePrefix attributes." +
-								"Set Configuration.ValidateRoutePrefix to false, if you want to skip validation.",
-							controllerType.FullName));
-				}
-			}
-			else if (string.IsNullOrEmpty(RoutePrefix))
-			{
-				// Use untranslated prefix from attribute
-				RoutePrefix = routePrefixAttribute.Prefix;
-			}
 		}
 
 		protected string TransformUrl(string url, string culture, LocalizationCollectionRoute localizationCollectionRoute)
@@ -367,6 +359,61 @@ namespace RouteLocalization.Mvc
 			}
 
 			return url;
+		}
+
+#if !ASPNETWEBAPI
+		protected void ValidateRouteArea(LocalizationCollectionRoute localizationCollectionRoute)
+		{
+			TActionDescriptor actionDescriptor =
+				((TActionDescriptor[])localizationCollectionRoute.DataTokens[RouteDataTokenKeys.Actions]).First();
+			Type controllerType = actionDescriptor.ControllerDescriptor.ControllerType;
+
+			RouteAreaAttribute routeAreaAttribute =
+				controllerType.GetCustomAttributes(true).OfType<RouteAreaAttribute>().SingleOrDefault();
+
+			if (routeAreaAttribute == null)
+			{
+				if (!string.IsNullOrEmpty(AreaPrefix) && Configuration.ValidateRouteArea)
+				{
+					throw new InvalidOperationException(
+						string.Format(
+							"AreaPrefix is set but Controller '{0}' does not contain any RouteArea attributes." +
+								"Set Configuration.ValidateRouteArea to false, if you want to skip validation.", controllerType.FullName));
+				}
+			}
+			else if (string.IsNullOrEmpty(AreaPrefix))
+			{
+				// Use untranslated area name / prefix from attribute
+				AreaPrefix = routeAreaAttribute.AreaPrefix ?? routeAreaAttribute.AreaName;
+			}
+		}
+#endif
+
+		protected void ValidateRoutePrefix(LocalizationCollectionRoute localizationCollectionRoute)
+		{
+			TActionDescriptor actionDescriptor =
+				((TActionDescriptor[])localizationCollectionRoute.DataTokens[RouteDataTokenKeys.Actions]).First();
+
+			Type controllerType = actionDescriptor.ControllerDescriptor.ControllerType;
+
+			RoutePrefixAttribute routePrefixAttribute =
+				controllerType.GetCustomAttributes(true).OfType<RoutePrefixAttribute>().SingleOrDefault();
+
+			if (routePrefixAttribute == null)
+			{
+				if (!string.IsNullOrEmpty(RoutePrefix) && Configuration.ValidateRoutePrefix)
+				{
+					throw new InvalidOperationException(
+						string.Format(
+							"RoutePrefix is set but Controller '{0}' does not contain any RoutePrefix attributes." +
+								"Set Configuration.ValidateRoutePrefix to false, if you want to skip validation.", controllerType.FullName));
+				}
+			}
+			else if (string.IsNullOrEmpty(RoutePrefix))
+			{
+				// Use untranslated prefix from attribute
+				RoutePrefix = routePrefixAttribute.Prefix;
+			}
 		}
 	}
 }

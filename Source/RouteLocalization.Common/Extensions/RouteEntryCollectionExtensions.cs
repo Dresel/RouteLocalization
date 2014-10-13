@@ -26,8 +26,7 @@ namespace RouteLocalization.Mvc.Extensions
 
 	public static class RouteEntryCollectionExtensions
 	{
-		public static LocalizationCollectionRoute GetNamedRoute(this ICollection<RouteEntry> routeEntries, string culture,
-			string namedRoute)
+		public static LocalizationCollectionRoute GetNamedRoute(this ICollection<RouteEntry> routeEntries, string namedRoute)
 		{
 			RouteEntry routeEntry = routeEntries.SingleOrDefault(x => x.Name == namedRoute);
 
@@ -40,7 +39,7 @@ namespace RouteLocalization.Mvc.Extensions
 		}
 
 		public static ICollection<LocalizationCollectionRoute> GetRoutes(this ICollection<RouteEntry> routeEntries,
-			string culture, string controller, string action, string controllerNamespace, ICollection<Type> actionArguments)
+			string controller, string action, string controllerNamespace, ICollection<Type> actionArguments)
 		{
 			return
 				routeEntries.ToLocalizationCollectionRoutes()
@@ -93,7 +92,7 @@ namespace RouteLocalization.Mvc.Extensions
 					string.IsNullOrEmpty(action);
 			}
 #else
-	// Controller / Action level attributes are distinguished by TargetIsAction
+			// Controller / Action level attributes are distinguished by TargetIsAction
 			if (((bool?)route.DataTokens[RouteDataTokenKeys.TargetIsAction]) != true)
 			{
 				return

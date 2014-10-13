@@ -118,6 +118,14 @@ namespace RouteLocalization.Mvc
 			return translator.AddNeutralTranslation(route);
 		}
 
+		public RouteTranslator AddNeutralTranslation(string controller, string action,
+			string controllerNamespace, ICollection<Type> actionArguments)
+		{
+			RouteTranslator translator = new RouteTranslator(Configuration);
+
+			return translator.AddNeutralTranslation(controller, action, controllerNamespace, actionArguments);
+		}
+
 		public RouteTranslator AddTranslation(string url, string culture, LocalizationCollectionRoute route)
 		{
 			RouteTranslator translator = new RouteTranslator(Configuration);

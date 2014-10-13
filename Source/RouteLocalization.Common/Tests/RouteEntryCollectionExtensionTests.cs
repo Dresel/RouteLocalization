@@ -4,12 +4,13 @@ namespace RouteLocalization.Http.Tests
 namespace RouteLocalization.Mvc.Tests
 #endif
 {
-#if ASPNETWEBAPI
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Linq.Expressions;
 	using System.Reflection;
+
+#if ASPNETWEBAPI
 	using System.Web.Http;
 	using System.Web.Http.Controllers;
 	using System.Web.Http.Routing;
@@ -21,17 +22,11 @@ namespace RouteLocalization.Mvc.Tests
 	using TRoute = System.Web.Http.Routing.HttpRoute;
 	using TRouteValueDictionary = System.Web.Http.Routing.HttpRouteValueDictionary;
 #else
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Linq.Expressions;
-	using System.Reflection;
 	using System.Web.Mvc;
 	using System.Web.Mvc.Routing;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using RouteLocalization.Mvc.Extensions;
 	using RouteLocalization.Mvc.Routing;
-	using RouteLocalization.Mvc.Setup;
 	using RouteLocalization.Mvc.Tests.Core;
 	using TIRoute = System.Web.Routing.Route;
 	using TRoute = System.Web.Routing.Route;
@@ -53,7 +48,7 @@ namespace RouteLocalization.Mvc.Tests
 			};
 
 			// Act
-			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("de", "Home", "Index", "Namespace3", null);
+			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("Home", "Index", "Namespace3", null);
 
 			// Assert
 			Assert.IsTrue(routes.Count == 0);
@@ -66,7 +61,7 @@ namespace RouteLocalization.Mvc.Tests
 			ICollection<RouteEntry> routeEntries = new List<RouteEntry>();
 
 			// Act
-			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("de", "Home", "Index", string.Empty, null);
+			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("Home", "Index", string.Empty, null);
 
 			// Assert
 			Assert.IsTrue(routes.Count == 0);
@@ -84,7 +79,7 @@ namespace RouteLocalization.Mvc.Tests
 			};
 
 			// Act
-			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("de", "Home", "Index",
+			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("Home", "Index",
 				typeof(Core.DifferentNamespace.HomeController).Namespace, null);
 
 			// Assert
@@ -110,7 +105,7 @@ namespace RouteLocalization.Mvc.Tests
 
 			// Act
 			ICollection<LocalizationCollectionRoute> routes =
-				routeEntries.GetRoutes("de", "MissingAttribute", "Index", null, new Type[] { });
+				routeEntries.GetRoutes("MissingAttribute", "Index", null, new Type[] { });
 
 			// Assert
 			Assert.IsTrue(routes.Count == 1);
@@ -134,7 +129,7 @@ namespace RouteLocalization.Mvc.Tests
 			};
 
 			// Act
-			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("de", "MissingAttribute", "Index", null, new[] { typeof(int) });
+			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("MissingAttribute", "Index", null, new[] { typeof(int) });
 
 			// Assert
 			Assert.IsTrue(routes.Count == 1);
@@ -148,7 +143,7 @@ namespace RouteLocalization.Mvc.Tests
 			ICollection<RouteEntry> routeEntries = new List<RouteEntry>();
 
 			// Act
-			TIRoute route = routeEntries.GetNamedRoute("de", "Route1");
+			TIRoute route = routeEntries.GetNamedRoute("Route1");
 
 			// Assert
 			Assert.IsNull(route);
@@ -164,7 +159,7 @@ namespace RouteLocalization.Mvc.Tests
 			ICollection<RouteEntry> routeEntries = new List<RouteEntry>() { new RouteEntry("Route1", route1) };
 
 			// Act
-			TIRoute route = routeEntries.GetNamedRoute("de", "Route1");
+			TIRoute route = routeEntries.GetNamedRoute("Route1");
 
 			// Assert
 			Assert.AreSame(route1, route);
