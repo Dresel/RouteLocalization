@@ -26,14 +26,6 @@ namespace RouteLocalization.Mvc.Extensions
 
 	public static class RouteEntryCollectionExtensions
 	{
-		public static LocalizationCollectionRoute GetFirstUntranslatedRoute(this ICollection<RouteEntry> routeEntries,
-			string culture, string controller, string action, string controllerNamespace, ICollection<Type> actionArguments)
-		{
-			return
-				GetSimiliarUntranslatedRoutes(routeEntries, culture, controller, action, controllerNamespace, actionArguments)
-					.FirstOrDefault();
-		}
-
 		public static LocalizationCollectionRoute GetNamedRoute(this ICollection<RouteEntry> routeEntries, string culture,
 			string namedRoute)
 		{
@@ -44,34 +36,16 @@ namespace RouteLocalization.Mvc.Extensions
 				return null;
 			}
 
-			if (!routeEntry.Route.HasNoTranslationForCulture(culture))
-			{
-				throw new InvalidOperationException(string.Format("Named route already has translation for culture '{0}'.", culture));
-			}
-
 			return (LocalizationCollectionRoute)routeEntry.Route;
 		}
 
-		public static ICollection<LocalizationCollectionRoute> GetSimiliarUntranslatedRoutes(
-			this ICollection<RouteEntry> routeEntries, string culture, string controller, string action,
-			string controllerNamespace, ICollection<Type> actionArguments)
+		public static ICollection<LocalizationCollectionRoute> GetRoutes(this ICollection<RouteEntry> routeEntries,
+			string culture, string controller, string action, string controllerNamespace, ICollection<Type> actionArguments)
 		{
-			List<LocalizationCollectionRoute> results =
-				routeEntries.Select(x => (LocalizationCollectionRoute)x.Route)
-					.Where(
-						x =>
-							x.MatchesControllerAndAction(controller, action) && x.MatchesNamespace(controllerNamespace) &&
-								x.HasNoTranslationForCulture(culture))
+			return
+				routeEntries.ToLocalizationCollectionRoutes()
+					.WhereMatchesDescription(controller, action, controllerNamespace, actionArguments)
 					.ToList();
-
-			// Check if we should narrow down the selection with argument specification
-			if (actionArguments != null)
-			{
-				results = results.Where(x => x.MatchesActionArguments(actionArguments)).ToList();
-			}
-
-			// Return similiar results
-			return results.FirstAndSimiliars();
 		}
 
 		public static string ToRoutesString(this ICollection<RouteEntry> routeEntries)
@@ -79,20 +53,6 @@ namespace RouteLocalization.Mvc.Extensions
 			return string.Join(Environment.NewLine,
 				routeEntries.Select(x => (LocalizationCollectionRoute)x.Route)
 					.SelectMany(x => x.LocalizedRoutes.Select(route => string.Format("{0} ({1})", route.LocalizedUrl, route.Culture))));
-		}
-
-		private static ICollection<LocalizationCollectionRoute> FirstAndSimiliars(
-			this ICollection<LocalizationCollectionRoute> routes)
-		{
-			LocalizationCollectionRoute localizationCollectionRoute = routes.FirstOrDefault();
-
-			return localizationCollectionRoute == null
-				? new List<LocalizationCollectionRoute>() : routes.Where(x => x.Url() == localizationCollectionRoute.Url()).ToList();
-		}
-
-		private static bool HasNoTranslationForCulture(this TRoute route, string culture)
-		{
-			return !((LocalizationCollectionRoute)route).HasTranslationForCulture(culture);
 		}
 
 		private static bool MatchesActionArguments(this TRoute route, ICollection<Type> actionArguments)
@@ -133,7 +93,7 @@ namespace RouteLocalization.Mvc.Extensions
 					string.IsNullOrEmpty(action);
 			}
 #else
-			// Controller / Action level attributes are distinguished by TargetIsAction
+	// Controller / Action level attributes are distinguished by TargetIsAction
 			if (((bool?)route.DataTokens[RouteDataTokenKeys.TargetIsAction]) != true)
 			{
 				return
@@ -159,6 +119,23 @@ namespace RouteLocalization.Mvc.Extensions
 			TControllerDescriptor controllerDescriptor = actionDescriptors.First().ControllerDescriptor;
 
 			return controllerDescriptor.ControllerType.Namespace == controllerNamespace;
+		}
+
+		private static IEnumerable<LocalizationCollectionRoute> ToLocalizationCollectionRoutes(
+			this ICollection<RouteEntry> routeEntries)
+		{
+			return routeEntries.Select(x => (LocalizationCollectionRoute)x.Route);
+		}
+
+		private static IEnumerable<LocalizationCollectionRoute> WhereMatchesDescription(
+			this IEnumerable<LocalizationCollectionRoute> localizationCollectionRoutes, string controller, string action,
+			string controllerNamespace, ICollection<Type> actionArguments)
+		{
+			return
+				localizationCollectionRoutes.Where(
+					x =>
+						x.MatchesControllerAndAction(controller, action) && x.MatchesNamespace(controllerNamespace) &&
+							(actionArguments == null || x.MatchesActionArguments(actionArguments)));
 		}
 	}
 }

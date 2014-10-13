@@ -43,6 +43,33 @@ namespace RouteLocalization.Mvc.Tests
 		protected Configuration Configuration { get; set; }
 
 		[TestMethod]
+		[ExpectedExceptionWithMessage(typeof(InvalidOperationException),
+			"Multiple Routes with different Url found for given Controller 'Home' and Action 'Index'. Narrow down your selection.")]
+		public void
+			AddTranslation_ConfigurationAddTranslationToSimiliarUrlsIsTrueWithDifferentUrl_ThrowsInvalidOperationException()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+			Configuration.AddTranslationToSimiliarUrls = true;
+
+			LocalizationCollectionRoute localizationCollectionRoute1 =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index());
+
+			LocalizationCollectionRoute localizationCollectionRoute2 =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome2", controller => controller.Index());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute1),
+				new RouteEntry(string.Empty, localizationCollectionRoute2)
+			};
+
+			// Act
+			(new Localization(Configuration)).TranslateInitialAttributeRoutes()
+				.AddTranslation("Willkommen", "de", "Home", "Index", string.Empty, null);
+		}
+
+		[TestMethod]
 		public void AddTranslation_ConfigurationAddTranslationToSimiliarUrlsIsTrue_TranslateMultipleRoutes()
 		{
 			// Arrange
@@ -340,6 +367,26 @@ namespace RouteLocalization.Mvc.Tests
 		}
 
 		[TestMethod]
+		[ExpectedExceptionWithMessage(typeof(InvalidOperationException), "Route already has translation for culture 'de'.")]
+		public void AddTranslationTwice_DefaultConfig_ThrowsInvalidOperationException()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+
+			LocalizationCollectionRoute localizationCollectionRoute =
+				CreateCollectionRouteForControllerAndAction<HomeController>("Welcome", controller => controller.Index());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute)
+			};
+
+			// Act
+			(new Localization(Configuration)).AddTranslation("Willkommen", "de", "Home", "Index", string.Empty, null);
+			(new Localization(Configuration)).AddTranslation("Willkommen", "de", "Home", "Index", string.Empty, null);
+		}
+
+		[TestMethod]
 		[ExpectedExceptionWithMessage(typeof(InvalidOperationException),
 			"Translation Route 'Buch/{chapter}/' contains different number of { } placeholders than original Route 'Book/{chapter}/{page}'." +
 				"Set Configuration.ValidateURL to false, if you want to skip validation.")]
@@ -583,7 +630,10 @@ namespace RouteLocalization.Mvc.Tests
 		}
 
 		[TestMethod]
-		public void AddTranslation_TwoRoutesForTheSameActionExists_ReplacesRoutesCorrect()
+		[ExpectedExceptionWithMessage(typeof(InvalidOperationException),
+			"Multiple Routes found for given Controller 'Home' and Action 'Index'. " +
+				"Narrow down your selection or use AddTranslationToSimiliarUrls if you want to translate similiar Routes at once.")]
+		public void AddTranslation_TwoRoutesMatches_ThrowsInvalidOperationException()
 		{
 			// Arrange
 			Configuration.AcceptedCultures.Add("de");
@@ -601,17 +651,7 @@ namespace RouteLocalization.Mvc.Tests
 
 			// Act
 			(new Localization(Configuration)).TranslateInitialAttributeRoutes()
-				.AddTranslation("Willkommen1", "de", "Home", "Index", string.Empty, null)
-				.AddTranslation("Willkommen2", "de", "Home", "Index", string.Empty, null);
-
-			// Assert
-			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 2);
-
-			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de") != null);
-			Assert.IsTrue(localizationCollectionRoute1.GetLocalizedRoute("de").Url() == "Willkommen1");
-
-			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de") != null);
-			Assert.IsTrue(localizationCollectionRoute2.GetLocalizedRoute("de").Url() == "Willkommen2");
+				.AddTranslation("Willkommen1", "de", "Home", "Index", string.Empty, null);
 		}
 
 		[TestMethod]
@@ -711,7 +751,7 @@ namespace RouteLocalization.Mvc.Tests
 
 				ValidateRoutePrefix = true,
 				ValidateCulture = true,
-				AddTranslationToSimiliarUrls = true
+				AddTranslationToSimiliarUrls = false
 			};
 		}
 

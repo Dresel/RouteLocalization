@@ -42,7 +42,7 @@ namespace RouteLocalization.Mvc.Tests
 	public class RouteEntryCollectionExtensionTests
 	{
 		[TestMethod]
-		public void GetFirstUntranslatedRoute_NoRouteExistsForNamespace_ReturnsNull()
+		public void GetRoutes_NoRouteExistsForNamespace_ReturnsEmptyList()
 		{
 			// Arrange
 			ICollection<RouteEntry> routeEntries = new List<RouteEntry>
@@ -53,87 +53,27 @@ namespace RouteLocalization.Mvc.Tests
 			};
 
 			// Act
-			TIRoute route = routeEntries.GetFirstUntranslatedRoute("de", "Home", "Index", "Namespace3", null);
+			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("de", "Home", "Index", "Namespace3", null);
 
 			// Assert
-			Assert.IsNull(route);
+			Assert.IsTrue(routes.Count == 0);
 		}
 
 		[TestMethod]
-		public void GetFirstUntranslatedRoute_NoRouteExists_ReturnsNull()
+		public void GetRoutes_NoRouteExists_ReturnsEmptyList()
 		{
 			// Arrange
 			ICollection<RouteEntry> routeEntries = new List<RouteEntry>();
 
 			// Act
-			TIRoute route = routeEntries.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
+			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("de", "Home", "Index", string.Empty, null);
 
 			// Assert
-			Assert.IsNull(route);
+			Assert.IsTrue(routes.Count == 0);
 		}
 
 		[TestMethod]
-		public void GetFirstUntranslatedRoute_OneRouteExistsFirstHasTranslation_ReturnsNull()
-		{
-			// Arrange
-			LocalizationCollectionRoute route1 = CreateCollectionRouteForControllerAndAction<HomeController>("Home",
-				x => x.Index());
-
-			route1.AddTranslation("Start", "de");
-
-			ICollection<RouteEntry> routeEntries = new List<RouteEntry>() { new RouteEntry(string.Empty, route1) };
-
-			// Act
-			TIRoute route = routeEntries.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
-
-			// Assert
-			Assert.IsNull(route);
-		}
-
-		[TestMethod]
-		public void GetFirstUntranslatedRoute_TwoRoutesExistsFirstHasTranslation_ReturnsSecond()
-		{
-			// Arrange
-			LocalizationCollectionRoute route1 = CreateCollectionRouteForControllerAndAction<HomeController>("Home",
-				x => x.Index());
-
-			route1.AddTranslation("Start", "de");
-
-			LocalizationCollectionRoute route2 = CreateCollectionRouteForControllerAndAction<HomeController>("Home",
-				x => x.Index());
-
-			ICollection<RouteEntry> routeEntries = new List<RouteEntry>()
-			{
-				new RouteEntry(string.Empty, route1),
-				new RouteEntry(string.Empty, route2)
-			};
-
-			// Act
-			TIRoute route = routeEntries.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
-
-			// Assert
-			Assert.AreSame(route2, route);
-		}
-
-		[TestMethod]
-		public void GetFirstUntranslatedRoute_TwoRoutesExists_ReturnsFirst()
-		{
-			// Arrange
-			List<RouteEntry> routeEntries = new List<RouteEntry>()
-			{
-				new RouteEntry(string.Empty, CreateCollectionRouteForControllerAndAction<HomeController>("Home", x => x.Index())),
-				new RouteEntry(string.Empty, CreateCollectionRouteForControllerAndAction<HomeController>("Home", x => x.Index())),
-			};
-
-			// Act
-			TIRoute route = routeEntries.GetFirstUntranslatedRoute("de", "Home", "Index", string.Empty, null);
-
-			// Assert
-			Assert.AreSame(routeEntries[0].Route, route);
-		}
-
-		[TestMethod]
-		public void GetFirstUntranslatedRoute_TwoRoutesWithNamespacesExists_ReturnsCorrectRoute()
+		public void GetRoutes_TwoRoutesWithNamespacesExists_ReturnsCorrectRoute()
 		{
 			// Arrange
 			List<RouteEntry> routeEntries = new List<RouteEntry>()
@@ -144,15 +84,16 @@ namespace RouteLocalization.Mvc.Tests
 			};
 
 			// Act
-			TIRoute route = routeEntries.GetFirstUntranslatedRoute("de", "Home", "Index",
+			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("de", "Home", "Index",
 				typeof(Core.DifferentNamespace.HomeController).Namespace, null);
 
 			// Assert
-			Assert.AreSame(routeEntries[1].Route, route);
+			Assert.IsTrue(routes.Count == 1);
+			Assert.AreSame(routeEntries[1].Route, routes.First());
 		}
 
 		[TestMethod]
-		public void GetFirstUntranslatedRoute_WithActionParameterSpecified_ReturnsCorrectRoute()
+		public void GetRoutes_WithActionParameterSpecified_ReturnsCorrectRoute()
 		{
 			// Arrange
 			LocalizationCollectionRoute route1 = CreateCollectionRouteForControllerAndAction<MissingAttributeController>("Home",
@@ -168,14 +109,16 @@ namespace RouteLocalization.Mvc.Tests
 			};
 
 			// Act
-			TIRoute route = routeEntries.GetFirstUntranslatedRoute("de", "MissingAttribute", "Index", null, new Type[] { });
+			ICollection<LocalizationCollectionRoute> routes =
+				routeEntries.GetRoutes("de", "MissingAttribute", "Index", null, new Type[] { });
 
 			// Assert
-			Assert.AreSame(route, route1);
+			Assert.IsTrue(routes.Count == 1);
+			Assert.AreSame(route1, routes.First());
 		}
 
 		[TestMethod]
-		public void GetFirstUntranslatedRoute_WithActionParameterSpecified_ReturnsCorrectRoute2()
+		public void GetRoutes_WithActionParameterSpecified_ReturnsCorrectRoute2()
 		{
 			// Arrange
 			LocalizationCollectionRoute route1 = CreateCollectionRouteForControllerAndAction<MissingAttributeController>("Home",
@@ -191,10 +134,11 @@ namespace RouteLocalization.Mvc.Tests
 			};
 
 			// Act
-			TIRoute route = routeEntries.GetFirstUntranslatedRoute("de", "MissingAttribute", "Index", null, new[] { typeof(int) });
+			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetRoutes("de", "MissingAttribute", "Index", null, new[] { typeof(int) });
 
 			// Assert
-			Assert.AreSame(route, route2);
+			Assert.IsTrue(routes.Count == 1);
+			Assert.AreSame(route2, routes.First());
 		}
 
 		[TestMethod]
@@ -224,114 +168,6 @@ namespace RouteLocalization.Mvc.Tests
 
 			// Assert
 			Assert.AreSame(route1, route);
-		}
-
-		[TestMethod]
-		[ExpectedExceptionWithMessage(typeof(InvalidOperationException),
-			"Named route already has translation for culture 'de'.")]
-		public void GetNamedRoute_RouteExistsAndHasTranslation_ThrowsException()
-		{
-			// Arrange
-			LocalizationCollectionRoute route1 = CreateCollectionRouteForControllerAndAction<HomeController>("Home",
-				x => x.Index());
-
-			route1.AddTranslation("Start", "de");
-
-			ICollection<RouteEntry> routeEntries = new List<RouteEntry>() { new RouteEntry("Route1", route1) };
-
-			// Act
-			TIRoute route = routeEntries.GetNamedRoute("de", "Route1");
-
-			// Assert
-			Assert.IsNull(route);
-		}
-
-		[TestMethod]
-		public void GetSimiliarUntranslatedRoutes_TwoRoutesExistsFirstHasTranslation_ReturnsSecond()
-		{
-			// Arrange
-			LocalizationCollectionRoute route1 = CreateCollectionRouteForControllerAndAction<HomeController>("Home",
-				x => x.Index());
-
-			route1.AddTranslation("Start", "de");
-
-			LocalizationCollectionRoute route2 = CreateCollectionRouteForControllerAndAction<HomeController>("Home",
-				x => x.Index());
-
-			ICollection<RouteEntry> routeEntries = new List<RouteEntry>()
-			{
-				new RouteEntry(string.Empty, route1),
-				new RouteEntry(string.Empty, route2)
-			};
-
-			// Act
-			ICollection<LocalizationCollectionRoute> localizationCollectionRoutes =
-				routeEntries.GetSimiliarUntranslatedRoutes("de", "Home", "Index", string.Empty, null);
-
-			// Assert
-			Assert.AreSame(route2, localizationCollectionRoutes.Single());
-		}
-
-		[TestMethod]
-		public void GetSimiliarUntranslatedRoutes_TwoRoutesExists_ReturnsBoth()
-		{
-			// Arrange
-			LocalizationCollectionRoute route1 = CreateCollectionRouteForControllerAndAction<HomeController>("Home",
-				x => x.Index());
-
-			LocalizationCollectionRoute route2 = CreateCollectionRouteForControllerAndAction<HomeController>("Home",
-				x => x.Index());
-
-			ICollection<RouteEntry> routeEntries = new List<RouteEntry>()
-			{
-				new RouteEntry(string.Empty, route1),
-				new RouteEntry(string.Empty, route2)
-			};
-
-			// Act
-			ICollection<LocalizationCollectionRoute> routes = routeEntries.GetSimiliarUntranslatedRoutes("de", "Home", "Index",
-				string.Empty, null);
-
-			// Assert
-			Assert.IsTrue(routes.Count() == 2);
-		}
-
-		[TestMethod]
-		public void GetSimiliarUntranslatedRoutes_TwoRoutesWithDifferentNamespacesExists_ReturnsCorrectRoute()
-		{
-			// Arrange
-			List<RouteEntry> routeEntries = new List<RouteEntry>()
-			{
-				new RouteEntry(string.Empty, CreateCollectionRouteForControllerAndAction<HomeController>("Home", x => x.Index())),
-				new RouteEntry(string.Empty,
-					CreateCollectionRouteForControllerAndAction<Core.DifferentNamespace.HomeController>("Home", x => x.Index()))
-			};
-
-			// Act
-			ICollection<LocalizationCollectionRoute> localizationCollectionRoutes =
-				routeEntries.GetSimiliarUntranslatedRoutes("de", "Home", "Index",
-					typeof(Core.DifferentNamespace.HomeController).Namespace, null);
-
-			// Assert
-			Assert.AreSame(routeEntries[1].Route, localizationCollectionRoutes.Single());
-		}
-
-		[TestMethod]
-		public void GetSimiliarUntranslatedRoutes_TwoRoutesWithSameNamespaceExists_ReturnsBoth()
-		{
-			// Arrange
-			List<RouteEntry> routeEntries = new List<RouteEntry>()
-			{
-				new RouteEntry(string.Empty, CreateCollectionRouteForControllerAndAction<HomeController>("Home", x => x.Index())),
-				new RouteEntry(string.Empty, CreateCollectionRouteForControllerAndAction<HomeController>("Home", x => x.Index()))
-			};
-
-			// Act
-			ICollection<LocalizationCollectionRoute> localizationCollectionRoutes =
-				routeEntries.GetSimiliarUntranslatedRoutes("de", "Home", "Index", typeof(HomeController).Namespace, null);
-
-			// Assert
-			Assert.IsTrue(localizationCollectionRoutes.Count == 2);
 		}
 
 		protected LocalizationCollectionRoute CreateCollectionRouteForControllerAndAction<T>(string url,

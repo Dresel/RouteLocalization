@@ -78,6 +78,11 @@
 
 		public void AddTranslation(string url, string culture)
 		{
+			if (HasTranslationForCulture(culture))
+			{
+				throw new InvalidOperationException(string.Format("Route already has translation for culture '{0}'.", culture));
+			}
+
 			LocalizedRoutesContainer[culture] = this.ToLocalizationRoute(url, culture);
 		}
 

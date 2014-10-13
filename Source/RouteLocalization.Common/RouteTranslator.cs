@@ -110,32 +110,37 @@ namespace RouteLocalization.Mvc
 				throw new ArgumentNullException("controller");
 			}
 
-			ICollection<LocalizationCollectionRoute> routes = new List<LocalizationCollectionRoute>();
+			ICollection<LocalizationCollectionRoute> localizationCollectionRoutes = RouteEntries.GetRoutes(culture, controller, action, controllerNamespace, actionArguments);
 
-			// Translate first route found
-			if (!Configuration.AddTranslationToSimiliarUrls)
-			{
-				LocalizationCollectionRoute route = RouteEntries.GetFirstUntranslatedRoute(culture, controller, action,
-					controllerNamespace, actionArguments);
-
-				if (route != null)
-				{
-					routes.Add(route);
-				}
-			}
-			else
-			{
-				routes = RouteEntries.GetSimiliarUntranslatedRoutes(culture, controller, action, controllerNamespace,
-					actionArguments);
-			}
-
-			if (routes.Count == 0)
+			if (localizationCollectionRoutes.Count == 0)
 			{
 				throw new InvalidOperationException(string.Format("No Route found for given Controller '{0}' and Action '{1}'.",
 					controller, action));
 			}
 
-			routes.ToList().ForEach(x => AddTranslation(url, culture, x));
+			if (localizationCollectionRoutes.Count == 1)
+			{
+				AddTranslation(url, culture, localizationCollectionRoutes.First());
+			}
+			else
+			{
+				if (!Configuration.AddTranslationToSimiliarUrls)
+				{
+					throw new InvalidOperationException(string.Format("Multiple Routes found for given Controller '{0}' and Action '{1}'." +
+						" Narrow down your selection or use AddTranslationToSimiliarUrls if you want to translate similiar Routes at once.",
+						controller, action));
+				}
+
+				LocalizationCollectionRoute localizationCollectionRoute = localizationCollectionRoutes.First();
+
+				if (localizationCollectionRoutes.Any(x => x.Url() != localizationCollectionRoute.Url()))
+				{
+					throw new InvalidOperationException(string.Format("Multiple Routes with different Url found for given Controller '{0}' and Action '{1}'." +
+						" Narrow down your selection.", controller, action));
+				}
+
+				localizationCollectionRoutes.ToList().ForEach(x => AddTranslation(url, culture, x));
+			}
 
 			return this;
 		}
