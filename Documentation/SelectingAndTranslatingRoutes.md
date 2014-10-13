@@ -40,21 +40,53 @@ You can also chain multiple translations:
         .ForAction(x => x.Book())
         .AddTranslation("Buch/{chapter}/{page}");
 
+### Adding neutral routes
+
+If you manually want to add neutral routes for specific actions, you can use the following methods:
+
+1. Adding the route directly
+
+    AddNeutralTranslation(LocalizationCollectionRoute route)
+
+    AddNeutralTranslationForNamedRoute(string namedRoute)
+
+    AddNeutralTranslation(LocalizationCollectionRoute route)
+
+2. Using fluent interfaces
+
+    localization.ForController<HomeController>()
+        .ForAction(x => x.Index())
+        .AddNeutralTranslation();
+
+### Getting the LocalizationCollectionRoutes directly
+
+Instead of calling some AddTranslation function, you could also return the LocalizationCollectionRoute object:
+
+    localization
+        .ForController<HomeController>()
+        .ForAction(x => x.Index())
+        .GetRoutes();
+
+You could do then some advanced use cases like removing routes, checking if translations exists, ...
+
+    if (localizationCollectionRoute.HasTranslationForCulture("en"))
+        localizationCollectionRoute.RemoveTranslation("en");
+
 ### Translating RoutePrefix and RouteArea
 
 Asp.Net attribute routing allows to use [RouteArea] and [RoutePrefix] attributes for controllers. You can set / translate those via the
 
     .SetAreaPrefix("AreaPrefix")
-    
+
     .SetRoutePrefix("RoutePrefix")
-    
+
 methods. Taken from the sample project the controller could look something like this:
 
-	[RoutePrefix("HomeWithRoutePrefixAttribute")]
-	public partial class HomeWithRoutePrefixAttributeController : Controller
-	{
-	    ... actions
-	}
+    [RoutePrefix("HomeWithRoutePrefixAttribute")]
+    public partial class HomeWithRoutePrefixAttributeController : Controller
+    {
+        ... actions
+    }
 
 And the corresponding translation:
 

@@ -64,6 +64,20 @@ Start can be mapped as classical route:
 
     routes.MapRoute("Start", string.Empty, new { controller = "Home", action = "Start" });
 
+You could also add an neutral route instead:
+
+    [Route]
+    [HttpGet]
+    public RedirectResult Start()
+    {
+        // Redirect to localized Index
+        return RedirectToAction("Index", new { culture = Thread.CurrentThread.CurrentCulture.Name });
+    }
+
+    localization.ForController<HomeController>()
+        .ForAction(x => x.Start())
+        .AddNeutralTranslation();
+
 Suppose we support two cultures "en" and "de" we would set *AttributeRouteProcessing* to AddAsDefaultCultureRoute and add a translation for "de":
 
     localization.ForCulture("de")
