@@ -45,6 +45,8 @@
 
 				// Uncomment if you do not want the culture (en, de, ...) added to each translated route as route prefix
 				configuration.AddCultureAsRoutePrefix = true;
+
+				configuration.AddTranslationToSimiliarUrls = true;
 			}).TranslateInitialAttributeRoutes().Translate(localization =>
 			{
 				// Use extension methods if you want to separate route configuration
