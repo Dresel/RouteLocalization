@@ -214,6 +214,10 @@ namespace RouteLocalization.Mvc
 
 		public Localization TranslateInitialAttributeRoutes()
 		{
+			// Route.Url() already contains potential Area / Route Prefixes, prevent adding twice
+			bool useUntranslatedAttributePrefixes = Configuration.UseUntranslatedAttributePrefixes;
+			Configuration.UseUntranslatedAttributePrefixes = false;
+
 			switch (Configuration.AttributeRouteProcessing)
 			{
 				case AttributeRouteProcessing.None:
@@ -240,6 +244,9 @@ namespace RouteLocalization.Mvc
 						route => AddTranslation(route.Route.Url(), Configuration.DefaultCulture, (LocalizationCollectionRoute)route.Route));
 					break;
 			}
+
+			// Restore to previous value
+			Configuration.UseUntranslatedAttributePrefixes = useUntranslatedAttributePrefixes;
 
 			return this;
 		}

@@ -386,7 +386,7 @@ namespace RouteLocalization.Mvc
 								"Set Configuration.ValidateRouteArea to false, if you want to skip validation.", controllerType.FullName));
 				}
 			}
-			else if (string.IsNullOrEmpty(AreaPrefix))
+			else if (string.IsNullOrEmpty(AreaPrefix) && Configuration.UseUntranslatedAttributePrefixes)
 			{
 				// Use untranslated area name / prefix from attribute
 				AreaPrefix = routeAreaAttribute.AreaPrefix ?? routeAreaAttribute.AreaName;
@@ -414,7 +414,7 @@ namespace RouteLocalization.Mvc
 								"Set Configuration.ValidateRoutePrefix to false, if you want to skip validation.", controllerType.FullName));
 				}
 			}
-			else if (string.IsNullOrEmpty(RoutePrefix))
+			else if (string.IsNullOrEmpty(RoutePrefix) && Configuration.UseUntranslatedAttributePrefixes)
 			{
 				// Use untranslated prefix from attribute
 				RoutePrefix = routePrefixAttribute.Prefix;

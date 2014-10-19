@@ -25,6 +25,8 @@ namespace RouteLocalization.Mvc.Setup
 
 			AcceptedCultures = new HashSet<string>() { "en" };
 
+			UseUntranslatedAttributePrefixes = true;
+
 			ValidateUrl = true;
 
 #if !ASPNETWEBAPI
@@ -64,6 +66,8 @@ namespace RouteLocalization.Mvc.Setup
 				this.localizationCollectionRoutes = value;
 			}
 		}
+
+		public bool UseUntranslatedAttributePrefixes { get; set; }
 
 		public bool ValidateCulture { get; set; }
 

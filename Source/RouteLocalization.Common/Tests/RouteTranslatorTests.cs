@@ -586,8 +586,14 @@ namespace RouteLocalization.Mvc.Tests
 			Configuration.AttributeRouteProcessing = AttributeRouteProcessing.AddAsDefaultCultureRoute;
 			Configuration.AddCultureAsRoutePrefix = true;
 
+#if ASPNETWEBAPI
+			string url = "RoutePrefix/Welcome";
+#else
+			string url = "RouteArea/RoutePrefix/Welcome";
+#endif
+
 			LocalizationCollectionRoute localizationCollectionRoute =
-				CreateCollectionRouteForControllerAndAction<PrefixController>("Welcome", controller => controller.Index());
+				CreateCollectionRouteForControllerAndAction<PrefixController>(url, controller => controller.Index());
 
 			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
 			{
@@ -619,8 +625,14 @@ namespace RouteLocalization.Mvc.Tests
 			Configuration.AttributeRouteProcessing = AttributeRouteProcessing.AddAsDefaultCultureRoute;
 			Configuration.AddCultureAsRoutePrefix = true;
 
+#if ASPNETWEBAPI
+			string url = "RoutePrefix/Welcome";
+#else
+			string url = "RouteArea/RoutePrefix/Welcome";
+#endif
+
 			LocalizationCollectionRoute localizationCollectionRoute =
-				CreateCollectionRouteForControllerAndAction<PrefixController>("Welcome", controller => controller.Index());
+				CreateCollectionRouteForControllerAndAction<PrefixController>(url, controller => controller.Index());
 
 			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
 			{
