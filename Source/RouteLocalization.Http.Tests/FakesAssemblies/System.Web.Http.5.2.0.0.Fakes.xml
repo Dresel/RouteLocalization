@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Web.Http.5.2.0.0.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:System.Web.Http.Routing.Fakes.ShimHttpRoute">
+            <summary>Shim type of System.Web.Http.Routing.HttpRoute</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRoute.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRoute.#ctor(System.Web.Http.Routing.HttpRoute)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRoute.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRoute.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRoute.Bind(System.Web.Http.Routing.IHttpRoute)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ConstraintsGet">
+            <summary>Sets the shim of HttpRoute.get_Constraints()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.Constructor">
+            <summary>Sets the shim of HttpRoute.HttpRoute()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ConstructorString">
+            <summary>Sets the shim of HttpRoute.HttpRoute(String routeTemplate)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ConstructorStringHttpRouteValueDictionary">
+            <summary>Sets the shim of HttpRoute.HttpRoute(String routeTemplate, HttpRouteValueDictionary defaults)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ConstructorStringHttpRouteValueDictionaryHttpRouteValueDictionary">
+            <summary>Sets the shim of HttpRoute.HttpRoute(String routeTemplate, HttpRouteValueDictionary defaults, HttpRouteValueDictionary constraints)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ConstructorStringHttpRouteValueDictionaryHttpRouteValueDictionaryHttpRouteValueDictionary">
+            <summary>Sets the shim of HttpRoute.HttpRoute(String routeTemplate, HttpRouteValueDictionary defaults, HttpRouteValueDictionary constraints, HttpRouteValueDictionary dataTokens)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ConstructorStringHttpRouteValueDictionaryHttpRouteValueDictionaryHttpRouteValueDictionaryHttpMessageHandler">
+            <summary>Sets the shim of HttpRoute.HttpRoute(String routeTemplate, HttpRouteValueDictionary defaults, HttpRouteValueDictionary constraints, HttpRouteValueDictionary dataTokens, HttpMessageHandler handler)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.CreateInvalidConstraintTypeExceptionStringString">
+            <summary>Sets the shim of HttpRoute.CreateInvalidConstraintTypeException(String routeTemplate, String name)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.DataTokensGet">
+            <summary>Sets the shim of HttpRoute.get_DataTokens()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.DefaultsGet">
+            <summary>Sets the shim of HttpRoute.get_Defaults()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.GetRouteDataStringHttpRequestMessage">
+            <summary>Sets the shim of HttpRoute.GetRouteData(String virtualPathRoot, HttpRequestMessage request)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.GetRouteDictionaryWithoutHttpRouteKeyIDictionaryOfStringObject">
+            <summary>Sets the shim of HttpRoute.GetRouteDictionaryWithoutHttpRouteKey(IDictionary`2&lt;String,Object&gt; routeValues)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject">
+            <summary>Sets the shim of HttpRoute.GetVirtualPath(HttpRequestMessage request, IDictionary`2&lt;String,Object&gt; values)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.HandlerGet">
+            <summary>Sets the shim of HttpRoute.get_Handler()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.HandlerSetHttpMessageHandler">
+            <summary>Sets the shim of HttpRoute.set_Handler(HttpMessageHandler value)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ProcessConstraintHttpRequestMessageObjectStringHttpRouteValueDictionaryHttpRouteDirection">
+            <summary>Sets the shim of HttpRoute.ProcessConstraint(HttpRequestMessage request, Object constraint, String parameterName, HttpRouteValueDictionary values, HttpRouteDirection routeDirection)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ProcessConstraintsHttpRequestMessageHttpRouteValueDictionaryHttpRouteDirection">
+            <summary>Sets the shim of HttpRoute.ProcessConstraints(HttpRequestMessage request, HttpRouteValueDictionary values, HttpRouteDirection routeDirection)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.RouteTemplateGet">
+            <summary>Sets the shim of HttpRoute.get_RouteTemplate()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.StaticConstructor">
+            <summary>Sets the shim of HttpRoute.HttpRoute()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.ValidateConstraintStringStringObject">
+            <summary>Sets the shim of HttpRoute.ValidateConstraint(String routeTemplate, String name, Object constraint)</summary>
+        </member>
+        <member name="T:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.ConstraintsGet">
+            <summary>Sets the shim of HttpRoute.get_Constraints()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.DataTokensGet">
+            <summary>Sets the shim of HttpRoute.get_DataTokens()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.DefaultsGet">
+            <summary>Sets the shim of HttpRoute.get_Defaults()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.GetRouteDataStringHttpRequestMessage">
+            <summary>Sets the shim of HttpRoute.GetRouteData(String virtualPathRoot, HttpRequestMessage request)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.GetVirtualPathHttpRequestMessageIDictionaryOfStringObject">
+            <summary>Sets the shim of HttpRoute.GetVirtualPath(HttpRequestMessage request, IDictionary`2&lt;String,Object&gt; values)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.HandlerGet">
+            <summary>Sets the shim of HttpRoute.get_Handler()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.HandlerSetHttpMessageHandler">
+            <summary>Sets the shim of HttpRoute.set_Handler(HttpMessageHandler value)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.ProcessConstraintHttpRequestMessageObjectStringHttpRouteValueDictionaryHttpRouteDirection">
+            <summary>Sets the shim of HttpRoute.ProcessConstraint(HttpRequestMessage request, Object constraint, String parameterName, HttpRouteValueDictionary values, HttpRouteDirection routeDirection)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.ProcessConstraintsHttpRequestMessageHttpRouteValueDictionaryHttpRouteDirection">
+            <summary>Sets the shim of HttpRoute.ProcessConstraints(HttpRequestMessage request, HttpRouteValueDictionary values, HttpRouteDirection routeDirection)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRoute.AllInstances.RouteTemplateGet">
+            <summary>Sets the shim of HttpRoute.get_RouteTemplate()</summary>
+        </member>
+        <member name="T:System.Web.Http.Routing.Fakes.ShimHttpRouteData">
+            <summary>Shim type of System.Web.Http.Routing.HttpRouteData</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteData.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteData.#ctor(System.Web.Http.Routing.HttpRouteData)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteData.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteData.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteData.Bind(System.Web.Http.Routing.IHttpRouteData)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteData.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteData.ConstructorIHttpRoute">
+            <summary>Sets the shim of HttpRouteData.HttpRouteData(IHttpRoute route)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteData.ConstructorIHttpRouteHttpRouteValueDictionary">
+            <summary>Sets the shim of HttpRouteData.HttpRouteData(IHttpRoute route, HttpRouteValueDictionary values)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteData.RouteGet">
+            <summary>Sets the shim of HttpRouteData.get_Route()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteData.ValuesGet">
+            <summary>Sets the shim of HttpRouteData.get_Values()</summary>
+        </member>
+        <member name="T:System.Web.Http.Routing.Fakes.ShimHttpRouteData.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteData.AllInstances.RouteGet">
+            <summary>Sets the shim of HttpRouteData.get_Route()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteData.AllInstances.ValuesGet">
+            <summary>Sets the shim of HttpRouteData.get_Values()</summary>
+        </member>
+        <member name="T:System.Web.Http.Routing.Fakes.ShimHttpRouteDataExtensions">
+            <summary>Shim type of System.Web.Http.Routing.HttpRouteDataExtensions</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteDataExtensions.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteDataExtensions.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteDataExtensions.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteDataExtensions.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteDataExtensions.GetSubRoutesIHttpRouteData">
+            <summary>Sets the shim of HttpRouteDataExtensions.GetSubRoutes(IHttpRouteData routeData)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteDataExtensions.RemoveOptionalRoutingParametersIDictionaryOfStringObject">
+            <summary>Sets the shim of HttpRouteDataExtensions.RemoveOptionalRoutingParameters(IDictionary`2&lt;String,Object&gt; routeValueDictionary)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteDataExtensions.RemoveOptionalRoutingParametersIHttpRouteData">
+            <summary>Sets the shim of HttpRouteDataExtensions.RemoveOptionalRoutingParameters(IHttpRouteData routeData)</summary>
+        </member>
+        <member name="T:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary">
+            <summary>Shim type of System.Web.Http.Routing.HttpRouteValueDictionary</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.#ctor(System.Web.Http.Routing.HttpRouteValueDictionary)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Collections.ICollection)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Collections.IDictionary)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Collections.IEnumerable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Collections.Generic.IReadOnlyCollection{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object})">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Runtime.Serialization.IDeserializationCallback)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Bind(System.Runtime.Serialization.ISerializable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.Constructor">
+            <summary>Sets the shim of HttpRouteValueDictionary.HttpRouteValueDictionary()</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.ConstructorIDictionaryOfStringObject">
+            <summary>Sets the shim of HttpRouteValueDictionary.HttpRouteValueDictionary(IDictionary`2&lt;String,Object&gt; dictionary)</summary>
+        </member>
+        <member name="P:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.ConstructorObject">
+            <summary>Sets the shim of HttpRouteValueDictionary.HttpRouteValueDictionary(Object values)</summary>
+        </member>
+        <member name="T:System.Web.Http.Routing.Fakes.ShimHttpRouteValueDictionary.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+    </members>
+</doc>

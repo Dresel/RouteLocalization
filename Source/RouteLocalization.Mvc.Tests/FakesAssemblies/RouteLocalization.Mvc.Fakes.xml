@@ -1,0 +1,1601 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RouteLocalization.Mvc.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteCollectionExtensions">
+            <summary>Shim type of RouteLocalization.Mvc.Extensions.RouteCollectionExtensions</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteCollectionExtensions.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteCollectionExtensions.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteCollectionExtensions.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteCollectionExtensions.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteCollectionExtensions.LocalizationRouteCollection">
+            <summary>Sets the shim of RouteCollectionExtensions.Localization(RouteCollection routeCollection)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteCollectionExtensions.LocalizationRouteCollectionActionOfConfiguration">
+            <summary>Sets the shim of RouteCollectionExtensions.Localization(RouteCollection routeCollection, Action`1&lt;Configuration&gt; configurationAction)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteCollectionExtensions.LocalizationRouteCollectionConfiguration">
+            <summary>Sets the shim of RouteCollectionExtensions.Localization(RouteCollection routeCollection, Configuration configuration)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions">
+            <summary>Shim type of RouteLocalization.Mvc.Extensions.RouteEntryCollectionExtensions</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.GetNamedRouteICollectionOfRouteEntryString">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.GetNamedRoute(ICollection`1&lt;RouteEntry&gt; routeEntries, String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.GetRoutesICollectionOfRouteEntryStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.GetRoutes(ICollection`1&lt;RouteEntry&gt; routeEntries, String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.MatchesActionArgumentsRouteICollectionOfType">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.MatchesActionArguments(Route route, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.MatchesControllerAndActionRouteStringString">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.MatchesControllerAndAction(Route route, String controller, String action)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.MatchesNamespaceRouteString">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.MatchesNamespace(Route route, String controllerNamespace)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.ToLocalizationCollectionRoutesICollectionOfRouteEntry">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.ToLocalizationCollectionRoutes(ICollection`1&lt;RouteEntry&gt; routeEntries)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.ToRoutesStringICollectionOfRouteEntry">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.ToRoutesString(ICollection`1&lt;RouteEntry&gt; routeEntries)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions.WhereMatchesDescriptionIEnumerableOfLocalizationCollectionRouteStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.WhereMatchesDescription(IEnumerable`1&lt;LocalizationCollectionRoute&gt; localizationCollectionRoutes, String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions._ToLocalizationCollectionRoutesb__9RouteEntry">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.&lt;ToLocalizationCollectionRoutes&gt;b__9(RouteEntry x)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions._ToRoutesStringb__3RouteEntry">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.&lt;ToRoutesString&gt;b__3(RouteEntry x)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions._ToRoutesStringb__4LocalizationCollectionRoute">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.&lt;ToRoutesString&gt;b__4(LocalizationCollectionRoute x)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteEntryCollectionExtensions._ToRoutesStringb__5LocalizationRoute">
+            <summary>Sets the shim of RouteEntryCollectionExtensions.&lt;ToRoutesString&gt;b__5(LocalizationRoute route)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteExtensions">
+            <summary>Shim type of RouteLocalization.Mvc.Extensions.RouteExtensions</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteExtensions.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteExtensions.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteExtensions.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteExtensions.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteExtensions.RouteHandlerRoute">
+            <summary>Sets the shim of RouteExtensions.RouteHandler(Route route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteExtensions.ToLocalizationRouteRouteStringString">
+            <summary>Sets the shim of RouteExtensions.ToLocalizationRoute(Route route, String url, String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Extensions.Fakes.ShimRouteExtensions.UrlRoute">
+            <summary>Sets the shim of RouteExtensions.Url(Route route)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs">
+            <summary>Shim type of RouteLocalization.Mvc.CultureSelectedEventArgs</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.#ctor(RouteLocalization.Mvc.CultureSelectedEventArgs)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.Constructor">
+            <summary>Sets the shim of CultureSelectedEventArgs.CultureSelectedEventArgs()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.ContextGet">
+            <summary>Sets the shim of CultureSelectedEventArgs.get_Context()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.ContextSetHttpContextBase">
+            <summary>Sets the shim of CultureSelectedEventArgs.set_Context(HttpContextBase value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.SelectedCultureGet">
+            <summary>Sets the shim of CultureSelectedEventArgs.get_SelectedCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.SelectedCultureSetString">
+            <summary>Sets the shim of CultureSelectedEventArgs.set_SelectedCulture(String value)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.AllInstances.ContextGet">
+            <summary>Sets the shim of CultureSelectedEventArgs.get_Context()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.AllInstances.ContextSetHttpContextBase">
+            <summary>Sets the shim of CultureSelectedEventArgs.set_Context(HttpContextBase value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.AllInstances.SelectedCultureGet">
+            <summary>Sets the shim of CultureSelectedEventArgs.get_SelectedCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSelectedEventArgs.AllInstances.SelectedCultureSetString">
+            <summary>Sets the shim of CultureSelectedEventArgs.set_SelectedCulture(String value)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute">
+            <summary>Shim type of RouteLocalization.Mvc.CultureSensitiveActionFilterAttribute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.#ctor(RouteLocalization.Mvc.CultureSensitiveActionFilterAttribute)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.Bind(System.Web.Mvc.IActionFilter)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.Bind(System.Web.Mvc.IMvcFilter)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.Bind(System.Web.Mvc.IResultFilter)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.Constructor">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.CultureSensitiveActionFilterAttribute()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.ConstructorBooleanBoolean">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.CultureSensitiveActionFilterAttribute(Boolean setCurrentCulture, Boolean setCurrentUICulture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.CultureSelectedAddEventHandlerOfCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.add_CultureSelected(EventHandler`1&lt;CultureSelectedEventArgs&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.CultureSelectedRemoveEventHandlerOfCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.remove_CultureSelected(EventHandler`1&lt;CultureSelectedEventArgs&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.OnActionExecutingActionExecutingContext">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.OnActionExecuting(ActionExecutingContext context)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.SetCurrentCultureGet">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.get_SetCurrentCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.SetCurrentCultureSetBoolean">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_SetCurrentCulture(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.SetCurrentUICultureGet">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.get_SetCurrentUICulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.SetCurrentUICultureSetBoolean">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_SetCurrentUICulture(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute._ctorb__0ObjectCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.&lt;.ctor&gt;b__0(Object sender, CultureSelectedEventArgs e)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute._ctorb__2ObjectCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.&lt;.ctor&gt;b__2(Object sender, CultureSelectedEventArgs e)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.CultureSelectedAddEventHandlerOfCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.add_CultureSelected(EventHandler`1&lt;CultureSelectedEventArgs&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.CultureSelectedRemoveEventHandlerOfCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.remove_CultureSelected(EventHandler`1&lt;CultureSelectedEventArgs&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.OnActionExecutingActionExecutingContext">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.OnActionExecuting(ActionExecutingContext context)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.SetCurrentCultureGet">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.get_SetCurrentCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.SetCurrentCultureSetBoolean">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_SetCurrentCulture(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.SetCurrentUICultureGet">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.get_SetCurrentUICulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.SetCurrentUICultureSetBoolean">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_SetCurrentUICulture(Boolean value)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule">
+            <summary>Shim type of RouteLocalization.Mvc.CultureSensitiveHttpModule</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.#ctor(RouteLocalization.Mvc.CultureSensitiveHttpModule)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.Bind(System.Web.IHttpModule)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.BeginRequestObjectEventArgs">
+            <summary>Sets the shim of CultureSensitiveHttpModule.BeginRequest(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.Constructor">
+            <summary>Sets the shim of CultureSensitiveHttpModule.CultureSensitiveHttpModule()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.CultureSelectedAddEventHandlerOfCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveHttpModule.add_CultureSelected(EventHandler`1&lt;CultureSelectedEventArgs&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.CultureSelectedRemoveEventHandlerOfCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveHttpModule.remove_CultureSelected(EventHandler`1&lt;CultureSelectedEventArgs&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.Dispose">
+            <summary>Sets the shim of CultureSensitiveHttpModule.Dispose()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.GetCultureFromHttpContextDelegateGet">
+            <summary>Sets the shim of CultureSensitiveHttpModule.get_GetCultureFromHttpContextDelegate()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.GetCultureFromHttpContextDelegateSetFuncOfHttpContextCultureInfo">
+            <summary>Sets the shim of CultureSensitiveHttpModule.set_GetCultureFromHttpContextDelegate(Func`2&lt;HttpContext,CultureInfo&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.InitHttpApplication">
+            <summary>Sets the shim of CultureSensitiveHttpModule.Init(HttpApplication context)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.SetCultureFromHttpContextHttpContext">
+            <summary>Sets the shim of CultureSensitiveHttpModule.SetCultureFromHttpContext(HttpContext httpContext)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.SetCurrentCultureGet">
+            <summary>Sets the shim of CultureSensitiveHttpModule.get_SetCurrentCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.SetCurrentCultureSetBoolean">
+            <summary>Sets the shim of CultureSensitiveHttpModule.set_SetCurrentCulture(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.SetCurrentUICultureGet">
+            <summary>Sets the shim of CultureSensitiveHttpModule.get_SetCurrentUICulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.SetCurrentUICultureSetBoolean">
+            <summary>Sets the shim of CultureSensitiveHttpModule.set_SetCurrentUICulture(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.StaticConstructor">
+            <summary>Sets the shim of CultureSensitiveHttpModule.CultureSensitiveHttpModule()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule._cctorb__0ObjectCultureSelectedEventArgs">
+            <summary>Sets the shim of CultureSensitiveHttpModule.&lt;.cctor&gt;b__0(Object sender, CultureSelectedEventArgs e)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule._cctorb__1HttpContext">
+            <summary>Sets the shim of CultureSensitiveHttpModule.&lt;.cctor&gt;b__1(HttpContext context)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.AllInstances.BeginRequestObjectEventArgs">
+            <summary>Sets the shim of CultureSensitiveHttpModule.BeginRequest(Object sender, EventArgs e)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.AllInstances.Dispose">
+            <summary>Sets the shim of CultureSensitiveHttpModule.Dispose()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.AllInstances.InitHttpApplication">
+            <summary>Sets the shim of CultureSensitiveHttpModule.Init(HttpApplication context)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule.AllInstances.SetCultureFromHttpContextHttpContext">
+            <summary>Sets the shim of CultureSensitiveHttpModule.SetCultureFromHttpContext(HttpContext httpContext)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimLocalization">
+            <summary>Shim type of RouteLocalization.Mvc.Localization</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimLocalization.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimLocalization.#ctor(RouteLocalization.Mvc.Localization)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimLocalization.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimLocalization.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimLocalization.ForControllerOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{RouteLocalization.Mvc.RouteTranslator{``0}})">
+            <summary>Sets the shim of Localization.ForController()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AddNeutralTranslationForNamedRouteString">
+            <summary>Sets the shim of Localization.AddNeutralTranslationForNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AddNeutralTranslationLocalizationCollectionRoute">
+            <summary>Sets the shim of Localization.AddNeutralTranslation(LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AddNeutralTranslationStringStringStringICollectionOfType">
+            <summary>Sets the shim of Localization.AddNeutralTranslation(String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AddTranslationForNamedRouteStringStringString">
+            <summary>Sets the shim of Localization.AddTranslationForNamedRoute(String url, String culture, String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AddTranslationStringStringLocalizationCollectionRoute">
+            <summary>Sets the shim of Localization.AddTranslation(String url, String culture, LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AddTranslationStringStringStringStringStringICollectionOfType">
+            <summary>Sets the shim of Localization.AddTranslation(String url, String culture, String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.ConfigurationGet">
+            <summary>Sets the shim of Localization.get_Configuration()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.ConfigurationSetConfiguration">
+            <summary>Sets the shim of Localization.set_Configuration(Configuration value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.Constructor">
+            <summary>Sets the shim of Localization.Localization()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.ConstructorConfiguration">
+            <summary>Sets the shim of Localization.Localization(Configuration configuration)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.DetectCultureFromBrowserUserLanguagesISetOfStringString">
+            <summary>Sets the shim of Localization.DetectCultureFromBrowserUserLanguages(ISet`1&lt;String&gt; acceptedCultures, String defaultCulture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.ForControllerStringString">
+            <summary>Sets the shim of Localization.ForController(String controller, String controllerNamespace)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.ForCultureString">
+            <summary>Sets the shim of Localization.ForCulture(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.GetNamedRouteString">
+            <summary>Sets the shim of Localization.GetNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.GetRoutesStringStringStringICollectionOfType">
+            <summary>Sets the shim of Localization.GetRoutes(String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.LocalizationDirectRouteProviderGet">
+            <summary>Sets the shim of Localization.get_LocalizationDirectRouteProvider()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.LocalizationDirectRouteProviderSetLocalizationDirectRouteProvider">
+            <summary>Sets the shim of Localization.set_LocalizationDirectRouteProvider(LocalizationDirectRouteProvider value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.SetAreaPrefixString">
+            <summary>Sets the shim of Localization.SetAreaPrefix(String areaPrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.SetRoutePrefixString">
+            <summary>Sets the shim of Localization.SetRoutePrefix(String routePrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.TranslateActionOfLocalization">
+            <summary>Sets the shim of Localization.Translate(Action`1&lt;Localization&gt; localizationAction)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.TranslateInitialAttributeRoutes">
+            <summary>Sets the shim of Localization.TranslateInitialAttributeRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization._TranslateInitialAttributeRoutesb__8RouteEntry">
+            <summary>Sets the shim of Localization.&lt;TranslateInitialAttributeRoutes&gt;b__8(RouteEntry route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization._TranslateInitialAttributeRoutesb__9RouteEntry">
+            <summary>Sets the shim of Localization.&lt;TranslateInitialAttributeRoutes&gt;b__9(RouteEntry route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization._TranslateInitialAttributeRoutesb__aRouteEntry">
+            <summary>Sets the shim of Localization.&lt;TranslateInitialAttributeRoutes&gt;b__a(RouteEntry route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization._TranslateInitialAttributeRoutesb__bRouteEntry">
+            <summary>Sets the shim of Localization.&lt;TranslateInitialAttributeRoutes&gt;b__b(RouteEntry route)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.ForControllerOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{RouteLocalization.Mvc.Localization,RouteLocalization.Mvc.RouteTranslator{``0}})">
+            <summary>Sets the shim of Localization.ForController()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.AddNeutralTranslationForNamedRouteString">
+            <summary>Sets the shim of Localization.AddNeutralTranslationForNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.AddNeutralTranslationLocalizationCollectionRoute">
+            <summary>Sets the shim of Localization.AddNeutralTranslation(LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.AddNeutralTranslationStringStringStringICollectionOfType">
+            <summary>Sets the shim of Localization.AddNeutralTranslation(String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.AddTranslationForNamedRouteStringStringString">
+            <summary>Sets the shim of Localization.AddTranslationForNamedRoute(String url, String culture, String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.AddTranslationStringStringLocalizationCollectionRoute">
+            <summary>Sets the shim of Localization.AddTranslation(String url, String culture, LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.AddTranslationStringStringStringStringStringICollectionOfType">
+            <summary>Sets the shim of Localization.AddTranslation(String url, String culture, String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.ConfigurationGet">
+            <summary>Sets the shim of Localization.get_Configuration()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.ConfigurationSetConfiguration">
+            <summary>Sets the shim of Localization.set_Configuration(Configuration value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.ForControllerStringString">
+            <summary>Sets the shim of Localization.ForController(String controller, String controllerNamespace)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.ForCultureString">
+            <summary>Sets the shim of Localization.ForCulture(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.GetNamedRouteString">
+            <summary>Sets the shim of Localization.GetNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.GetRoutesStringStringStringICollectionOfType">
+            <summary>Sets the shim of Localization.GetRoutes(String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.SetAreaPrefixString">
+            <summary>Sets the shim of Localization.SetAreaPrefix(String areaPrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.SetRoutePrefixString">
+            <summary>Sets the shim of Localization.SetRoutePrefix(String routePrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.TranslateActionOfLocalization">
+            <summary>Sets the shim of Localization.Translate(Action`1&lt;Localization&gt; localizationAction)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances.TranslateInitialAttributeRoutes">
+            <summary>Sets the shim of Localization.TranslateInitialAttributeRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances._TranslateInitialAttributeRoutesb__8RouteEntry">
+            <summary>Sets the shim of Localization.&lt;TranslateInitialAttributeRoutes&gt;b__8(RouteEntry route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances._TranslateInitialAttributeRoutesb__9RouteEntry">
+            <summary>Sets the shim of Localization.&lt;TranslateInitialAttributeRoutes&gt;b__9(RouteEntry route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances._TranslateInitialAttributeRoutesb__aRouteEntry">
+            <summary>Sets the shim of Localization.&lt;TranslateInitialAttributeRoutes&gt;b__a(RouteEntry route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimLocalization.AllInstances._TranslateInitialAttributeRoutesb__bRouteEntry">
+            <summary>Sets the shim of Localization.&lt;TranslateInitialAttributeRoutes&gt;b__b(RouteEntry route)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimRouteTranslator">
+            <summary>Shim type of RouteLocalization.Mvc.RouteTranslator</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.#ctor(RouteLocalization.Mvc.RouteTranslator)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ForControllerOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{RouteLocalization.Mvc.RouteTranslator{``0}})">
+            <summary>Sets the shim of RouteTranslator.ForController()</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ToGenericOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{RouteLocalization.Mvc.RouteTranslator{``0}})">
+            <summary>Sets the shim of RouteTranslator.ToGeneric()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ActionArgumentsGet">
+            <summary>Sets the shim of RouteTranslator.get_ActionArguments()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ActionArgumentsSetICollectionOfType">
+            <summary>Sets the shim of RouteTranslator.set_ActionArguments(ICollection`1&lt;Type&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ActionGet">
+            <summary>Sets the shim of RouteTranslator.get_Action()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ActionSetString">
+            <summary>Sets the shim of RouteTranslator.set_Action(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddNeutralTranslation">
+            <summary>Sets the shim of RouteTranslator.AddNeutralTranslation()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddNeutralTranslationForNamedRouteString">
+            <summary>Sets the shim of RouteTranslator.AddNeutralTranslationForNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddNeutralTranslationLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.AddNeutralTranslation(LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddNeutralTranslationStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteTranslator.AddNeutralTranslation(String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddTranslationForNamedRouteStringStringString">
+            <summary>Sets the shim of RouteTranslator.AddTranslationForNamedRoute(String url, String culture, String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddTranslationString">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddTranslationStringString">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url, String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddTranslationStringStringLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url, String culture, LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddTranslationStringStringString">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url, String culture, String action)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AddTranslationStringStringStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url, String culture, String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AreaPrefixGet">
+            <summary>Sets the shim of RouteTranslator.get_AreaPrefix()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AreaPrefixSetString">
+            <summary>Sets the shim of RouteTranslator.set_AreaPrefix(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ConfigurationGet">
+            <summary>Sets the shim of RouteTranslator.get_Configuration()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ConfigurationSetConfiguration">
+            <summary>Sets the shim of RouteTranslator.set_Configuration(Configuration value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.Constructor">
+            <summary>Sets the shim of RouteTranslator.RouteTranslator()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ConstructorConfiguration">
+            <summary>Sets the shim of RouteTranslator.RouteTranslator(Configuration configuration)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ControllerGet">
+            <summary>Sets the shim of RouteTranslator.get_Controller()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ControllerNamespaceGet">
+            <summary>Sets the shim of RouteTranslator.get_ControllerNamespace()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ControllerNamespaceSetString">
+            <summary>Sets the shim of RouteTranslator.set_ControllerNamespace(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ControllerSetString">
+            <summary>Sets the shim of RouteTranslator.set_Controller(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.CultureGet">
+            <summary>Sets the shim of RouteTranslator.get_Culture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.CultureSetString">
+            <summary>Sets the shim of RouteTranslator.set_Culture(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ForActionString">
+            <summary>Sets the shim of RouteTranslator.ForAction(String action)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ForActionStringTypeArray">
+            <summary>Sets the shim of RouteTranslator.ForAction(String action, Type[] actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ForControllerStringString">
+            <summary>Sets the shim of RouteTranslator.ForController(String controller, String controllerNamespace)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ForCultureString">
+            <summary>Sets the shim of RouteTranslator.ForCulture(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ForNamedRouteString">
+            <summary>Sets the shim of RouteTranslator.ForNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.GetNamedRouteString">
+            <summary>Sets the shim of RouteTranslator.GetNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.GetRoutes">
+            <summary>Sets the shim of RouteTranslator.GetRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.GetRoutesStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteTranslator.GetRoutes(String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.NamedRouteGet">
+            <summary>Sets the shim of RouteTranslator.get_NamedRoute()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.NamedRouteSetString">
+            <summary>Sets the shim of RouteTranslator.set_NamedRoute(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.RouteEntriesGet">
+            <summary>Sets the shim of RouteTranslator.get_RouteEntries()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.RoutePrefixGet">
+            <summary>Sets the shim of RouteTranslator.get_RoutePrefix()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.RoutePrefixSetString">
+            <summary>Sets the shim of RouteTranslator.set_RoutePrefix(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.SetAreaPrefixString">
+            <summary>Sets the shim of RouteTranslator.SetAreaPrefix(String areaPrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.SetRoutePrefixString">
+            <summary>Sets the shim of RouteTranslator.SetRoutePrefix(String routePrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.TransformUrlStringStringLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.TransformUrl(String url, String culture, LocalizationCollectionRoute localizationCollectionRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ValidateRouteAreaLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.ValidateRouteArea(LocalizationCollectionRoute localizationCollectionRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.ValidateRoutePrefixLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.ValidateRoutePrefix(LocalizationCollectionRoute localizationCollectionRoute)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ForControllerOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{RouteLocalization.Mvc.RouteTranslator,RouteLocalization.Mvc.RouteTranslator{``0}})">
+            <summary>Sets the shim of RouteTranslator.ForController()</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ToGenericOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{RouteLocalization.Mvc.RouteTranslator,RouteLocalization.Mvc.RouteTranslator{``0}})">
+            <summary>Sets the shim of RouteTranslator.ToGeneric()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ActionArgumentsGet">
+            <summary>Sets the shim of RouteTranslator.get_ActionArguments()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ActionArgumentsSetICollectionOfType">
+            <summary>Sets the shim of RouteTranslator.set_ActionArguments(ICollection`1&lt;Type&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ActionGet">
+            <summary>Sets the shim of RouteTranslator.get_Action()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ActionSetString">
+            <summary>Sets the shim of RouteTranslator.set_Action(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddNeutralTranslation">
+            <summary>Sets the shim of RouteTranslator.AddNeutralTranslation()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddNeutralTranslationForNamedRouteString">
+            <summary>Sets the shim of RouteTranslator.AddNeutralTranslationForNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddNeutralTranslationLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.AddNeutralTranslation(LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddNeutralTranslationStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteTranslator.AddNeutralTranslation(String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddTranslationForNamedRouteStringStringString">
+            <summary>Sets the shim of RouteTranslator.AddTranslationForNamedRoute(String url, String culture, String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddTranslationString">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddTranslationStringString">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url, String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddTranslationStringStringLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url, String culture, LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddTranslationStringStringString">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url, String culture, String action)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AddTranslationStringStringStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteTranslator.AddTranslation(String url, String culture, String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AreaPrefixGet">
+            <summary>Sets the shim of RouteTranslator.get_AreaPrefix()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.AreaPrefixSetString">
+            <summary>Sets the shim of RouteTranslator.set_AreaPrefix(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ConfigurationGet">
+            <summary>Sets the shim of RouteTranslator.get_Configuration()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ConfigurationSetConfiguration">
+            <summary>Sets the shim of RouteTranslator.set_Configuration(Configuration value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ControllerGet">
+            <summary>Sets the shim of RouteTranslator.get_Controller()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ControllerNamespaceGet">
+            <summary>Sets the shim of RouteTranslator.get_ControllerNamespace()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ControllerNamespaceSetString">
+            <summary>Sets the shim of RouteTranslator.set_ControllerNamespace(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ControllerSetString">
+            <summary>Sets the shim of RouteTranslator.set_Controller(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.CultureGet">
+            <summary>Sets the shim of RouteTranslator.get_Culture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.CultureSetString">
+            <summary>Sets the shim of RouteTranslator.set_Culture(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ForActionString">
+            <summary>Sets the shim of RouteTranslator.ForAction(String action)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ForActionStringTypeArray">
+            <summary>Sets the shim of RouteTranslator.ForAction(String action, Type[] actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ForControllerStringString">
+            <summary>Sets the shim of RouteTranslator.ForController(String controller, String controllerNamespace)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ForCultureString">
+            <summary>Sets the shim of RouteTranslator.ForCulture(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ForNamedRouteString">
+            <summary>Sets the shim of RouteTranslator.ForNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.GetNamedRouteString">
+            <summary>Sets the shim of RouteTranslator.GetNamedRoute(String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.GetRoutes">
+            <summary>Sets the shim of RouteTranslator.GetRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.GetRoutesStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteTranslator.GetRoutes(String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.NamedRouteGet">
+            <summary>Sets the shim of RouteTranslator.get_NamedRoute()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.NamedRouteSetString">
+            <summary>Sets the shim of RouteTranslator.set_NamedRoute(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.RouteEntriesGet">
+            <summary>Sets the shim of RouteTranslator.get_RouteEntries()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.RoutePrefixGet">
+            <summary>Sets the shim of RouteTranslator.get_RoutePrefix()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.RoutePrefixSetString">
+            <summary>Sets the shim of RouteTranslator.set_RoutePrefix(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.SetAreaPrefixString">
+            <summary>Sets the shim of RouteTranslator.SetAreaPrefix(String areaPrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.SetRoutePrefixString">
+            <summary>Sets the shim of RouteTranslator.SetRoutePrefix(String routePrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.TransformUrlStringStringLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.TransformUrl(String url, String culture, LocalizationCollectionRoute localizationCollectionRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ValidateRouteAreaLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.ValidateRouteArea(LocalizationCollectionRoute localizationCollectionRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator.AllInstances.ValidateRoutePrefixLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator.ValidateRoutePrefix(LocalizationCollectionRoute localizationCollectionRoute)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1">
+            <summary>Shim type of RouteLocalization.Mvc.RouteTranslator`1</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.#ctor(RouteLocalization.Mvc.RouteTranslator{`0})">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AddTranslationForNamedRouteStringStringString">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslationForNamedRoute(String url, String culture, String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AddTranslationString">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AddTranslationStringString">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url, String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AddTranslationStringStringLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url, String culture, LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AddTranslationStringStringString">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url, String culture, String action)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AddTranslationStringStringStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url, String culture, String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.Constructor">
+            <summary>Sets the shim of RouteTranslator`1.RouteTranslator`1()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.ForActionExpressionOfFuncOfT0Object">
+            <summary>Sets the shim of RouteTranslator`1.ForAction(Expression`1&lt;Func`2&lt;!0,Object&gt;&gt; expression)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.ForActionExpressionOfFuncOfT0ObjectTypeArray">
+            <summary>Sets the shim of RouteTranslator`1.ForAction(Expression`1&lt;Func`2&lt;!0,Object&gt;&gt; expression, Type[] actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.ForCultureString">
+            <summary>Sets the shim of RouteTranslator`1.ForCulture(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.SetAreaPrefixString">
+            <summary>Sets the shim of RouteTranslator`1.SetAreaPrefix(String areaPrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.SetRoutePrefixString">
+            <summary>Sets the shim of RouteTranslator`1.SetRoutePrefix(String routePrefix)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.AddTranslationForNamedRouteStringStringString">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslationForNamedRoute(String url, String culture, String namedRoute)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.AddTranslationString">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.AddTranslationStringString">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url, String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.AddTranslationStringStringLocalizationCollectionRoute">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url, String culture, LocalizationCollectionRoute route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.AddTranslationStringStringString">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url, String culture, String action)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.AddTranslationStringStringStringStringStringICollectionOfType">
+            <summary>Sets the shim of RouteTranslator`1.AddTranslation(String url, String culture, String controller, String action, String controllerNamespace, ICollection`1&lt;Type&gt; actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.ForActionExpressionOfFuncOfT0Object">
+            <summary>Sets the shim of RouteTranslator`1.ForAction(Expression`1&lt;Func`2&lt;!0,Object&gt;&gt; expression)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.ForActionExpressionOfFuncOfT0ObjectTypeArray">
+            <summary>Sets the shim of RouteTranslator`1.ForAction(Expression`1&lt;Func`2&lt;!0,Object&gt;&gt; expression, Type[] actionArguments)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.ForCultureString">
+            <summary>Sets the shim of RouteTranslator`1.ForCulture(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.SetAreaPrefixString">
+            <summary>Sets the shim of RouteTranslator`1.SetAreaPrefix(String areaPrefix)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimRouteTranslator`1.AllInstances.SetRoutePrefixString">
+            <summary>Sets the shim of RouteTranslator`1.SetRoutePrefix(String routePrefix)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.StubCultureSelectedEventArgs">
+            <summary>Stub type of RouteLocalization.Mvc.CultureSelectedEventArgs</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSelectedEventArgs.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSelectedEventArgs.InitializeStub">
+            <summary>Initializes a new instance of type StubCultureSelectedEventArgs</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSelectedEventArgs.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSelectedEventArgs.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSelectedEventArgs.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute">
+            <summary>Stub type of RouteLocalization.Mvc.CultureSensitiveActionFilterAttribute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.#ctor(System.Boolean,System.Boolean)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.Equals(System.Object)">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.EqualsObject">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.GetHashCode">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.GetHashCode01">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.InitializeStub">
+            <summary>Initializes a new instance of type StubCultureSensitiveActionFilterAttribute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.IsDefaultAttribute">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.IsDefaultAttribute01">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.Match(System.Object)">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.MatchObject">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>Sets the stub of ActionFilterAttribute.OnActionExecuted(ActionExecutedContext filterContext)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.OnActionExecutedActionExecutedContext">
+            <summary>Sets the stub of ActionFilterAttribute.OnActionExecuted(ActionExecutedContext filterContext)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>Sets the stub of CultureSensitiveActionFilterAttribute.OnActionExecuting(ActionExecutingContext context)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.OnActionExecutingActionExecutingContext">
+            <summary>Sets the stub of CultureSensitiveActionFilterAttribute.OnActionExecuting(ActionExecutingContext context)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.OnResultExecuted(System.Web.Mvc.ResultExecutedContext)">
+            <summary>Sets the stub of ActionFilterAttribute.OnResultExecuted(ResultExecutedContext filterContext)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.OnResultExecutedResultExecutedContext">
+            <summary>Sets the stub of ActionFilterAttribute.OnResultExecuted(ResultExecutedContext filterContext)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.OnResultExecuting(System.Web.Mvc.ResultExecutingContext)">
+            <summary>Sets the stub of ActionFilterAttribute.OnResultExecuting(ResultExecutingContext filterContext)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.OnResultExecutingResultExecutingContext">
+            <summary>Sets the stub of ActionFilterAttribute.OnResultExecuting(ResultExecutingContext filterContext)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.TypeIdGet">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSensitiveActionFilterAttribute.TypeId">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.StubCultureSensitiveHttpModule">
+            <summary>Stub type of RouteLocalization.Mvc.CultureSensitiveHttpModule</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveHttpModule.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubCultureSensitiveHttpModule.InitializeStub">
+            <summary>Initializes a new instance of type StubCultureSensitiveHttpModule</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSensitiveHttpModule.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSensitiveHttpModule.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubCultureSensitiveHttpModule.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.StubLocalization">
+            <summary>Stub type of RouteLocalization.Mvc.Localization</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubLocalization.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubLocalization.#ctor(RouteLocalization.Mvc.Setup.Configuration)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubLocalization.InitializeStub">
+            <summary>Initializes a new instance of type StubLocalization</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubLocalization.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubLocalization.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubLocalization.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.StubRouteTranslator">
+            <summary>Stub type of RouteLocalization.Mvc.RouteTranslator</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubRouteTranslator.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubRouteTranslator.#ctor(RouteLocalization.Mvc.Setup.Configuration)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubRouteTranslator.InitializeStub">
+            <summary>Initializes a new instance of type StubRouteTranslator</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubRouteTranslator.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubRouteTranslator.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubRouteTranslator.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Fakes.StubRouteTranslator`1">
+            <summary>Stub type of RouteLocalization.Mvc.RouteTranslator`1</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubRouteTranslator`1.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Fakes.StubRouteTranslator`1.InitializeStub">
+            <summary>Initializes a new instance of type StubRouteTranslator</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubRouteTranslator`1.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubRouteTranslator`1.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.StubRouteTranslator`1.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute">
+            <summary>Shim type of RouteLocalization.Mvc.Routing.LocalizationCollectionRoute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.#ctor(RouteLocalization.Mvc.Routing.LocalizationCollectionRoute)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AddTranslationStringString">
+            <summary>Sets the shim of LocalizationCollectionRoute.AddTranslation(String url, String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.ConstructorRoute">
+            <summary>Sets the shim of LocalizationCollectionRoute.LocalizationCollectionRoute(Route route)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.CopyAndRemoveFromValueDictionaryIDictionaryOfStringObject">
+            <summary>Sets the shim of LocalizationCollectionRoute.CopyAndRemoveFromValueDictionary(IDictionary`2&lt;String,Object&gt; values)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.GetLocalizationRouteHttpContextBase">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetLocalizationRoute(HttpContextBase httpContext)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.GetLocalizedOrDefaultRouteString">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetLocalizedOrDefaultRoute(String currentCulture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.GetLocalizedRouteString">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetLocalizedRoute(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.GetRouteDataHttpContextBase">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetRouteData(HttpContextBase httpContext)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.GetVirtualPathRequestContextRouteValueDictionary">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.HasTranslationForCultureString">
+            <summary>Sets the shim of LocalizationCollectionRoute.HasTranslationForCulture(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.LocalizedRoutesContainerGet">
+            <summary>Sets the shim of LocalizationCollectionRoute.get_LocalizedRoutesContainer()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.LocalizedRoutesContainerSetIDictionaryOfStringLocalizationRoute">
+            <summary>Sets the shim of LocalizationCollectionRoute.set_LocalizedRoutesContainer(IDictionary`2&lt;String,LocalizationRoute&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.LocalizedRoutesGet">
+            <summary>Sets the shim of LocalizationCollectionRoute.get_LocalizedRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.NeutralRouteGet">
+            <summary>Sets the shim of LocalizationCollectionRoute.get_NeutralRoute()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.NeutralRouteSetLocalizationRoute">
+            <summary>Sets the shim of LocalizationCollectionRoute.set_NeutralRoute(LocalizationRoute value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.RemoveTranslationString">
+            <summary>Sets the shim of LocalizationCollectionRoute.RemoveTranslation(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute._GetRouteDatab__4RouteData">
+            <summary>Sets the shim of LocalizationCollectionRoute.&lt;GetRouteData&gt;b__4(RouteData x)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.AddTranslationStringString">
+            <summary>Sets the shim of LocalizationCollectionRoute.AddTranslation(String url, String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.CopyAndRemoveFromValueDictionaryIDictionaryOfStringObject">
+            <summary>Sets the shim of LocalizationCollectionRoute.CopyAndRemoveFromValueDictionary(IDictionary`2&lt;String,Object&gt; values)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.GetLocalizationRouteHttpContextBase">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetLocalizationRoute(HttpContextBase httpContext)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.GetLocalizedOrDefaultRouteString">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetLocalizedOrDefaultRoute(String currentCulture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.GetLocalizedRouteString">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetLocalizedRoute(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.GetRouteDataHttpContextBase">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetRouteData(HttpContextBase httpContext)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.GetVirtualPathRequestContextRouteValueDictionary">
+            <summary>Sets the shim of LocalizationCollectionRoute.GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.HasTranslationForCultureString">
+            <summary>Sets the shim of LocalizationCollectionRoute.HasTranslationForCulture(String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.LocalizedRoutesContainerGet">
+            <summary>Sets the shim of LocalizationCollectionRoute.get_LocalizedRoutesContainer()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.LocalizedRoutesContainerSetIDictionaryOfStringLocalizationRoute">
+            <summary>Sets the shim of LocalizationCollectionRoute.set_LocalizedRoutesContainer(IDictionary`2&lt;String,LocalizationRoute&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.LocalizedRoutesGet">
+            <summary>Sets the shim of LocalizationCollectionRoute.get_LocalizedRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.NeutralRouteGet">
+            <summary>Sets the shim of LocalizationCollectionRoute.get_NeutralRoute()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.NeutralRouteSetLocalizationRoute">
+            <summary>Sets the shim of LocalizationCollectionRoute.set_NeutralRoute(LocalizationRoute value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationCollectionRoute.AllInstances.RemoveTranslationString">
+            <summary>Sets the shim of LocalizationCollectionRoute.RemoveTranslation(String culture)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider">
+            <summary>Shim type of RouteLocalization.Mvc.Routing.LocalizationDirectRouteProvider</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.#ctor(RouteLocalization.Mvc.Routing.LocalizationDirectRouteProvider)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.Bind(System.Web.Mvc.Routing.IDirectRouteProvider)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.ConstructorIDirectRouteProvider">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.LocalizationDirectRouteProvider(IDirectRouteProvider directRouteProvider)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.DirectRouteProviderGet">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.get_DirectRouteProvider()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.DirectRouteProviderSetIDirectRouteProvider">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.set_DirectRouteProvider(IDirectRouteProvider value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.GetDirectRoutesControllerDescriptorIReadOnlyListOfActionDescriptorIInlineConstraintResolver">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.GetDirectRoutes(ControllerDescriptor controllerDescriptor, IReadOnlyList`1&lt;ActionDescriptor&gt; actionDescriptors, IInlineConstraintResolver constraintResolver)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.LocalizationCollectionRoutesGet">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.get_LocalizationCollectionRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.LocalizationCollectionRoutesSetListOfRouteEntry">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.set_LocalizationCollectionRoutes(List`1&lt;RouteEntry&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider._GetDirectRoutesb__0RouteEntry">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.&lt;GetDirectRoutes&gt;b__0(RouteEntry x)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.AllInstances.DirectRouteProviderGet">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.get_DirectRouteProvider()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.AllInstances.DirectRouteProviderSetIDirectRouteProvider">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.set_DirectRouteProvider(IDirectRouteProvider value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.AllInstances.GetDirectRoutesControllerDescriptorIReadOnlyListOfActionDescriptorIInlineConstraintResolver">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.GetDirectRoutes(ControllerDescriptor controllerDescriptor, IReadOnlyList`1&lt;ActionDescriptor&gt; actionDescriptors, IInlineConstraintResolver constraintResolver)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.AllInstances.LocalizationCollectionRoutesGet">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.get_LocalizationCollectionRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationDirectRouteProvider.AllInstances.LocalizationCollectionRoutesSetListOfRouteEntry">
+            <summary>Sets the shim of LocalizationDirectRouteProvider.set_LocalizationCollectionRoutes(List`1&lt;RouteEntry&gt; value)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute">
+            <summary>Shim type of RouteLocalization.Mvc.Routing.LocalizationRoute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.#ctor(RouteLocalization.Mvc.Routing.LocalizationRoute)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.ConstructorStringRouteValueDictionaryRouteValueDictionaryRouteValueDictionaryIRouteHandlerString">
+            <summary>Sets the shim of LocalizationRoute.LocalizationRoute(String url, RouteValueDictionary defaults, RouteValueDictionary constraints, RouteValueDictionary dataTokens, IRouteHandler routeHandler, String culture)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.CultureGet">
+            <summary>Sets the shim of LocalizationRoute.get_Culture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.CultureSetString">
+            <summary>Sets the shim of LocalizationRoute.set_Culture(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.LocalizedUrlGet">
+            <summary>Sets the shim of LocalizationRoute.get_LocalizedUrl()</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.AllInstances.CultureGet">
+            <summary>Sets the shim of LocalizationRoute.get_Culture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.AllInstances.CultureSetString">
+            <summary>Sets the shim of LocalizationRoute.set_Culture(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimLocalizationRoute.AllInstances.LocalizedUrlGet">
+            <summary>Sets the shim of LocalizationRoute.get_LocalizedUrl()</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.ShimRouteDataTokenKeys">
+            <summary>Shim type of RouteLocalization.Mvc.Routing.RouteDataTokenKeys</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimRouteDataTokenKeys.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimRouteDataTokenKeys.#ctor(RouteLocalization.Mvc.Routing.RouteDataTokenKeys)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimRouteDataTokenKeys.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.ShimRouteDataTokenKeys.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimRouteDataTokenKeys.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.ShimRouteDataTokenKeys.Constructor">
+            <summary>Sets the shim of RouteDataTokenKeys.RouteDataTokenKeys()</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.ShimRouteDataTokenKeys.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute">
+            <summary>Stub type of RouteLocalization.Mvc.Routing.LocalizationCollectionRoute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.#ctor(System.Web.Routing.Route)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.GetRouteData(System.Web.HttpContextBase)">
+            <summary>Sets the stub of LocalizationCollectionRoute.GetRouteData(HttpContextBase httpContext)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.GetRouteDataHttpContextBase">
+            <summary>Sets the stub of LocalizationCollectionRoute.GetRouteData(HttpContextBase httpContext)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.GetVirtualPath(System.Web.Routing.RequestContext,System.Web.Routing.RouteValueDictionary)">
+            <summary>Sets the stub of LocalizationCollectionRoute.GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.GetVirtualPathRequestContextRouteValueDictionary">
+            <summary>Sets the stub of LocalizationCollectionRoute.GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.InitializeStub">
+            <summary>Initializes a new instance of type StubLocalizationCollectionRoute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.ProcessConstraint(System.Web.HttpContextBase,System.Object,System.String,System.Web.Routing.RouteValueDictionary,System.Web.Routing.RouteDirection)">
+            <summary>Sets the stub of Route.ProcessConstraint(HttpContextBase httpContext, Object constraint, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.ProcessConstraintHttpContextBaseObjectStringRouteValueDictionaryRouteDirection">
+            <summary>Sets the stub of Route.ProcessConstraint(HttpContextBase httpContext, Object constraint, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationCollectionRoute.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationDirectRouteProvider">
+            <summary>Stub type of RouteLocalization.Mvc.Routing.LocalizationDirectRouteProvider</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationDirectRouteProvider.#ctor(System.Web.Mvc.Routing.IDirectRouteProvider)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationDirectRouteProvider.InitializeStub">
+            <summary>Initializes a new instance of type StubLocalizationDirectRouteProvider</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationDirectRouteProvider.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationDirectRouteProvider.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationDirectRouteProvider.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute">
+            <summary>Stub type of RouteLocalization.Mvc.Routing.LocalizationRoute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.#ctor(System.String,System.Web.Routing.RouteValueDictionary,System.Web.Routing.RouteValueDictionary,System.Web.Routing.RouteValueDictionary,System.Web.Routing.IRouteHandler,System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.GetRouteData(System.Web.HttpContextBase)">
+            <summary>Sets the stub of Route.GetRouteData(HttpContextBase httpContext)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.GetRouteDataHttpContextBase">
+            <summary>Sets the stub of Route.GetRouteData(HttpContextBase httpContext)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.GetVirtualPath(System.Web.Routing.RequestContext,System.Web.Routing.RouteValueDictionary)">
+            <summary>Sets the stub of Route.GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.GetVirtualPathRequestContextRouteValueDictionary">
+            <summary>Sets the stub of Route.GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.InitializeStub">
+            <summary>Initializes a new instance of type StubLocalizationRoute</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.ProcessConstraint(System.Web.HttpContextBase,System.Object,System.String,System.Web.Routing.RouteValueDictionary,System.Web.Routing.RouteDirection)">
+            <summary>Sets the stub of Route.ProcessConstraint(HttpContextBase httpContext, Object constraint, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)</summary>
+        </member>
+        <member name="F:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.ProcessConstraintHttpContextBaseObjectStringRouteValueDictionaryRouteDirection">
+            <summary>Sets the stub of Route.ProcessConstraint(HttpContextBase httpContext, Object constraint, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubLocalizationRoute.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Routing.Fakes.StubRouteDataTokenKeys">
+            <summary>Stub type of RouteLocalization.Mvc.Routing.RouteDataTokenKeys</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubRouteDataTokenKeys.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Routing.Fakes.StubRouteDataTokenKeys.InitializeStub">
+            <summary>Initializes a new instance of type StubRouteDataTokenKeys</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubRouteDataTokenKeys.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubRouteDataTokenKeys.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Routing.Fakes.StubRouteDataTokenKeys.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration">
+            <summary>Shim type of RouteLocalization.Mvc.Setup.Configuration</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.#ctor(RouteLocalization.Mvc.Setup.Configuration)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AcceptedCulturesGet">
+            <summary>Sets the shim of Configuration.get_AcceptedCultures()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AcceptedCulturesSetISetOfString">
+            <summary>Sets the shim of Configuration.set_AcceptedCultures(ISet`1&lt;String&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AddCultureAsRoutePrefixGet">
+            <summary>Sets the shim of Configuration.get_AddCultureAsRoutePrefix()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AddCultureAsRoutePrefixSetBoolean">
+            <summary>Sets the shim of Configuration.set_AddCultureAsRoutePrefix(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AddTranslationToSimiliarUrlsGet">
+            <summary>Sets the shim of Configuration.get_AddTranslationToSimiliarUrls()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AddTranslationToSimiliarUrlsSetBoolean">
+            <summary>Sets the shim of Configuration.set_AddTranslationToSimiliarUrls(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AttributeRouteProcessingGet">
+            <summary>Sets the shim of Configuration.get_AttributeRouteProcessing()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AttributeRouteProcessingSetAttributeRouteProcessing">
+            <summary>Sets the shim of Configuration.set_AttributeRouteProcessing(AttributeRouteProcessing value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.Constructor">
+            <summary>Sets the shim of Configuration.Configuration()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.DefaultCultureGet">
+            <summary>Sets the shim of Configuration.get_DefaultCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.DefaultCultureSetString">
+            <summary>Sets the shim of Configuration.set_DefaultCulture(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.LocalizationCollectionRoutesGet">
+            <summary>Sets the shim of Configuration.get_LocalizationCollectionRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.LocalizationCollectionRoutesSetListOfRouteEntry">
+            <summary>Sets the shim of Configuration.set_LocalizationCollectionRoutes(List`1&lt;RouteEntry&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.UseUntranslatedAttributePrefixesGet">
+            <summary>Sets the shim of Configuration.get_UseUntranslatedAttributePrefixes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.UseUntranslatedAttributePrefixesSetBoolean">
+            <summary>Sets the shim of Configuration.set_UseUntranslatedAttributePrefixes(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.ValidateCultureGet">
+            <summary>Sets the shim of Configuration.get_ValidateCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.ValidateCultureSetBoolean">
+            <summary>Sets the shim of Configuration.set_ValidateCulture(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.ValidateRouteAreaGet">
+            <summary>Sets the shim of Configuration.get_ValidateRouteArea()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.ValidateRouteAreaSetBoolean">
+            <summary>Sets the shim of Configuration.set_ValidateRouteArea(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.ValidateRoutePrefixGet">
+            <summary>Sets the shim of Configuration.get_ValidateRoutePrefix()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.ValidateRoutePrefixSetBoolean">
+            <summary>Sets the shim of Configuration.set_ValidateRoutePrefix(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.ValidateUrlGet">
+            <summary>Sets the shim of Configuration.get_ValidateUrl()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.ValidateUrlSetBoolean">
+            <summary>Sets the shim of Configuration.set_ValidateUrl(Boolean value)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.AcceptedCulturesGet">
+            <summary>Sets the shim of Configuration.get_AcceptedCultures()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.AcceptedCulturesSetISetOfString">
+            <summary>Sets the shim of Configuration.set_AcceptedCultures(ISet`1&lt;String&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.AddCultureAsRoutePrefixGet">
+            <summary>Sets the shim of Configuration.get_AddCultureAsRoutePrefix()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.AddCultureAsRoutePrefixSetBoolean">
+            <summary>Sets the shim of Configuration.set_AddCultureAsRoutePrefix(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.AddTranslationToSimiliarUrlsGet">
+            <summary>Sets the shim of Configuration.get_AddTranslationToSimiliarUrls()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.AddTranslationToSimiliarUrlsSetBoolean">
+            <summary>Sets the shim of Configuration.set_AddTranslationToSimiliarUrls(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.AttributeRouteProcessingGet">
+            <summary>Sets the shim of Configuration.get_AttributeRouteProcessing()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.AttributeRouteProcessingSetAttributeRouteProcessing">
+            <summary>Sets the shim of Configuration.set_AttributeRouteProcessing(AttributeRouteProcessing value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.DefaultCultureGet">
+            <summary>Sets the shim of Configuration.get_DefaultCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.DefaultCultureSetString">
+            <summary>Sets the shim of Configuration.set_DefaultCulture(String value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.LocalizationCollectionRoutesGet">
+            <summary>Sets the shim of Configuration.get_LocalizationCollectionRoutes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.LocalizationCollectionRoutesSetListOfRouteEntry">
+            <summary>Sets the shim of Configuration.set_LocalizationCollectionRoutes(List`1&lt;RouteEntry&gt; value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.UseUntranslatedAttributePrefixesGet">
+            <summary>Sets the shim of Configuration.get_UseUntranslatedAttributePrefixes()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.UseUntranslatedAttributePrefixesSetBoolean">
+            <summary>Sets the shim of Configuration.set_UseUntranslatedAttributePrefixes(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.ValidateCultureGet">
+            <summary>Sets the shim of Configuration.get_ValidateCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.ValidateCultureSetBoolean">
+            <summary>Sets the shim of Configuration.set_ValidateCulture(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.ValidateRouteAreaGet">
+            <summary>Sets the shim of Configuration.get_ValidateRouteArea()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.ValidateRouteAreaSetBoolean">
+            <summary>Sets the shim of Configuration.set_ValidateRouteArea(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.ValidateRoutePrefixGet">
+            <summary>Sets the shim of Configuration.get_ValidateRoutePrefix()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.ValidateRoutePrefixSetBoolean">
+            <summary>Sets the shim of Configuration.set_ValidateRoutePrefix(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.ValidateUrlGet">
+            <summary>Sets the shim of Configuration.get_ValidateUrl()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimConfiguration.AllInstances.ValidateUrlSetBoolean">
+            <summary>Sets the shim of Configuration.set_ValidateUrl(Boolean value)</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter">
+            <summary>Shim type of RouteLocalization.Mvc.Setup.PreApplicationStarter</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter.#ctor(RouteLocalization.Mvc.Setup.PreApplicationStarter)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter.Constructor">
+            <summary>Sets the shim of PreApplicationStarter.PreApplicationStarter()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter.StartOnce">
+            <summary>Sets the shim of PreApplicationStarter.StartOnce()</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Setup.Fakes.ShimPreApplicationStarter.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Setup.Fakes.StubConfiguration">
+            <summary>Stub type of RouteLocalization.Mvc.Setup.Configuration</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.StubConfiguration.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.StubConfiguration.InitializeStub">
+            <summary>Initializes a new instance of type StubConfiguration</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.StubConfiguration.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.StubConfiguration.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.StubConfiguration.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RouteLocalization.Mvc.Setup.Fakes.StubPreApplicationStarter">
+            <summary>Stub type of RouteLocalization.Mvc.Setup.PreApplicationStarter</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.StubPreApplicationStarter.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RouteLocalization.Mvc.Setup.Fakes.StubPreApplicationStarter.InitializeStub">
+            <summary>Initializes a new instance of type StubPreApplicationStarter</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.StubPreApplicationStarter.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.StubPreApplicationStarter.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Setup.Fakes.StubPreApplicationStarter.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+    </members>
+</doc>
