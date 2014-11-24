@@ -18,7 +18,7 @@
 				.ForController<HomeWithRoutePrefixAttributeController>()
 				.SetRoutePrefix("RoutePrefixDE")
 				.ForAction(x => x.Index())
-				.AddTranslation("Willkommen")
+				.AddTranslation("~/WillkommenPrefix")
 				.ForAction(x => x.Book())
 				.AddTranslation("Buch/{chapter}/{page}");
 
@@ -26,7 +26,7 @@
 				.SetAreaPrefix("AreaPrefixDE")
 				.ForController<HomeWithRouteAreaAttributeController>()
 				.ForAction(x => x.Index())
-				.AddTranslation("Willkommen")
+				.AddTranslation("~/WillkommenArea")
 				.ForAction(x => x.Book())
 				.AddTranslation("Buch/{chapter}/{page}");
 

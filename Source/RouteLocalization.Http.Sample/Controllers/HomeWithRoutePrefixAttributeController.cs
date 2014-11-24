@@ -13,7 +13,7 @@
 		}
 
 		[HttpGet]
-		[Route("Welcome")]
+		[Route("~/WelcomePrefix")]
 		public string Index()
 		{
 			return "Hello World";
