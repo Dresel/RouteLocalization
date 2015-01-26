@@ -21,7 +21,7 @@
 			config.MapHttpAttributeRoutes(Localization.LocalizationDirectRouteProvider);
 
 			const string defaultCulture = "en";
-			ISet<string> acceptedCultures = new HashSet<string>() { defaultCulture, "de" };
+			ISet<string> acceptedCultures = new HashSet<string>() { defaultCulture, "en-US", "de", "de-AT" };
 
 			// Continue with localization configuration after Web API Routes configuration
 			config.ContinueAfterPreviousInitialization(httpConfiguration =>
@@ -83,7 +83,13 @@
 				// Optional
 				// Add culture sensitive action filter attribute
 				// This sets the Culture and UICulture when a localized route is executed
-				config.Filters.Add(new CultureSensitiveActionFilterAttribute());
+				config.Filters.Add(new CultureSensitiveActionFilterAttribute()
+				{
+					// Set this options only if you want to support detection of region dependent cultures
+					// Supports this use case: https://github.com/Dresel/RouteLocalization/issues/38#issuecomment-70999613
+					AcceptedCultures = acceptedCultures,
+					TryToPreserverBrowserRegionCulture = true
+				});
 			});
 		}
 	}

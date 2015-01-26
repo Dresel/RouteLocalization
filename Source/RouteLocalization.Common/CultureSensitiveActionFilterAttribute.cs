@@ -5,7 +5,9 @@ namespace RouteLocalization.Mvc
 #endif
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Globalization;
+	using System.Linq;
 	using System.Threading;
 
 #if ASPNETWEBAPI
@@ -24,12 +26,16 @@ namespace RouteLocalization.Mvc
 		{
 			SetCurrentCulture = true;
 			SetCurrentUICulture = true;
+			TryToPreserverBrowserRegionCulture = false;
+			AcceptedCultures = new HashSet<string>();
 		}
 
 		public CultureSensitiveActionFilterAttribute(bool setCurrentCulture, bool setCurrentUICulture)
 		{
 			SetCurrentCulture = setCurrentCulture;
 			SetCurrentUICulture = setCurrentUICulture;
+			TryToPreserverBrowserRegionCulture = false;
+			AcceptedCultures = new HashSet<string>();
 		}
 
 		public event EventHandler<CultureSelectedEventArgs> CultureSelected = (sender, e) => { };
@@ -37,6 +43,10 @@ namespace RouteLocalization.Mvc
 		public bool SetCurrentCulture { get; set; }
 
 		public bool SetCurrentUICulture { get; set; }
+
+		public bool TryToPreserverBrowserRegionCulture { get; set; }
+
+		public ISet<string> AcceptedCultures { get; set; }
 
 		public override void OnActionExecuting(TActionContext context)
 		{
@@ -53,6 +63,27 @@ namespace RouteLocalization.Mvc
 
 			// Set culture
 			CultureInfo cultureInfo = new CultureInfo(cultureName);
+
+			// Try to override to region dependent browser culture
+			if (TryToPreserverBrowserRegionCulture)
+			{
+				if (AcceptedCultures.Count == 0)
+				{
+					throw new InvalidOperationException("TryToPreserverBrowserRegionCulture can only be used in combination with AcceptedCultures.");
+				}
+
+#if ASPNETWEBAPI
+				cultureInfo =
+					Localization.DetectCultureFromBrowserUserLanguages(
+						new HashSet<string>(AcceptedCultures.Where(culture => culture.StartsWith(cultureInfo.Name))), cultureInfo.Name)(
+							context.Request);
+#else
+				cultureInfo =
+					Localization.DetectCultureFromBrowserUserLanguages(
+						new HashSet<string>(AcceptedCultures.Where(culture => culture.StartsWith(cultureInfo.Name))), cultureInfo.Name)(
+							context.HttpContext.ApplicationInstance.Context);
+#endif
+			}
 
 			if (SetCurrentCulture)
 			{
