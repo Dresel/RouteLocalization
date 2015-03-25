@@ -617,6 +617,41 @@ namespace RouteLocalization.Mvc.Tests
 		}
 
 		[TestMethod]
+		public void AddTranslation_PrefixesExists_AddsNoPrefixesToOverridenRoutes()
+		{
+			// Arrange
+			Configuration.AcceptedCultures.Add("de");
+
+			Configuration.AttributeRouteProcessing = AttributeRouteProcessing.AddAsDefaultCultureRoute;
+			Configuration.AddCultureAsRoutePrefix = true;
+
+			string url = "Welcome";
+
+			LocalizationCollectionRoute localizationCollectionRoute =
+				CreateCollectionRouteForControllerAndAction<PrefixController>(url, controller => controller.Index());
+
+			Configuration.LocalizationCollectionRoutes = new List<RouteEntry>
+			{
+				new RouteEntry(string.Empty, localizationCollectionRoute)
+			};
+
+			// Act
+			(new Localization(Configuration)).TranslateInitialAttributeRoutes()
+				.AddTranslation("~/Willkommen", "de", "Prefix", "Index", string.Empty, null);
+
+			// Assert
+			Assert.IsTrue(Configuration.LocalizationCollectionRoutes.Count == 1);
+
+#if ASPNETWEBAPI
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("en").Url() == "en/Welcome");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "de/Willkommen");
+#else
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("en").Url() == "en/Welcome");
+			Assert.IsTrue(localizationCollectionRoute.GetLocalizedRoute("de").Url() == "de/Willkommen");
+#endif
+		}
+
+		[TestMethod]
 		public void AddTranslation_PrefixesExists_AddsPrefixesInCorrectOrderToTranslatedRoutes()
 		{
 			// Arrange

@@ -327,11 +327,13 @@ namespace RouteLocalization.Mvc
 			ValidateRoutePrefix(localizationCollectionRoute);
 
 			// Apply Route and Area Prefix
-			url = string.IsNullOrEmpty(RoutePrefix) ? url : string.Format("{0}/{1}", RoutePrefix, url);
+			url = !string.IsNullOrEmpty(RoutePrefix) && !url.StartsWith("~/") ? string.Format("{0}/{1}", RoutePrefix, url) : url;
 
 #if !ASPNETWEBAPI
-			url = string.IsNullOrEmpty(AreaPrefix) ? url : string.Format("{0}/{1}", AreaPrefix, url);
+			url = !string.IsNullOrEmpty(AreaPrefix) && !url.StartsWith("~/") ? string.Format("{0}/{1}", AreaPrefix, url) : url;
 #endif
+
+			url = url.StartsWith("~/") ? url.Substring(2) : url;
 
 			url = !Configuration.AddCultureAsRoutePrefix ? url : string.Format("{0}/{1}", culture, url);
 

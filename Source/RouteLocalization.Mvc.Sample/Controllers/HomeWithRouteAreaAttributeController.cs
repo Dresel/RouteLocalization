@@ -11,7 +11,7 @@
 			return View();
 		}
 
-		[Route("Welcome")]
+		[Route("~/WelcomeArea")]
 		public virtual ActionResult Index()
 		{
 			return View();

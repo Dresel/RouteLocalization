@@ -11,7 +11,7 @@
 			return View();
 		}
 
-		[Route("Welcome")]
+		[Route("~/WelcomePrefix")]
 		public virtual ActionResult Index()
 		{
 			return View();

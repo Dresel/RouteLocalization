@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Threading;
 	using System.Web;
@@ -116,6 +117,14 @@
 			LocalizationRoute route;
 
 			LocalizedRoutesContainer.TryGetValue(currentCulture, out route);
+
+			if (route == null)
+			{
+				// Try to get region independent culture
+				CultureInfo cultureInfo = new CultureInfo(currentCulture);
+
+				LocalizedRoutesContainer.TryGetValue(cultureInfo.TwoLetterISOLanguageName, out route);
+			}
 
 			return route ?? NeutralRoute;
 		}

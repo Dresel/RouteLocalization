@@ -70,7 +70,7 @@
 		}
 
 		[TestMethod]
-		public void GetVirtualPath_OverridenCultureByRouteDictionaryThatDoesNotExist_ReturnsNeutralLocalizationRoute()
+		public void GetVirtualPath_OverriddenCultureByRouteDictionaryThatDoesNotExist_ReturnsNeutralLocalizationRoute()
 		{
 			using (ShimsContext.Create())
 			{
@@ -127,7 +127,7 @@
 		}
 
 		[TestMethod]
-		public void GetVirtualPath_OverridenCultureByRouteDictionary_ReturnsCorrectTranslatedLocalizationRoute()
+		public void GetVirtualPath_OverriddenCultureByRouteDictionary_ReturnsCorrectTranslatedLocalizationRoute()
 		{
 			using (ShimsContext.Create())
 			{
@@ -180,6 +180,130 @@
 
 				// Assert
 				Assert.AreEqual(virtualPathData.Route, localizationRouteGerman.Instance);
+			}
+		}
+
+		[TestMethod]
+		public void GetVirtualPath_OverriddenRegionCultureByRouteDictionaryThatDoesNotExist_ReturnsCorrectTranslatedLocalizationRoute()
+		{
+			using (ShimsContext.Create())
+			{
+				// Arrange
+				Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+
+				LocalizationCollectionRoute localizationCollectionRoute =
+					new LocalizationCollectionRoute(new Route("Home",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null));
+
+				PrivateObject privateObject = new PrivateObject(localizationCollectionRoute);
+
+				IDictionary<string, LocalizationRoute> routes =
+					(IDictionary<string, LocalizationRoute>)privateObject.GetProperty("LocalizedRoutesContainer");
+
+				ShimLocalizationRoute localizationRouteNeutral =
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null, string.Empty));
+
+				(new ShimRoute(localizationRouteNeutral)).GetVirtualPathRequestContextRouteValueDictionary =
+					(requestContext, values) => new VirtualPathData(localizationRouteNeutral, "Welcome");
+
+				routes[string.Empty] = localizationRouteNeutral;
+
+				ShimLocalizationRoute localizationRouteEnglish =
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null, "en"));
+
+				(new ShimRoute(localizationRouteEnglish)).GetVirtualPathRequestContextRouteValueDictionary =
+					(requestContext, values) => new VirtualPathData(localizationRouteEnglish, "Welcome");
+
+				routes["en"] = localizationRouteEnglish;
+
+				ShimLocalizationRoute localizationRouteGerman =
+					new ShimLocalizationRoute(new LocalizationRoute("Willkommen",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null, "de"));
+
+				routes["de"] = localizationRouteGerman;
+
+				(new ShimRoute(localizationRouteGerman)).GetVirtualPathRequestContextRouteValueDictionary =
+					(requestContext, values) => new VirtualPathData(localizationRouteGerman, "Willkommen");
+
+				// Act
+				VirtualPathData virtualPathData = localizationCollectionRoute.GetVirtualPath(null,
+					new RouteValueDictionary() { { "Culture", "de-AT" } });
+
+				// Assert
+				Assert.AreEqual(virtualPathData.Route, localizationRouteGerman.Instance);
+			}
+		}
+
+		[TestMethod]
+		public void GetVirtualPath_OverriddenRegionCultureByRouteDictionary_ReturnsCorrectTranslatedLocalizationRoute()
+		{
+			using (ShimsContext.Create())
+			{
+				// Arrange
+				Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+
+				LocalizationCollectionRoute localizationCollectionRoute =
+					new LocalizationCollectionRoute(new Route("Home",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null));
+
+				PrivateObject privateObject = new PrivateObject(localizationCollectionRoute);
+
+				IDictionary<string, LocalizationRoute> routes =
+					(IDictionary<string, LocalizationRoute>)privateObject.GetProperty("LocalizedRoutesContainer");
+
+				ShimLocalizationRoute localizationRouteNeutral =
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null, string.Empty));
+
+				(new ShimRoute(localizationRouteNeutral)).GetVirtualPathRequestContextRouteValueDictionary =
+					(requestContext, values) => new VirtualPathData(localizationRouteNeutral, "Welcome");
+
+				routes[string.Empty] = localizationRouteNeutral;
+
+				ShimLocalizationRoute localizationRouteEnglish =
+					new ShimLocalizationRoute(new LocalizationRoute("Welcome",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null, "en"));
+
+				(new ShimRoute(localizationRouteEnglish)).GetVirtualPathRequestContextRouteValueDictionary =
+					(requestContext, values) => new VirtualPathData(localizationRouteEnglish, "Welcome");
+
+				routes["en"] = localizationRouteEnglish;
+
+				ShimLocalizationRoute localizationRouteGerman =
+					new ShimLocalizationRoute(new LocalizationRoute("Willkommen",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null, "de"));
+
+				routes["de"] = localizationRouteGerman;
+
+				(new ShimRoute(localizationRouteGerman)).GetVirtualPathRequestContextRouteValueDictionary =
+					(requestContext, values) => new VirtualPathData(localizationRouteGerman, "Willkommen");
+
+				ShimLocalizationRoute localizationRouteGermanAustria =
+					new ShimLocalizationRoute(new LocalizationRoute("Willkommen",
+						new RouteValueDictionary() { { "controller", "Home" }, { "action", "Index" } }, new RouteValueDictionary(),
+						new RouteValueDictionary(), null, "de-AT"));
+
+				routes["de-AT"] = localizationRouteGermanAustria;
+
+				(new ShimRoute(localizationRouteGermanAustria)).GetVirtualPathRequestContextRouteValueDictionary =
+					(requestContext, values) => new VirtualPathData(localizationRouteGermanAustria, "Willkommen");
+
+				// Act
+				VirtualPathData virtualPathData = localizationCollectionRoute.GetVirtualPath(null,
+					new RouteValueDictionary() { { "Culture", "de-AT" } });
+
+				// Assert
+				Assert.AreEqual(virtualPathData.Route, localizationRouteGermanAustria.Instance);
 			}
 		}
 
