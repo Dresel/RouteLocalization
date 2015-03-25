@@ -32,7 +32,6 @@ public static partial class MVC
     public static RouteLocalization.Mvc.Sample.Controllers.HomeController Home = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeController();
     public static RouteLocalization.Mvc.Sample.Controllers.HomeWithRouteAreaAttributeController HomeWithRouteAreaAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeWithRouteAreaAttributeController();
     public static RouteLocalization.Mvc.Sample.Controllers.HomeWithRoutePrefixAttributeController HomeWithRoutePrefixAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeWithRoutePrefixAttributeController();
-    public static T4MVC.ControllerLevelAttributeController LevelAttribute = new T4MVC.ControllerLevelAttributeController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
