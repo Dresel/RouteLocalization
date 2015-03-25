@@ -4,7 +4,8 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
-#pragma warning disable 1591, 3008, 3009
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+#pragma warning disable 1591, 3008, 3009, 0108
 #region T4MVC
 
 using System;
@@ -65,13 +66,13 @@ namespace RouteLocalization.Mvc.Sample.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ControllerLevelAttributeController Actions { get { return MVC.ControllerLevelAttribute; } }
+        public ControllerLevelAttributeController Actions { get { return MVC.LevelAttribute; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "ControllerLevelAttribute";
+        public readonly string Name = "LevelAttribute";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "ControllerLevelAttribute";
+        public const string NameConst = "LevelAttribute";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -112,13 +113,7 @@ namespace RouteLocalization.Mvc.Sample.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Book = "Book";
-                public readonly string Index = "Index";
-                public readonly string Index2 = "Index2";
             }
-            public readonly string Book = "~/Views/ControllerLevelAttribute/Book.cshtml";
-            public readonly string Index = "~/Views/ControllerLevelAttribute/Index.cshtml";
-            public readonly string Index2 = "~/Views/ControllerLevelAttribute/Index2.cshtml";
         }
     }
 
@@ -166,4 +161,4 @@ namespace RouteLocalization.Mvc.Sample.Controllers
 }
 
 #endregion T4MVC
-#pragma warning restore 1591, 3008, 3009
+#pragma warning restore 1591, 3008, 3009, 0108

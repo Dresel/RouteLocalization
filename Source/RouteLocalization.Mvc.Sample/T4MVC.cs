@@ -4,7 +4,8 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
-#pragma warning disable 1591, 3008, 3009
+// 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
+#pragma warning disable 1591, 3008, 3009, 0108
 #region T4MVC
 
 using System;
@@ -27,10 +28,11 @@ public static partial class MVC
 {
     static readonly AreaClass s_Area = new AreaClass();
     public static AreaClass Area { get { return s_Area; } }
-    public static RouteLocalization.Mvc.Sample.Controllers.ControllerLevelAttributeController ControllerLevelAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_ControllerLevelAttributeController();
+    public static RouteLocalization.Mvc.Sample.Controllers.ControllerLevelAttributeController LevelAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_ControllerLevelAttributeController();
     public static RouteLocalization.Mvc.Sample.Controllers.HomeController Home = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeController();
     public static RouteLocalization.Mvc.Sample.Controllers.HomeWithRouteAreaAttributeController HomeWithRouteAreaAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeWithRouteAreaAttributeController();
     public static RouteLocalization.Mvc.Sample.Controllers.HomeWithRoutePrefixAttributeController HomeWithRoutePrefixAttribute = new RouteLocalization.Mvc.Sample.Controllers.T4MVC_HomeWithRoutePrefixAttributeController();
+    public static T4MVC.ControllerLevelAttributeController LevelAttribute = new T4MVC.ControllerLevelAttributeController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -75,13 +77,10 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
 
 namespace Links
 {
+    
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Bundles
     {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static partial class Scripts {}
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static partial class Styles {}
     }
 }
 
@@ -115,6 +114,6 @@ internal static class T4MVCHelpers {
 
 
 #endregion T4MVC
-#pragma warning restore 1591, 3008, 3009
+#pragma warning restore 1591, 3008, 3009, 0108
 
 
