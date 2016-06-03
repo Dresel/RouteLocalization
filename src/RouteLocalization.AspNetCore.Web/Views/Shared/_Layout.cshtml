@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<title>@ViewData["Title"] - RouteLocalization.AspNetCore.Web</title>
+
+	<environment names="Development">
+		<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+		<link href="~/css/site.css" rel="stylesheet" />
+	</environment>
+	<environment names="Staging,Production">
+		<link asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-fallback-test-class="sr-only"
+			asp-fallback-test-property="position"
+			asp-fallback-test-value="absolute" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+		<link asp-append-version="true" href="~/css/site.min.css" rel="stylesheet" />
+	</environment>
+</head>
+<body>
+<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a asp-action="Index" asp-controller="Home" class="navbar-brand">RouteLocalization.AspNetCore.Web</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li>
+					<a asp-action="Index" asp-controller="Home">Home</a>
+				</li>
+				<li>
+					<a asp-action="About" asp-controller="Home">About</a>
+				</li>
+				<li>
+					<a asp-action="Contact" asp-controller="Home">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="body-content container">
+	@RenderBody()
+	<hr />
+	<footer>
+		<p>&copy; 2016 - RouteLocalization.AspNetCore.Web</p>
+	</footer>
+</div>
+
+<environment names="Development">
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script asp-append-version="true" src="~/js/site.js"></script>
+</environment>
+<environment names="Staging,Production">
+	<script asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+		asp-fallback-test="window.jQuery"
+		src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js">
+        
+	</script>
+	<script asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+		asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+		src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js">
+        
+	</script>
+	<script asp-append-version="true" src="~/js/site.min.js"></script>
+</environment>
+
+@RenderSection("scripts", required: false)
+</body>
+</html>
