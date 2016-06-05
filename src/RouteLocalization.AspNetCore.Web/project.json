@@ -18,7 +18,8 @@
 		"Microsoft.Extensions.Logging": "1.0.0-rc3-21080",
 		"Microsoft.Extensions.Logging.Console": "1.0.0-rc3-21080",
 		"Microsoft.Extensions.Logging.Debug": "1.0.0-rc3-21080",
-		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc3-21080"
+		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc3-21080",
+		"RouteLocalization.AspNetCore": "1.0.0-*"
 	},
 
 	"tools": {
