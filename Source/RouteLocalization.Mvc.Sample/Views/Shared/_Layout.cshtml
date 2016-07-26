@@ -13,10 +13,16 @@
 		<p>Current Culture: @Thread.CurrentThread.CurrentCulture.Name</p>
 		<p>Current localized Route: @Url.RouteUrl(ViewContext.RouteData.Values)</p>
 		@{
-				RouteValueDictionary routeValueDictionaryEN = new RouteValueDictionary(ViewContext.RouteData.Values);
-				routeValueDictionaryEN["culture"] = "en";
-				
-				<p>Current Route (en): @Url.RouteUrl(routeValueDictionaryEN)</p>
+				RouteValueDictionary routeValueDictionaryUs = new RouteValueDictionary(ViewContext.RouteData.Values);
+				routeValueDictionaryUs["culture"] = "us";
+
+				<p>Current Route (us): @Url.RouteUrl(routeValueDictionaryUs)</p>
+		}
+		@{
+				RouteValueDictionary routeValueDictionaryGB = new RouteValueDictionary(ViewContext.RouteData.Values);
+				routeValueDictionaryGB["culture"] = "gb";
+
+				<p>Current Route (gb): @Url.RouteUrl(routeValueDictionaryGB)</p>
 		}
 		@{
 				RouteValueDictionary routeValueDictionaryDE = new RouteValueDictionary(ViewContext.RouteData.Values);
@@ -26,14 +32,20 @@
 		}
 		<p>Named Route (Book):</p>
 		@{
-			<p>Named Route (en): @Url.RouteUrl("Book", new { chapter = 1, page = 4, Culture = "en" })</p>
+			<p>Named Route (us): @Url.RouteUrl("Book", new { chapter = 1, page = 4, Culture = "us" })</p>
+		}
+		@{
+			<p>Named Route (gb): @Url.RouteUrl("Book", new { chapter = 1, page = 4, Culture = "gb" })</p>
 		}
 		@{
 			<p>Named Route (de): @Url.RouteUrl("Book", new { chapter = 1, page = 4, Culture = "de" })</p>
 		}
 		<p>T4 Route (Book):</p>
 		@{
-			<p>Named Route (en): @Url.Action(MVC.Home.Book(1, 4).AddRouteValues(new { culture = "en" }))</p>
+			<p>Named Route (us): @Url.Action(MVC.Home.Book(1, 4).AddRouteValues(new { culture = "us" }))</p>
+		}
+		@{
+			<p>Named Route (gb): @Url.Action(MVC.Home.Book(1, 4).AddRouteValues(new { culture = "gb" }))</p>
 		}
 		@{
 			<p>Named Route (de): @Url.Action(MVC.Home.Book(1, 4).AddRouteValues(new { culture = "de" }))</p>

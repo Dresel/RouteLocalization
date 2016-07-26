@@ -1,9 +1,11 @@
 ﻿namespace RouteLocalization.Mvc.Sample
 {
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Web.Mvc;
 	using System.Web.Routing;
 	using RouteLocalization.Mvc.Extensions;
+	using RouteLocalization.Mvc.Routing;
 	using RouteLocalization.Mvc.Setup;
 
 	public class RouteConfig
@@ -20,8 +22,9 @@
 			// For less code preparation use the static provider stored in Localization class
 			routes.MapMvcAttributeRoutes(Localization.LocalizationDirectRouteProvider);
 
-			const string defaultCulture = "en";
-			ISet<string> acceptedCultures = new HashSet<string>() { defaultCulture, "en-US", "de", "de-AT" };
+			const string defaultCulture = "us";
+			ISet<string> englishCultures = new HashSet<string>() { defaultCulture, "gb" };
+			ISet<string> acceptedCultures = new HashSet<string>(englishCultures) { "de" };
 
 			// Add translations
 			// You can translate every specific route that contains default Controller and Action (which MapMvcAttributeRoutes does)
@@ -41,7 +44,7 @@
 				//   as localized route for defined default culture
 				// * AddAsNeutralRouteAndReplaceByFirstTranslation: Every attribute route will be added as neutral route first, but when
 				//   you add a translation for a route, the neutral route will be removed
-				configuration.AttributeRouteProcessing = AttributeRouteProcessing.AddAsNeutralAndDefaultCultureRoute;
+				configuration.AttributeRouteProcessing = AttributeRouteProcessing.AddAsNeutralRoute;
 
 				// Uncomment if you do not want the culture (en, de, ...) added to each translated route as route prefix
 				configuration.AddCultureAsRoutePrefix = true;
@@ -49,6 +52,17 @@
 				configuration.AddTranslationToSimiliarUrls = true;
 			}).TranslateInitialAttributeRoutes().Translate(localization =>
 			{
+				// Add english culture routes without translation
+				englishCultures.ToList().ForEach(culture =>
+				{
+					// For every collected attribute route
+					localization.Configuration.LocalizationCollectionRoutes.ForEach(route =>
+					{
+						// Add translation for this culture with same route as defined in route attribute
+						localization.AddTranslation(route.Route.Url(), culture, (LocalizationCollectionRoute)route.Route);
+					});
+				});
+
 				// Use extension methods if you want to separate route configuration
 				localization.AddDefaultRoutesTranslation();
 				localization.AddAreaRoutesTranslation();
