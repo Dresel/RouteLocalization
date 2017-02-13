@@ -175,6 +175,12 @@
         <member name="M:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.Bind(System.Web.Mvc.IResultFilter)">
             <summary>Binds the members of the interface to the shim.</summary>
         </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AcceptedCulturesGet">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.get_AcceptedCultures()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AcceptedCulturesSetISetOfString">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_AcceptedCultures(ISet`1&lt;String&gt; value)</summary>
+        </member>
         <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
@@ -205,6 +211,12 @@
         <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.SetCurrentUICultureSetBoolean">
             <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_SetCurrentUICulture(Boolean value)</summary>
         </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.TryToPreserverBrowserRegionCultureGet">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.get_TryToPreserverBrowserRegionCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.TryToPreserverBrowserRegionCultureSetBoolean">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_TryToPreserverBrowserRegionCulture(Boolean value)</summary>
+        </member>
         <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute._ctorb__0ObjectCultureSelectedEventArgs">
             <summary>Sets the shim of CultureSensitiveActionFilterAttribute.&lt;.ctor&gt;b__0(Object sender, CultureSelectedEventArgs e)</summary>
         </member>
@@ -213,6 +225,12 @@
         </member>
         <member name="T:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances">
             <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.AcceptedCulturesGet">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.get_AcceptedCultures()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.AcceptedCulturesSetISetOfString">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_AcceptedCultures(ISet`1&lt;String&gt; value)</summary>
         </member>
         <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.CultureSelectedAddEventHandlerOfCultureSelectedEventArgs">
             <summary>Sets the shim of CultureSensitiveActionFilterAttribute.add_CultureSelected(EventHandler`1&lt;CultureSelectedEventArgs&gt; value)</summary>
@@ -234,6 +252,12 @@
         </member>
         <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.SetCurrentUICultureSetBoolean">
             <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_SetCurrentUICulture(Boolean value)</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.TryToPreserverBrowserRegionCultureGet">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.get_TryToPreserverBrowserRegionCulture()</summary>
+        </member>
+        <member name="P:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveActionFilterAttribute.AllInstances.TryToPreserverBrowserRegionCultureSetBoolean">
+            <summary>Sets the shim of CultureSensitiveActionFilterAttribute.set_TryToPreserverBrowserRegionCulture(Boolean value)</summary>
         </member>
         <member name="T:RouteLocalization.Mvc.Fakes.ShimCultureSensitiveHttpModule">
             <summary>Shim type of RouteLocalization.Mvc.CultureSensitiveHttpModule</summary>
