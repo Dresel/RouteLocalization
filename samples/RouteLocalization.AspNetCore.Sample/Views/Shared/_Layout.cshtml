@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Routing
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width"/>
+	<title>RouteLocalization.MVC.Sample</title>
+</head>
+<body>
+<div>
+	@RenderBody()
+</div>
+<div>
+	<div>Current Culture: @(Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.Name)</div>
+	<div>Current localized Route: @Url.RouteUrl(ViewContext.RouteData.Values)</div>
+	@{
+		RouteValueDictionary routeValueDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+		routeValueDictionary["culture"] = null;
+
+		<div>Original version of this route: <a href="@Url.RouteUrl(routeValueDictionary)">@(Url.RouteUrl(routeValueDictionary) ?? "[null]")</a>
+		</div>
+	}
+	@{
+		RouteValueDictionary routeValueDictionaryEN = new RouteValueDictionary(ViewContext.RouteData.Values);
+		routeValueDictionaryEN["culture"] = "en";
+
+		<div>English (en) version of this route: <a href="@Url.RouteUrl(routeValueDictionaryEN)">@(Url.RouteUrl(routeValueDictionaryEN) ?? "[null]")</a>
+		</div>
+	}
+	@{
+		RouteValueDictionary routeValueDictionaryDE = new RouteValueDictionary(ViewContext.RouteData.Values);
+		routeValueDictionaryDE["culture"] = "de";
+
+		<div>German (de) version of this route: <a href="@Url.RouteUrl(routeValueDictionaryDE)">@(Url.RouteUrl(routeValueDictionaryDE) ?? "[null]")</a>
+		</div>
+	}
+	<p>
+		<strong>All discovered Routes:</strong>
+	</p>
+	<p>
+		@foreach (string route in CollectRoutesApplicationConvention.Routes)
+		{
+			<div>@route</div>
+		}
+	</p>
+</div>
+</body>
+</html>
