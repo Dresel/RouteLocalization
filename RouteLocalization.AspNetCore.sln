@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteLocalization.AspNetCore.Sample", "samples\RouteLocalization.AspNetCore.Sample\RouteLocalization.AspNetCore.Sample.csproj", "{FD5153EB-00C5-49DA-BB03-225A200E2952}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{7ED274F9-346B-469A-9B47-81DF8062D2CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteLocalization.AspNetCore", "src\RouteLocalization.AspNetCore\RouteLocalization.AspNetCore.csproj", "{1B07E18A-57B1-4F34-9AC8-F32B5EB51C6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2F798475-4328-4346-AE1E-E45A524A5A77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E8BA1CBB-8632-44C0-B55E-334E20629D20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteLocalization.AspNetCore.Test", "test\RouteLocalization.AspNetCore.Test\RouteLocalization.AspNetCore.Test.csproj", "{CEF0DF29-80E6-4EF8-9CC1-BDEA2D9A9F28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD5153EB-00C5-49DA-BB03-225A200E2952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD5153EB-00C5-49DA-BB03-225A200E2952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD5153EB-00C5-49DA-BB03-225A200E2952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD5153EB-00C5-49DA-BB03-225A200E2952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B07E18A-57B1-4F34-9AC8-F32B5EB51C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B07E18A-57B1-4F34-9AC8-F32B5EB51C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B07E18A-57B1-4F34-9AC8-F32B5EB51C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B07E18A-57B1-4F34-9AC8-F32B5EB51C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF0DF29-80E6-4EF8-9CC1-BDEA2D9A9F28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF0DF29-80E6-4EF8-9CC1-BDEA2D9A9F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF0DF29-80E6-4EF8-9CC1-BDEA2D9A9F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF0DF29-80E6-4EF8-9CC1-BDEA2D9A9F28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FD5153EB-00C5-49DA-BB03-225A200E2952} = {7ED274F9-346B-469A-9B47-81DF8062D2CD}
+		{1B07E18A-57B1-4F34-9AC8-F32B5EB51C6E} = {2F798475-4328-4346-AE1E-E45A524A5A77}
+		{CEF0DF29-80E6-4EF8-9CC1-BDEA2D9A9F28} = {E8BA1CBB-8632-44C0-B55E-334E20629D20}
+	EndGlobalSection
+EndGlobal
