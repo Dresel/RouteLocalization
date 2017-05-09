@@ -1,3 +1,7 @@
+**Looking for the ASP.NET Core version?**
+
+Go to the [aspnet core](https://github.com/Dresel/RouteLocalization/tree/aspnet-core/dev) branch.
+
 # The addon for simple route localization
 
 RouteLocalization is a lightweight extension for Asp.Net Mvc / Web Api attribute routing to enable simple route localization.
