@@ -79,7 +79,7 @@
 
 				if (routeSelection.ActionModels.Count == 0)
 				{
-					return;
+					continue;
 				}
 
 				originalActionModels.ThrowIfNotModelsWithAttributeRoutes(RouteTranslationConfiguration.Localizer);
