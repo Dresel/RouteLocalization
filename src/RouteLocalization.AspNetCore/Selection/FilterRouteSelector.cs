@@ -20,43 +20,69 @@
 
 		public string ControllerNamespace { get; set; }
 
+		public ICollection<string> Cultures { get; set; }
+
+		public bool FilterControllerOrActionWhenNoTranslatedRouteLeft { get; set; }
+
+		public bool FilterControllerOrActionWhenNoUntranslatedRouteLeft { get; set; }
+
+		public ILocalizer Localizer { get; set; }
+
 		public IRouteSelector ParentRouteSelector { get; set; }
 
 		public ICollection<RouteSelection> Select(ApplicationModel applicationModel)
 		{
 			ICollection<RouteSelection> routeSelections = ParentRouteSelector.Select(applicationModel);
 
+			// Filter on controller level only
 			if (string.IsNullOrEmpty(Action))
 			{
 				return routeSelections
-					.Where(selection => !selection.ControllerModel.MatchesController(Controller, ControllerNamespace))
-					.ToList();
+					.Where(selection => !selection.ControllerModel.MatchesController(Controller, ControllerNamespace)).ToList();
 			}
 
-			ICollection<RouteSelection> routeSelectionsNew = new List<RouteSelection>();
-
-			foreach (RouteSelection routeSelection in routeSelections)
+			// Filter actions on controller level
+			routeSelections = routeSelections.Select(selection =>
 			{
-				if (!routeSelection.ControllerModel.MatchesController(Controller, ControllerNamespace))
+				if (selection.ControllerModel.MatchesController(Controller, ControllerNamespace))
 				{
-					routeSelectionsNew.Add(routeSelection);
+					selection.ActionModels = selection.ActionModels
+						.Where(action => !(action.MatchesActionName(Action) && action.MatchesActionArguments(ActionArguments))).ToList();
 				}
 
-				bool hadActions = routeSelection.ActionModels.Any();
+				return selection;
+			}).ToList();
 
-				routeSelection.ActionModels = routeSelection.ActionModels
-					.Where(action => !(action.MatchesActionName(Action) && action.MatchesActionArguments(ActionArguments)))
-					.ToList();
-
-				if (!routeSelection.ActionModels.Any() && hadActions)
+			if (FilterControllerOrActionWhenNoTranslatedRouteLeft)
+			{
+				return routeSelections.Where(selection => selection.ControllerModel.IsOriginalModel(Localizer) &&
+					(TranslatedRoutesRouteSelector.HasPartiallyTranslatedControllerOnlyAttributeRoute(selection.ControllerModel, selection.ActionModels,
+							Cultures, Localizer) ||
+						TranslatedRoutesRouteSelector.HasPartiallyTranslatedActionAttributeRoutes(selection.ActionModels, Cultures,
+							Localizer))).Select(selection => new RouteSelection()
 				{
-					continue;
-				}
-
-				routeSelectionsNew.Add(routeSelection);
+					ControllerModel = selection.ControllerModel,
+					ActionModels = selection.ActionModels
+						.Where(action => TranslatedRoutesRouteSelector.IsPartiallyTranslatedAction(action, Cultures, Localizer)).ToList()
+				}).ToList();
 			}
 
-			return routeSelectionsNew;
+			if (FilterControllerOrActionWhenNoUntranslatedRouteLeft)
+			{
+				return routeSelections.Where(selection => selection.ControllerModel.IsOriginalModel(Localizer) &&
+					(UntranslatedRoutesRouteSelector.HasNotCompletelyTranslatedControllerAttributeRoute(selection.ControllerModel,
+							Cultures.Single(), Localizer) ||
+						UntranslatedRoutesRouteSelector.HasNotCompletelyTranslatedActionAttributeRoute(selection.ActionModels,
+							Cultures.Single(), Localizer))).Select(selection => new RouteSelection()
+				{
+					ControllerModel = selection.ControllerModel,
+					ActionModels = selection.ActionModels
+						.Where(action => UntranslatedRoutesRouteSelector.IsNotCompletelyTranslatedAction(action, Cultures.Single(),
+							Localizer)).ToList()
+				}).ToList();
+			}
+
+			return routeSelections;
 		}
 	}
 }

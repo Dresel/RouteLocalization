@@ -10,35 +10,45 @@
 
 		public ILocalizer Localizer { get; set; }
 
+		public static bool HasPartiallyTranslatedActionAttributeRoutes(IEnumerable<ActionModel> actions,
+			ICollection<string> cultures, ILocalizer localizer)
+		{
+			return actions.Any(action => IsPartiallyTranslatedAction(action, cultures, localizer));
+		}
+
+		public static bool HasPartiallyTranslatedControllerOnlyAttributeRoute(ControllerModel controller, IEnumerable<ActionModel> actions,
+			ICollection<string> cultures, ILocalizer localizer)
+		{
+			return controller.HasAttributeRoutes() && !actions.Any(action => action.HasAttributeRoutes()) &&
+				cultures.All(culture => controller.TryGetLocalizedModelFor(localizer, culture)?.IsPartiallyTranslated(localizer) ==
+					true);
+		}
+
+		public static bool IsPartiallyTranslatedAction(ActionModel action, ICollection<string> cultures, ILocalizer localizer)
+		{
+			return action.HasAttributeRoutes() &&
+				cultures.All(
+					culture => action.TryGetLocalizedModelFor(localizer, culture)?.IsPartiallyTranslated(localizer) == true);
+		}
+
 		public ICollection<RouteSelection> Select(ApplicationModel applicationModel)
 		{
-			bool HasPartiallyTranslatedControllerOnlyAttributeRoute(ControllerModel controller)
-			{
-				return controller.HasAttributeRoutes() && !controller.Actions.Any(action => action.HasAttributeRoutes()) &&
-					Cultures.All(culture => controller.TryGetLocalizedModelFor(Localizer, culture)?.IsPartiallyTranslated(Localizer) ==
-						true);
-			}
-
-			bool IsPartiallyTranslatedAction(ActionModel action)
-			{
-				return action.HasAttributeRoutes() && Cultures.All(
-					culture => action.TryGetLocalizedModelFor(Localizer, culture)?.IsPartiallyTranslated(Localizer) == true);
-			}
-
-			bool HasPartiallyTranslatedActionAttributeRoutes(ControllerModel controller)
-			{
-				return controller.Actions.Any(IsPartiallyTranslatedAction);
-			}
-
 			return applicationModel.Controllers.Where(controller => controller.IsOriginalModel(Localizer) &&
-					(HasPartiallyTranslatedControllerOnlyAttributeRoute(controller) ||
-						HasPartiallyTranslatedActionAttributeRoutes(controller)))
-				.Select(controller => new RouteSelection()
-				{
-					ControllerModel = controller,
-					ActionModels = controller.Actions.Where(IsPartiallyTranslatedAction).ToList()
-				})
-				.ToList();
+				(HasPartiallyTranslatedControllerOnlyAttributeRoute(controller) ||
+					HasPartiallyTranslatedActionAttributeRoutes(controller.Actions))).Select(controller => new RouteSelection()
+			{
+				ControllerModel = controller,
+				ActionModels = controller.Actions.Where(IsPartiallyTranslatedAction).ToList()
+			}).ToList();
 		}
+
+		protected bool HasPartiallyTranslatedActionAttributeRoutes(IEnumerable<ActionModel> actions) =>
+			HasPartiallyTranslatedActionAttributeRoutes(actions, Cultures, Localizer);
+
+		protected bool HasPartiallyTranslatedControllerOnlyAttributeRoute(ControllerModel controller) =>
+			HasPartiallyTranslatedControllerOnlyAttributeRoute(controller, controller.Actions, Cultures, Localizer);
+
+		protected bool IsPartiallyTranslatedAction(ActionModel action) => IsPartiallyTranslatedAction(action, Cultures,
+			Localizer);
 	}
 }

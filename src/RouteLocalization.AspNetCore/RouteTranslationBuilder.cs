@@ -40,11 +40,12 @@
 			{
 				CurrentCultures = new[] { culture };
 
-				IRouteProcessor routeProcessor = new CopyTemplateRouteProcessor(RouteTranslationConfiguration,
-					LoggerFactory.CreateLogger<CopyTemplateRouteProcessor>())
-				{
-					Culture = CurrentCultures.Single()
-				};
+				IRouteProcessor routeProcessor =
+					new CopyTemplateRouteProcessor(RouteTranslationConfiguration,
+						LoggerFactory.CreateLogger<CopyTemplateRouteProcessor>())
+					{
+						Culture = culture
+					};
 
 				RouteTranslationStore.Add(new RouteSelectorProcessorPair
 				{
@@ -58,32 +59,28 @@
 			return this;
 		}
 
+		// TODO: Add string version like WhereController / WhereAction
 		public RouteTranslationBuilder Filter<T>()
 		{
-			if (CurrentRouteSelectorFunc == null)
-			{
-				throw new InvalidOperationException(
-					$"{typeof(FilterRouteSelector)} cannot be used before any RouteSelector is defined.");
-			}
-
-			Func<IRouteSelector> previousRouteSelectorFunc = CurrentRouteSelectorFunc;
-
-			CurrentRouteSelectorFunc = () => new FilterRouteSelector(previousRouteSelectorFunc())
-			{
-				Controller = Regex.Replace(typeof(T).Name, "Controller$", string.Empty),
-				ControllerNamespace = typeof(T).Namespace
-			};
-
-			return this;
+			return Filter<T>(null);
 		}
 
 		public RouteTranslationBuilder Filter<T>(Expression<Action<T>> expression)
 		{
-			MethodCallExpression methodCall = expression.Body as MethodCallExpression;
+			string actionName = null;
+			Type[] actionArguments = null;
 
-			if (methodCall == null)
+			if (expression != null)
 			{
-				throw new ArgumentException("Expression must be a MethodCallExpression", nameof(expression));
+				MethodCallExpression methodCall = expression.Body as MethodCallExpression;
+
+				if (methodCall == null)
+				{
+					throw new ArgumentException("Expression must be a MethodCallExpression", nameof(expression));
+				}
+
+				actionName = methodCall.Method.Name;
+				actionArguments = methodCall.Arguments.Select(x => x.Type).ToArray();
 			}
 
 			if (CurrentRouteSelectorFunc == null)
@@ -94,16 +91,40 @@
 
 			Func<IRouteSelector> previousRouteSelectorFunc = CurrentRouteSelectorFunc;
 
-			CurrentRouteSelectorFunc = () =>
+			CurrentRouteSelectorFunc = (Func<FilterRouteSelector>)(() =>
 			{
-				return new FilterRouteSelector(previousRouteSelectorFunc())
+				FilterRouteSelector filterRouteSelector = new FilterRouteSelector(previousRouteSelectorFunc())
 				{
 					Controller = Regex.Replace(typeof(T).Name, "Controller$", string.Empty),
 					ControllerNamespace = typeof(T).Namespace,
-					Action = methodCall.Method.Name,
-					ActionArguments = methodCall.Arguments.Select(x => x.Type).ToArray()
+					Action = actionName,
+					ActionArguments = actionArguments,
+					Localizer = RouteTranslationConfiguration.Localizer,
+					Cultures = CurrentCultures.ToArray()
 				};
-			};
+
+				if ((previousRouteSelectorFunc as Func<FilterRouteSelector>) != null)
+				{
+					FilterRouteSelector previousFilterRouteSelector = ((Func<FilterRouteSelector>)previousRouteSelectorFunc)();
+
+					filterRouteSelector.FilterControllerOrActionWhenNoTranslatedRouteLeft = previousFilterRouteSelector
+						.FilterControllerOrActionWhenNoTranslatedRouteLeft;
+					filterRouteSelector.FilterControllerOrActionWhenNoUntranslatedRouteLeft = previousFilterRouteSelector
+						.FilterControllerOrActionWhenNoUntranslatedRouteLeft;
+				}
+
+				if ((previousRouteSelectorFunc as Func<TranslatedRoutesRouteSelector>) != null)
+				{
+					filterRouteSelector.FilterControllerOrActionWhenNoTranslatedRouteLeft = true;
+				}
+
+				if ((previousRouteSelectorFunc as Func<UntranslatedRoutesRouteSelector>) != null)
+				{
+					filterRouteSelector.FilterControllerOrActionWhenNoUntranslatedRouteLeft = true;
+				}
+
+				return filterRouteSelector;
+			});
 
 			return this;
 		}
@@ -113,7 +134,7 @@
 			IRouteProcessor routeProcessor = new DisableOriginalRouteProcessor(RouteTranslationConfiguration,
 				LoggerFactory.CreateLogger<DisableOriginalRouteProcessor>())
 			{
-				Cultures = CurrentCultures
+				Cultures = CurrentCultures.ToArray()
 			};
 
 			RouteTranslationStore.Add(new RouteSelectorProcessorPair
@@ -223,11 +244,12 @@
 				Logger.LogWarning($"{nameof(CurrentRouteSelectorFunc)} is not null, will be overridden.");
 			}
 
-			CurrentRouteSelectorFunc = () => new TranslatedRoutesRouteSelector()
+			CurrentRouteSelectorFunc = (Func<TranslatedRoutesRouteSelector>)(() =>
+			new TranslatedRoutesRouteSelector()
 			{
-				Cultures = CurrentCultures,
+				Cultures = CurrentCultures.ToArray(),
 				Localizer = RouteTranslationConfiguration.Localizer
-			};
+			});
 
 			return this;
 		}
@@ -239,11 +261,11 @@
 				Logger.LogWarning($"{nameof(CurrentRouteSelectorFunc)} is not null, will be overridden.");
 			}
 
-			CurrentRouteSelectorFunc = () => new UntranslatedRoutesRouteSelectorBuilder()
+			CurrentRouteSelectorFunc = (Func<UntranslatedRoutesRouteSelector>)(() => new UntranslatedRoutesRouteSelector()
 			{
 				Culture = CurrentCultures.Single(),
 				Localizer = RouteTranslationConfiguration.Localizer
-			};
+			});
 
 			return this;
 		}

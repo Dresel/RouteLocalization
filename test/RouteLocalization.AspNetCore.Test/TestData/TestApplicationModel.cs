@@ -21,7 +21,8 @@
 					{
 						typeof(Controller1).GetTypeInfo(),
 						typeof(Controller2).GetTypeInfo(),
-						typeof(Controller3).GetTypeInfo()
+						typeof(Controller3).GetTypeInfo(),
+						typeof(Controller4).GetTypeInfo(),
 					});
 
 				defaultApplicationModelProvider.OnProvidersExecuting(applicationModelProviderContext);
@@ -32,8 +33,7 @@
 
 		public static ControllerModel Controller<T>(this ApplicationModel applicationModel)
 		{
-			return applicationModel.Controllers.Single(
-				controller => Equals(controller.ControllerType, typeof(T).GetTypeInfo()));
+			return applicationModel.Controllers.Single(controller => Equals(controller.ControllerType, typeof(T).GetTypeInfo()));
 		}
 
 		public static ControllerModel Controller1(this ApplicationModel applicationModel)
@@ -49,6 +49,11 @@
 		public static ControllerModel Controller3(this ApplicationModel applicationModel)
 		{
 			return applicationModel.Controller<Controller3>();
+		}
+
+		public static ControllerModel Controller4(this ApplicationModel applicationModel)
+		{
+			return applicationModel.Controller<Controller4>();
 		}
 	}
 }

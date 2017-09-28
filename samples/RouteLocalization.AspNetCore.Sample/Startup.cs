@@ -75,14 +75,21 @@
 						.WhereAction(nameof(HomeController.Index))
 						.TranslateAction("Willkommen");
 
+					setup.UseCulture("de")
+						.WhereController(nameof(SecondController))
+						.WhereAction(nameof(SecondController.First))
+						.TranslateAction("Erste");
+
 					setup.UseCultures(new[] { "en", "de" })
 						.WhereUntranslated()
 						.Filter<ApiController>()
 						.Filter<HomeController>(controller => controller.Start())
+						.Filter<SecondController>(controller => controller.Second())
 						.AddDefaultTranslation();
 
 					setup.UseCultures(new[] { "en", "de" })
 						.WhereTranslated()
+						.Filter<SecondController>(controller => controller.First())
 						.RemoveOriginalRoutes();
 				});
 

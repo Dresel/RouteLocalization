@@ -1,6 +1,5 @@
 namespace RouteLocalization.AspNetCore.Test.Selection
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -25,7 +24,7 @@ namespace RouteLocalization.AspNetCore.Test.Selection
 		[TestMethod]
 		public void BuildForTranslatedControllerAndTranslatedActionRoutesReturnsCorrectRouteSelector()
 		{
-			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelectorBuilder()
+			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelector()
 			{
 				Culture = TranslatedRoutesRouteSelectorBuilderTest.Culture,
 				Localizer = GetLocalizer()
@@ -62,7 +61,7 @@ namespace RouteLocalization.AspNetCore.Test.Selection
 		[TestMethod]
 		public void BuildForTranslatedControllerAndUntranslatedActionRoutesReturnsCorrectRouteSelector()
 		{
-			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelectorBuilder()
+			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelector()
 			{
 				Culture = TranslatedRoutesRouteSelectorBuilderTest.Culture,
 				Localizer = GetLocalizer()
@@ -91,7 +90,7 @@ namespace RouteLocalization.AspNetCore.Test.Selection
 		[TestMethod]
 		public void BuildForUntranslatedActionRoutesReturnsCorrectRouteSelector()
 		{
-			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelectorBuilder()
+			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelector()
 			{
 				Culture = TranslatedRoutesRouteSelectorBuilderTest.Culture,
 				Localizer = GetLocalizer()
@@ -115,7 +114,7 @@ namespace RouteLocalization.AspNetCore.Test.Selection
 		[TestMethod]
 		public void BuildForUntranslatedControllerAndTranslatedActionRoutesReturnsCorrectRouteSelector()
 		{
-			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelectorBuilder()
+			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelector()
 			{
 				Culture = TranslatedRoutesRouteSelectorBuilderTest.Culture,
 				Localizer = GetLocalizer()
@@ -147,7 +146,7 @@ namespace RouteLocalization.AspNetCore.Test.Selection
 		[TestMethod]
 		public void BuildForUntranslatedControllerAndUntranslatedActionsRoutesReturnsCorrectRouteSelector()
 		{
-			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelectorBuilder()
+			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelector()
 			{
 				Culture = TranslatedRoutesRouteSelectorBuilderTest.Culture,
 				Localizer = GetLocalizer()
@@ -171,7 +170,7 @@ namespace RouteLocalization.AspNetCore.Test.Selection
 		[TestMethod]
 		public void BuildForUntranslatedControllerRoutesReturnsCorrectRouteSelector()
 		{
-			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelectorBuilder()
+			IRouteSelector routeSelector = new UntranslatedRoutesRouteSelector()
 			{
 				Culture = TranslatedRoutesRouteSelectorBuilderTest.Culture,
 				Localizer = GetLocalizer()
