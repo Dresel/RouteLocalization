@@ -1,6 +1,6 @@
 **Looking for the ASP.NET Core version?**
 
-Go to the [aspnet core](https://github.com/Dresel/RouteLocalization/tree/aspnet-core/dev) branch.
+Go to the [aspnet core repository](https://github.com/Dresel/RouteLocalization.AspNetCore).
 
 # The addon for simple route localization
 
