@@ -1,0 +1,2 @@
+F:\GitHub\brgrz\RouteLocalization\Source\RouteLocalization.Http.Tests\Fakes\System.Web.Http.fakes : warning : Cannot generate shim for System.Web.Http.Routing.HttpRouteExtensions: type is not visible to exported or assembly(System.Web.Http.5.2.0.0.Fakes).
+F:\GitHub\brgrz\RouteLocalization\Source\RouteLocalization.Http.Tests\Fakes\System.Web.Http.fakes : warning : Cannot generate shim for System.Web.Http.Routing.HttpRouteDirection: type is an enum.
